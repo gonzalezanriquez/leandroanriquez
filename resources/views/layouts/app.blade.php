@@ -6,6 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css"  rel="stylesheet" />
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -33,7 +34,7 @@
 <div class="p-4 sm:ml-64">
    <div class="">
       
-      <div class="flex items-center justify-center  rounded bg-gray-50 dark:bg-gray-800">
+      <div class="flex justify-center  rounded bg-gray-50 dark:bg-gray-800">
          
          {{ $slot }}
 
@@ -46,6 +47,7 @@
             </main>
         </div>
         @livewireScripts
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
 
     </body>
 </html>
