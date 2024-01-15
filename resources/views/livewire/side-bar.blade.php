@@ -1,19 +1,3 @@
-<!-- En tu archivo Blade de Laravel -->
-
-<!-- El componente Livewire para el toggler -->
-<div>
-    <!-- El botón para mostrar/ocultar el sidebar -->
-    <button wire:click="toggleSidebar" class="bg-blue-500 text-white px-4 py-2 rounded">
-        Toggle Sidebar
-    </button>
-
-    <!-- El sidebar que mostrarás u ocultarás -->
-    <div class="bg-gray-200 w-64" wire:loading.class.remove="hidden" wire:target="toggleSidebar">
-        <!-- Contenido del sidebar -->
-        ...
-    </div>
-</div>
-
 <button data-drawer-target="separator-sidebar" data-drawer-toggle="separator-sidebar" aria-controls="separator-sidebar" type="button" class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
    <span class="sr-only">Open sidebar</span>
    <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
