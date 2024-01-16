@@ -11,10 +11,8 @@
                 <div class="text-center text-gray-400 text-xs font-semibold">
                     <p>{{ $user->email }}</p>
                 </div>
-                
-    
                 <div class="text-center my-3">
-                    <a class="text-xs text-black   hover:bg-amber-500 font-medium bg-amber-400 p-2 rounded" href="{{route('profile.edit')}}">Editar Perfil</a>
+                    <a class="inline-flex px-2 py-1 text-xs  leading-5 text-black bg-amber-400  rounded hover:bg-amber-500" href="{{route('profile.edit')}}">Editar Perfil</a>
                 </div>
     
             </div>

@@ -67,7 +67,11 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+      
+        $user = User::find($id);
+
+        return view('users.edit', compact('user'));
+    
     }
 
     /**
@@ -93,7 +97,7 @@ class UserController extends Controller
             'email' => $request->input('email'),
         ]);
     
-        return redirect()->route('profile.index')->with('status', 'profile-updated');
+        return redirect()->route('user.edit', ['id' => $id])->with('status', 'profile-updated');
     }
     
 
