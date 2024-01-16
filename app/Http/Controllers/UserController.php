@@ -79,8 +79,23 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+        ]);
+    
+        $user = User::findOrFail($id);
+    
+        $user->update([
+            'name' => $request->input('name'),
+            'lastname' => $request->input('lastname'),
+            'email' => $request->input('email'),
+        ]);
+    
+        return redirect()->route('profile.index')->with('status', 'profile-updated');
     }
+    
 
     /**
      * Remove the specified resource from storage.
