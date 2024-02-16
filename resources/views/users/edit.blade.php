@@ -1,15 +1,19 @@
 
+
+
+
+
+
+
+
+
 <!-- resources/views/user/edit.blade.php -->
 
 <x-app-layout>
     <section>
-        <header>
-            <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-                {{ __('Edit User') }}
-            </h2>
-        </header>
 
-        <form method="post" action="{{ route('user.update', $user->id) }}" class="mt-6 space-y-6">
+
+        <form method="post" action="{{ route('user.update', $user->id) }}" class="mt-6 space-y-6" id="editUser">
             @csrf
             @method('patch')
 

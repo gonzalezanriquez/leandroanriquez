@@ -12,7 +12,8 @@
         "laravel/tinker": "^2.7",
         "laraveles/spanish": "^1.5",
         "livewire/livewire": "^2.12",
-        "nesbot/carbon": "^2.72"
+        "nesbot/carbon": "^2.72",
+        "spatie/laravel-permission": "^6.3"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

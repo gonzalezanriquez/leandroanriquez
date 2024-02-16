@@ -19,5 +19,7 @@ module.exports = {
 
     plugins: [
         require('@tailwindcss/forms'),
+        require('feather-icons'),
         require('flowbite/plugin')],
+        
 };

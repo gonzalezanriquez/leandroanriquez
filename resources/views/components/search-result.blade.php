@@ -11,7 +11,7 @@
             <img class="w-10 h-10 rounded-full" src="https://img.freepik.com/vector-premium/negocios-economia-global_24877-41082.jpg" alt="Jese image">
             <div class="ps-3">
                 
-                <div class="text-base font-semibold text-transform: uppercase">{{ $user->name }} </div>
+                <div class="text-base font-semibold text-transform: uppercase">{{ $user->name }} {{ $user->lastname }} </div>
                 <div class="font-normal text-gray-500">{{ $user->mail }}</div>
             </div>  
         </th>
