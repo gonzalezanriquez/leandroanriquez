@@ -13,6 +13,7 @@ class DashboardController extends Controller
 
     public function index()
     {
+        
         Carbon::setLocale('es');
 
         $dateTime = Carbon::now('America/Argentina/Buenos_Aires');
@@ -24,9 +25,10 @@ class DashboardController extends Controller
 
         $user = auth()->user();
 
-        
-        
-            return view('dashboard', compact('user','dateTime','nombreDia','nombreMes'));
+        $cantidadUsuarios = User::count(); // Contar el número total de usuarios
+
+        return view('dashboard', compact('user', 'dateTime', 'nombreDia', 'nombreMes', 'cantidadUsuarios'));
+    
     
     }
 }

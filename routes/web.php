@@ -27,8 +27,8 @@ Route::middleware('auth')->group(function () {
 
     //Route::get('/users', ShowUsers::class)->name('users');;
     
-    Route::get('/users',[UserController::class, 'index'])->name('users');
-    Route::get('/buscar',[UserController::class, 'search'])->name('buscar'); 
+    Route::get('/users',[UserController::class, 'index'])->name('users.index');
+    // Route::get('/buscar',[UserController::class, 'search'])->name('buscar'); 
 
 
     Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('user.edit');

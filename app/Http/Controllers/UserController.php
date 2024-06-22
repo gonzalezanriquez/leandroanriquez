@@ -97,7 +97,10 @@ class UserController extends Controller
             'email' => $request->input('email'),
         ]);
     
-        return redirect()->route('user.edit', ['id' => $id])->with('status', 'profile-updated');
+        return redirect()->route('users.index', ['id' => $id])->with('success', 'Usuario actualizado exitosamente');
+
+
+
     }
     
 

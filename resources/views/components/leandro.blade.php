@@ -18,18 +18,19 @@
 </head>
 
 <body class="font-sans antialiased">
+    @include('layouts.sidebar') 
 
 
-
+{{--
     <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200 font-roboto">
-        @include('layouts.sidebar') 
-        
+        @include('layouts.sidebar')
+
         <div class="flex-1 flex flex-col overflow-hidden">
             @include('layouts.header')
 
             <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
                 <div class="container mx-auto px-6 py-8">
-                  
+
                     {{ $slot }}
                 </div>
             </main>
@@ -39,208 +40,67 @@
 
 
 
+    @livewireScripts
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+ --}}
 
 {{-- 
 
-    <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+ <div class="flex h-60">
+    <aside class="hidden md:block w-64 h-screen  px-4 py-8 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
+        <a href="#" class="mx-auto">
+            <img class="w-auto h-6 sm:h-7" src="https://merakiui.com/images/full-logo.svg" alt="">
+        </a>
 
-        @livewire('side-bar')
+        <div class="flex flex-col items-center mt-6 -mx-2">
+            <img class="object-cover w-24 h-24 mx-2 rounded-full" src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="avatar">
+            <h4 class="mx-2 mt-2 font-medium text-gray-800 dark:text-gray-200">John Doe</h4>
+            <p class="mx-2 mt-1 text-sm font-medium text-gray-600 dark:text-gray-400">john@example.com</p>
+        </div>
 
+        <div class="flex flex-col justify-between flex-1 mt-6">
+            <nav>
+                <a class="flex items-center px-4 py-2 text-gray-700 bg-gray-100 rounded-lg dark:bg-gray-800 dark:text-gray-200" href="#">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 11H5M19 11C20.1046 11 21 11.8954 21 13V19C21 20.1046 20.1046 21 19 21H5C3.89543 21 3 20.1046 3 19V13C3 11.8954 3.89543 11 5 11M19 11V9C19 7.89543 18.1046 7 17 7M5 11V9C5 7.89543 5.89543 7 7 7M7 7V5C7 3.89543 7.89543 3 9 3H15C16.1046 3 17 3.89543 17 5V7M7 7H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
 
-        <main> --}}
-           
+                    <span class="mx-4 font-medium">Dashboard</span>
+                </a>
 
+                <a class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700" href="#">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
 
+                    <span class="mx-4 font-medium">Accounts</span>
+                </a>
 
+                <a class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700" href="#">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15 5V7M15 11V13M15 17V19M5 5C3.89543 5 3 5.89543 3 7V10C4.10457 10 5 10.8954 5 12C5 13.1046 4.10457 14 3 14V17C3 18.1046 3.89543 19 5 19H19C20.1046 19 21 18.1046 21 17V14C19.8954 14 19 13.1046 19 12C19 10.8954 19.8954 10 21 10V7C21 5.89543 20.1046 5 19 5H5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
 
+                    <span class="mx-4 font-medium">Tickets</span>
+                </a>
 
-            {{-- <div class="min-h-screen flex items-center justify-center">
-                <nav class="bg-gray-800">
-                    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-                        <div class="relative flex h-16 items-center justify-between">
-                            <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                                <button type="button"
-                                    class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-                                    aria-controls="mobile-menu" aria-expanded="false">
-                                    <span class="absolute -inset-0.5"></span>
-                                    <span class="sr-only">Open main menu</span>
-                                  
-                                    <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                        stroke="currentColor" aria-hidden="true">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                                    </svg>
+                <a class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700" href="#">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10.3246 4.31731C10.751 2.5609 13.249 2.5609 13.6754 4.31731C13.9508 5.45193 15.2507 5.99038 16.2478 5.38285C17.7913 4.44239 19.5576 6.2087 18.6172 7.75218C18.0096 8.74925 18.5481 10.0492 19.6827 10.3246C21.4391 10.751 21.4391 13.249 19.6827 13.6754C18.5481 13.9508 18.0096 15.2507 18.6172 16.2478C19.5576 17.7913 17.7913 19.5576 16.2478 18.6172C15.2507 18.0096 13.9508 18.5481 13.6754 19.6827C13.249 21.4391 10.751 21.4391 10.3246 19.6827C10.0492 18.5481 8.74926 18.0096 7.75219 18.6172C6.2087 19.5576 4.44239 17.7913 5.38285 16.2478C5.99038 15.2507 5.45193 13.9508 4.31731 13.6754C2.5609 13.249 2.5609 10.751 4.31731 10.3246C5.45193 10.0492 5.99037 8.74926 5.38285 7.75218C4.44239 6.2087 6.2087 4.44239 7.75219 5.38285C8.74926 5.99037 10.0492 5.45193 10.3246 4.31731Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M15 12C15 13.6569 13.6569 15 12 15C10.3431 15 9 13.6569 9 12C9 10.3431 10.3431 9 12 9C13.6569 9 15 10.3431 15 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
 
-                                    <svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                        stroke="currentColor" aria-hidden="true">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                                    </svg>
-                                </button>
-                            </div>
-                            <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                                <div class="flex flex-shrink-0 items-center">
-                                    <img class="h-8 w-auto"
-                                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                                        alt="Your Company">
-                                </div>
-                                <div class="hidden sm:ml-6 sm:block">
-                                    <div class="flex space-x-4">
-                                        <a href="#"
-                                            class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
-                                            aria-current="page">Dashboard</a>
-                                        <a href="#"
-                                            class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Team</a>
-                                        <a href="#"
-                                            class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Projects</a>
-                                        <a href="#"
-                                            class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Calendar</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div
-                                class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                                <button type="button"
-                                    class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                                    <span class="absolute -inset-1.5"></span>
-                                    <span class="sr-only">View notifications</span>
-                                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                        stroke="currentColor" aria-hidden="true">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
-                                    </svg>
-                                </button>
-
-                                <div class="relative ml-3">
-                                    <div>
-                                        <button type="button"
-                                            class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                                            id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-                                            <span class="absolute -inset-1.5"></span>
-                                            <span class="sr-only">Open user menu</span>
-                                            <img class="h-8 w-8 rounded-full"
-                                                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                                alt="">
-                                        </button>
-                                    </div>
-
-                                   
-                                    <div class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-                                        role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button"
-                                        tabindex="-1">
-                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
-                                            tabindex="-1" id="user-menu-item-0">Your Profile</a>
-                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
-                                            tabindex="-1" id="user-menu-item-1">Settings</a>
-                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
-                                            tabindex="-1" id="user-menu-item-2">Sign out</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Mobile menu, show/hide based on menu state. -->
-                    <div class="sm:hidden" id="mobile-menu">
-                        <div class="space-y-1 px-2 pb-3 pt-2">
-                            <a href="#"
-                                class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium"
-                                aria-current="page">Dashboard</a>
-                            <a href="#"
-                                class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Team</a>
-                            <a href="#"
-                                class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Projects</a>
-                            <a href="#"
-                                class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Calendar</a>
-                        </div>
-                    </div>
-                </nav>
-
-                <div class="flex flex-col bg-white rounded p-4 w-full max-w-xs">
-                    <div class="font-bold text-xl">Sydney</div>
-                    <div class="text-sm text-gray-500">Thursday 10 May 2020</div>
-                    <div
-                        class="mt-6 text-6xl self-center inline-flex items-center justify-center rounded-lg text-indigo-400 h-24 w-24">
-                        <svg class="w-32 h-32" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z">
-                            </path>
-                        </svg>
-                    </div>
-                    <div class="flex flex-row items-center justify-center mt-6">
-                        <div class="font-medium text-6xl" id="current-time"></div>
-                        <div class="flex flex-col items-center ml-6">
-                            <div>Cloudy</div>
-                            <div class="mt-1">
-                                <span class="text-sm"><i class="far fa-long-arrow-up"></i></span>
-                                <span class="text-sm font-light text-gray-500" id="current-time"></span>
-                            </div>
-                            <div>
-                                <span class="text-sm"><i class="far fa-long-arrow-down"></i></span>
-                                <span class="text-sm font-light text-gray-500">20°C</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex flex-row justify-between mt-6">
-                        <div class="flex flex-col items-center">
-                            <div class="font-medium text-sm">Wind</div>
-                            <div class="text-sm text-gray-500">9k/h</div>
-                        </div>
-                        <div class="flex flex-col items-center">
-                            <div class="font-medium text-sm">Humidity</div>
-                            <div class="text-sm text-gray-500">68%</div>
-                        </div>
-                        <div class="flex flex-col items-center">
-                            <div class="font-medium text-sm">Visibility</div>
-                            <div class="text-sm text-gray-500">10km</div>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
-
-         
-
-            {{-- <div class="sm:ml-64">
-                @include('layouts.navigation')
-
-                <div class="">
-
-                     
-
-                    {{ $slot }}
-
-                </div>
+                    <span class="mx-4 font-medium">Settings</span>
+                </a>
+            </nav>
+        </div>
+    </aside>
+    {{-- <main class="min-w-0 flex-1 justify-center">{{$slot}}</main> 
+</div>
+ --}}
 
 
-            </div>
-    </div>
-
-    </main>
-    </div> --}}
-    @livewireScripts
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
-
-
-    <script>
-        // JavaScript para mostrar la hora y minutos actuales
-        function mostrarHora() {
-            const ahora = new Date();
-            const horas = ahora.getHours();
-            const minutos = ahora.getMinutes();
-
-            // Formatea los minutos para que siempre tengan dos dígitos
-            const minutosFormateados = minutos < 10 ? `0${minutos}` : minutos;
-
-            // Muestra la hora y minutos en el formato deseado
-            document.getElementById('current-time').textContent = ` ${horas}:${minutosFormateados}`;
-        }
-
-        // Llama a la función cada segundo para mantener la hora actualizada
-        setInterval(mostrarHora, 1000);
-
-        // Muestra la hora actual al cargar la página
-        mostrarHora();
-    </script>
 
 </body>
 
