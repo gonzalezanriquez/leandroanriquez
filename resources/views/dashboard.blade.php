@@ -1,198 +1,120 @@
-<x-dash-layout >
-    {{-- @include('components.profile-card') --}}
+<x-dash-layout>
 
 
+  
 
-<div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-    <div class="flex justify-end px-4 pt-4">
-        <button id="dropdownButton" data-dropdown-toggle="dropdown" class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5" type="button">
-            <span class="sr-only">Open dropdown</span>
-            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
-                <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/>
-            </svg>
-        </button>
-        <!-- Dropdown menu -->
-        <div id="dropdown" class="z-10 hidden text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-            <ul class="py-2" aria-labelledby="dropdownButton">
-            <li>
-                <a href="{{route('profile.edit')}}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Editar Perfil</a>
-            </li>
-            <li>
-                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Export Data</a>
-            </li>
-            <li>
-                <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
-            </li>
-            </ul>
+<header class="bg-gray-50">
+    <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+      <div class="sm:flex sm:items-center sm:justify-between">
+        <div class="text-center sm:text-left">
+          <h1 class="text-2xl font-bold text-gray-900 sm:text-3xl">  Te damos la Bienvenida, {{ auth()->user()->name }}! 👋</h1>
+  
+          <p class="mt-1.5 text-sm text-gray-500">Aqui podras encotrar todo lo que necesitas para la gestion de tu secretaria.</p>
         </div>
-    </div>
-    <div class="flex flex-col items-center pb-10">
-        <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="https://www.gravatar.com/avatar/2acfb745ecf9d4dccb3364752d17f65f?s=260&d=mp" alt="Bonnie image"/>
-        <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{{ $user->name }} {{ $user->lastname }}</h5>
-        <span class="text-sm text-gray-500 dark:text-gray-400">{{ $user->email }} </span>
-        <div class="flex mt-4 md:mt-6">
-            <a href="{{route('profile.edit')}}" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Editar Perfil</a>
-           
+  
+        <div class="mt-4 flex flex-col gap-4 sm:mt-0 sm:flex-row sm:items-center">
+         <a href={{ route('users.index') }}> <button class="inline-flex items-center justify-center gap-1.5 rounded-lg border border-gray-200 bg-white px-5 py-3 text-gray-500 transition hover:text-gray-700 focus:outline-none focus:ring" type="button">
+            <span class="text-sm font-medium"> Crear nuevo Usuario </span>
+            <x-heroicon-o-plus-circle class="w-4 h-4" stroke-width="1"/>
+          </button></a>
+        
         </div>
+      </div>
     </div>
+  </header>
+{{-- STADISTICAS --}}
+   
+      
 
-    @php
-    // Get the current month and year
-    $month = date('n');
-    $year = date('Y');
+<x-CantidadUsuarios :cantidadUsuarios="$cantidadUsuarios" /> 
 
-    // Get the number of days in the current month
-    $daysInMonth = cal_days_in_month(CAL_GREGORIAN, $month, $year);
 
-    // Get the first day of the month
-    $firstDay = date('N', strtotime("{$year}-{$month}-01"));
-@endphp
 
-<div class="p-4 bg-white shadow-lg rounded-2xl dark:bg-gray-700">
-    <div class="flex flex-wrap overflow-hidden">
-        <div class="w-full rounded shadow-sm">
-            <div class="flex items-center justify-between mb-4">
-                <div class="text-xl font-bold text-left text-black dark:text-white">
-                    {{ date('M Y') }}
+
+
+
+    
+    <!-- ====== Cards Section Start -->
+    <section class="bg-gray-2 dark:bg-dark pb-10  ">
+        <div class="container mx-auto">
+            <div class="flex flex-wrap -mx-2">
+                
+                <div class="w-full px-4 md:w-1/2 xl:w-1/3 ">
+                    <div class="mb-10 overflow-hidden duration-300 bg-white rounded-lg dark:bg-dark-2 shadow-1 hover:shadow-3 dark:shadow-card dark:hover:shadow-3 shadow-md">
+                        <img src="https://cdn.tailgrids.com/2.0/image/application/images/cards/card-01/image-01.jpg"
+                            alt="image" class="w-full" />
+                        <div class="p-8 text-center sm:p-9 md:p-7 xl:p-9">
+                            <h3>
+                                <a href="javascript:void(0)" class="text-dark dark:text-white hover:text-primary mb-4 block text-xl font-semibold sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px]">
+                                   {{$user->name}}
+                                </a>
+                            </h3>
+                            <p class="text-base leading-relaxed text-body-color dark:text-dark-6 mb-7">
+                                Lorem ipsum dolor sit amet pretium consectetur adipiscing
+                                elit. Lorem consectetur adipiscing elit.
+                            </p>
+                            <a href="javascript:void(0)" class="inline-block py-2 text-base font-medium transition border rounded-full text-body-color hover:border-primary hover:bg-primary border-gray-3 px-7 hover:text-white dark:border-dark-3 dark:text-dark-6">
+                                View Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full px-4 md:w-1/2 xl:w-1/3">
+                    <div
+                        class="mb-10 overflow-hidden duration-300 bg-white rounded-lg dark:bg-dark-2 shadow-1 hover:shadow-3 dark:shadow-card dark:hover:shadow-3">
+                        <img src="https://cdn.tailgrids.com/2.0/image/application/images/cards/card-01/image-02.jpg"
+                            alt="image" class="w-full" />
+                        <div class="p-8 text-center sm:p-9 md:p-7 xl:p-9">
+                            <h3>
+                                <a href="javascript:void(0)"
+                                    class="text-dark dark:text-white hover:text-primary mb-4 block text-xl font-semibold sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px]">
+                                    The ultimate UX and UI guide to card design
+                                </a>
+                            </h3>
+                            <p class="text-base leading-relaxed text-body-color mb-7">
+                                Lorem ipsum dolor sit amet pretium consectetur adipiscing
+                                elit. Lorem consectetur adipiscing elit.
+                            </p>
+                            <a href="javascript:void(0)"
+                                class="inline-block py-2 text-base font-medium transition border rounded-full text-body-color hover:border-primary hover:bg-primary border-gray-3 px-7 hover:text-white dark:border-dark-3 dark:text-dark-6">
+                                View Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full px-4 md:w-1/2 xl:w-1/3">
+                    <div
+                        class="mb-10 overflow-hidden duration-300 bg-white rounded-lg dark:bg-dark-2 shadow-1 hover:shadow-3 dark:shadow-card dark:hover:shadow-3">
+                        <img src="https://cdn.tailgrids.com/2.0/image/application/images/cards/card-01/image-03.jpg"
+                            alt="image" class="w-full" />
+                        <div class="p-8 text-center sm:p-9 md:p-7 xl:p-9">
+                            <h3>
+                                <a href="javascript:void(0)"
+                                    class="text-dark dark:text-white hover:text-primary mb-4 block text-xl font-semibold sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px]">
+                                    Creative Card Component designs graphic elements
+                                </a>
+                            </h3>
+                            <p class="text-base leading-relaxed text-body-color mb-7">
+                                Lorem ipsum dolor sit amet pretium consectetur adipiscing
+                                elit. Lorem consectetur adipiscing elit.
+                            </p>
+                            <a href="javascript:void(0)"
+                                class="inline-block py-2 text-base font-medium transition border rounded-full text-body-color hover:border-primary hover:bg-primary border-gray-3 px-7 hover:text-white dark:border-dark-3 dark:text-dark-6">
+                                View Details
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="-mx-2">
-                <table class="w-full dark:text-white">
-                    <!-- Add your table rows and cells here based on the $firstDay and $daysInMonth variables -->
-                    <!-- Use PHP loops to generate the calendar days -->
-                    <!-- Example: -->
-                    @for ($i = 1; $i <= $daysInMonth; $i++)
-                        @if ($i == 1 || ($i == 1 && $firstDay == 7))
-                            <tr>
-                        @endif
-
-                        <td class="px-2 py-3 text-center cursor-pointer md:px-3 hover:text-blue-500">
-                            {{ $i }}
-                        </td>
-
-                        @if (($i + $firstDay - 1) % 7 == 0 || $i == $daysInMonth)
-                            </tr>
-                        @endif
-                    @endfor
-                </table>
-            </div>
         </div>
-    </div>
-</div>
-
-
-</div>
-<x-CantidadUsuarios :cantidadUsuarios="$cantidadUsuarios" />
-
-
-<!-- ====== Cards Section Start -->
-<section class="bg-gray-2 dark:bg-dark pt-20 pb-10 lg:pt-[120px] lg:pb-20">
-    <div class="container mx-auto">
-       <div class="flex flex-wrap -mx-4">
-          <div class="w-full px-4 md:w-1/2 xl:w-1/3">
-             <div
-                class="mb-10 overflow-hidden duration-300 bg-white rounded-lg dark:bg-dark-2 shadow-1 hover:shadow-3 dark:shadow-card dark:hover:shadow-3"
-                >
-                <img
-                   src="https://cdn.tailgrids.com/2.0/image/application/images/cards/card-01/image-01.jpg"
-                   alt="image"
-                   class="w-full"
-                   />
-                <div class="p-8 text-center sm:p-9 md:p-7 xl:p-9">
-                   <h3>
-                      <a
-                         href="javascript:void(0)"
-                         class="text-dark dark:text-white hover:text-primary mb-4 block text-xl font-semibold sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px]"
-                         >
-                      50+ Best creative website themes & templates
-                      </a>
-                   </h3>
-                   <p
-                      class="text-base leading-relaxed text-body-color dark:text-dark-6 mb-7"
-                      >
-                      Lorem ipsum dolor sit amet pretium consectetur adipiscing
-                      elit. Lorem consectetur adipiscing elit.
-                   </p>
-                   <a
-                      href="javascript:void(0)"
-                      class="inline-block py-2 text-base font-medium transition border rounded-full text-body-color hover:border-primary hover:bg-primary border-gray-3 px-7 hover:text-white dark:border-dark-3 dark:text-dark-6"
-                      >
-                   View Details
-                   </a>
-                </div>
-             </div>
-          </div>
-          <div class="w-full px-4 md:w-1/2 xl:w-1/3">
-             <div
-                class="mb-10 overflow-hidden duration-300 bg-white rounded-lg dark:bg-dark-2 shadow-1 hover:shadow-3 dark:shadow-card dark:hover:shadow-3"
-                >
-                <img
-                   src="https://cdn.tailgrids.com/2.0/image/application/images/cards/card-01/image-02.jpg"
-                   alt="image"
-                   class="w-full"
-                   />
-                <div class="p-8 text-center sm:p-9 md:p-7 xl:p-9">
-                   <h3>
-                      <a
-                         href="javascript:void(0)"
-                         class="text-dark dark:text-white hover:text-primary mb-4 block text-xl font-semibold sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px]"
-                         >
-                      The ultimate UX and UI guide to card design
-                      </a>
-                   </h3>
-                   <p class="text-base leading-relaxed text-body-color mb-7">
-                      Lorem ipsum dolor sit amet pretium consectetur adipiscing
-                      elit. Lorem consectetur adipiscing elit.
-                   </p>
-                   <a
-                      href="javascript:void(0)"
-                      class="inline-block py-2 text-base font-medium transition border rounded-full text-body-color hover:border-primary hover:bg-primary border-gray-3 px-7 hover:text-white dark:border-dark-3 dark:text-dark-6"
-                      >
-                   View Details
-                   </a>
-                </div>
-             </div>
-          </div>
-          <div class="w-full px-4 md:w-1/2 xl:w-1/3">
-             <div
-                class="mb-10 overflow-hidden duration-300 bg-white rounded-lg dark:bg-dark-2 shadow-1 hover:shadow-3 dark:shadow-card dark:hover:shadow-3"
-                >
-                <img
-                   src="https://cdn.tailgrids.com/2.0/image/application/images/cards/card-01/image-03.jpg"
-                   alt="image"
-                   class="w-full"
-                   />
-                <div class="p-8 text-center sm:p-9 md:p-7 xl:p-9">
-                   <h3>
-                      <a
-                         href="javascript:void(0)"
-                         class="text-dark dark:text-white hover:text-primary mb-4 block text-xl font-semibold sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px]"
-                         >
-                      Creative Card Component designs graphic elements
-                      </a>
-                   </h3>
-                   <p class="text-base leading-relaxed text-body-color mb-7">
-                      Lorem ipsum dolor sit amet pretium consectetur adipiscing
-                      elit. Lorem consectetur adipiscing elit.
-                   </p>
-                   <a
-                      href="javascript:void(0)"
-                      class="inline-block py-2 text-base font-medium transition border rounded-full text-body-color hover:border-primary hover:bg-primary border-gray-3 px-7 hover:text-white dark:border-dark-3 dark:text-dark-6"
-                      >
-                   View Details
-                   </a>
-                </div>
-             </div>
-          </div>
-       </div>
-    </div>
- </section>
- <!-- ====== Cards Section End -->
+    </section>
+    <!-- ====== Cards Section End -->
 
 
 
 
-{{-- 
+    {{-- 
     <div class="py-12">
         
         <div class=" mx-auto sm:px-6 lg:px-8">

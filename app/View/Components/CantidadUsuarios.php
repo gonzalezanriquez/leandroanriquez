@@ -3,7 +3,9 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
-
+use App\Models\User;
+use App\Models\Estudiante;
+use App\Models\Docente;
 class CantidadUsuarios extends Component
 {
     /**
@@ -14,10 +16,16 @@ class CantidadUsuarios extends Component
 
 
      public $cantidadUsuarios;
+     public $cantidadEstudiantes;
+     public $cantidadDocentes;
+     public $cantidadMaterias;
 
      public function __construct($cantidadUsuarios)
      {
-         $this->cantidadUsuarios = $cantidadUsuarios;
+        $this->cantidadUsuarios = User::count();
+        $this->cantidadEstudiantes = Estudiante::count();
+        $this->cantidadDocentes = Docente::count();
+
      }
  
      public function render()
