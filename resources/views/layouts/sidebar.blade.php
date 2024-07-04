@@ -13,11 +13,27 @@
 
 
     <aside id="default-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 shadow-md" aria-label="Sidebar">
-        <x-profile-card class="w-6 h-6" stroke-width="1"/>
+        <div class="flex mt-10 items-center px-4">
+            <img class="h-12 w-auto max-w-full align-middle" src="{{asset('img/genericUser.svg')}}" alt="" />
+            <div class="flex ml-3 flex-col">
+              <h3 class="font-medium">{{ auth()->user()->name }}</h3>
+              <p class="text-xs text-gray-500">{{ auth()->user()->email }}</p>
+        
+            </div>
+          </div>
+        {{-- <x-profile-card class="w-6 h-6" stroke-width="1"/> --}}
         <ul class="space-y-2 font-medium px-6 pt-6">
+
                 <li>
+
+                    {{-- <a href="{{ route('dashboard') }}" class="flex cursor-pointer items-center border-l-rose-600 py-2 px-4 text-sm font-medium text-gray-600 outline-none transition-all duration-100 ease-in-out hover:border-l-4 hover:border-l-rose-600 hover:text-rose-600 focus:border-l-4 {{ Request::is('dashboard') ? 'bg-gray-200 dark:bg-amber-400' : 'hover:bg-gray-200 dark:hover:bg-gray-200 hover:border-l-4 hover:border-l-rose-600 hover:text-rose-600 focus:border-l-4'  }}" >
+                        <x-heroicon-o-presentation-chart-bar class="w-6 h-6" stroke-width="1"/>
+                        Inicio
+                      </a> --}}
+                      
+
                     <a href="{{ route('dashboard') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group 
-                        {{ Request::is('dashboard') ? 'bg-gray-100 dark:bg-amber-400' : 'hover:bg-amber-400 dark:hover:bg-amber-400' }}">
+                        {{ Request::is('dashboard') ?'bg-gray-200 dark:bg-amber-400' : 'hover:bg-gray-200 dark:hover:bg-gray-200' }}">
                     <x-heroicon-o-presentation-chart-bar class="w-6 h-6" stroke-width="1"/>
                         <span class="ms-3">Inicio</span>
                     </a>
@@ -25,7 +41,7 @@
 
                 <li>
                     <a href="{{ route('users.index') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group 
-                        {{ Request::is('users') ? 'bg-amber-400 dark:bg-amber-400' : 'hover:bg-amber-400 dark:hover:bg-amber-400' }}">
+                        {{ Request::is('users') ? 'bg-gray-200 dark:bg-amber-400' : 'hover:bg-gray-200 dark:hover:bg-gray-200' }}">
                         <x-heroicon-o-user-plus class="w-6 h-6" stroke-width="1"/>
                         <span class="ms-3">Usuarios</span>
                     </a>
@@ -33,7 +49,7 @@
             
                 <li>
                     <a href="{{ route('estudiante.index') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group 
-                        {{ Request::is('estudiante') ? 'bg-amber-400 dark:bg-amber-400' : 'hover:bg-amber-400 dark:hover:bg-amber-400' }}">
+                        {{ Request::is('estudiante') ? 'bg-gray-200 dark:bg-amber-400' : 'hover:bg-gray-200 dark:hover:bg-gray-200' }}">
                         <x-heroicon-o-user-group class="w-6 h-6" stroke-width="1"/>
                         <span class="ms-3">Estudiantes</span>
                     </a>
@@ -41,17 +57,17 @@
                 
                 <li>
                     <a href="{{ route('docente.index') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group 
-                        {{ Request::is('docente') ? 'bg-amber-400 dark:bg-amber-400' : 'hover:bg-amber-400 dark:hover:bg-amber-400' }}">
+                        {{ Request::is('docente') ? 'bg-gray-200 dark:bg-amber-400' : 'hover:bg-gray-200 dark:hover:bg-gray-200' }}">
                         <x-heroicon-o-academic-cap class="w-6 h-6" stroke-width="1"/>
                         <span class="ms-3">Docentes</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="{{ route('materia.index') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group 
-                        {{ Request::is('materia') ? 'bg-amber-400 dark:bg-amber-400' : 'hover:bg-amber-400 dark:hover:bg-amber-400' }}">
+                    <a href="{{ route('museos.index') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group 
+                        {{ Request::is('materia') ? 'bg-gray-200 dark:bg-amber-400' : 'hover:bg-gray-200 dark:hover:bg-gray-200' }}">
                         <x-heroicon-o-book-open class="w-6 h-6" stroke-width="1"/>
-                        <span class="ms-3">Materias</span>
+                        <span class="ms-3">Museos</span>
                     </a>
                 </li>
             </ul>

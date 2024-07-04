@@ -4,11 +4,11 @@
     <div class="">
         <div class="bg-white">
             <div class="photo-wrapper pt-6">
-                <img class="w-32 h-32 rounded-full mx-auto" src="{{asset('img/genericUser.svg')}}" alt="">
+                <img class="w-24 h-24 rounded-full mx-auto radius border border-gray-200" src="{{asset('img/genericUser.svg')}}" alt="">
             </div>
             <div class="pt-2">
 
-                <div class="text-center text-gray-400 text-s font-semibold">
+                <div class="text-center text-xs text-gray-400 text-s font-semibold">
                    <p>{{ auth()->user()->name }} {{ auth()->user()->lastname }}</p>
                    <p>{{ auth()->user()->email }}</p>
 
