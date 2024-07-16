@@ -6,10 +6,11 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
-        "blade-ui-kit/blade-heroicons": "^2.3",
+        "blade-ui-kit/blade-heroicons": "*",
         "guzzlehttp/guzzle": "^7.8",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
+        "laravel/socialite": "^5.15",
         "laravel/tinker": "^2.7",
         "laraveles/spanish": "^1.5",
         "livewire/livewire": "^2.12",

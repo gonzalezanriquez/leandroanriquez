@@ -17,6 +17,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "@heroicons/react": "^2.1.4",
         "@material-tailwind/html": "^2.2.2",
         "feather-icons": "^4.29.1"
     }

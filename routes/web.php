@@ -12,6 +12,8 @@ use App\Http\Controllers\RoleController;
 use App\View\Auth\Register;
 use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\MuseoController;
+use App\Http\Controllers\GoogleController;
+
 
 Route::get('/museos', [MuseoController::class, 'index'])->name('museos.index');;
 
@@ -25,6 +27,13 @@ Route::get('/api/holidays', [HolidayController::class, 'index']);
 Route::get('/Auth/register', function () {
     return view('register');
 })->name('register');
+
+
+
+Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
+Route::get('google/callback', [GoogleController::class, 'handleGoogleCallback']);
+
+
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');

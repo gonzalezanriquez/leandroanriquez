@@ -1,56 +1,3 @@
-{{-- <x-guest-layout>
-    <x-auth-session-status class="mb-4" :status="session('status')" />
-
-    <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-        <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-            <img class="mx-auto h-10 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                alt="Your Company">
-            <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Inicia Sesion con tu
-                cuenta</h2>
-        </div>
-        <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form class="space-y-6" method="POST" action="{{ route('dashboard') }}">
-                @csrf
-                <div>
-                    <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>
-                    <div class="mt-2">
-                        <input id="email" name="email" type="email" autocomplete="email" required
-                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-red-600 sm:text-sm sm:leading-6"
-                            placeholder="Escribe tu correo electronico">
-                    </div>
-                </div>
-
-                <div>
-                    <div class="flex items-center justify-between">
-                        <label for="password"
-                            class="block text-sm font-medium leading-6 text-gray-900">Contraseña</label>
-                        <div class="text-sm">
-                            <a href="#" class="font-semibold text-red-600 hover:text-red-600">Olvidaste tu
-                                contraseña?</a>
-                        </div>
-                    </div>
-                    <div class="mt-2">
-                        <input id="password" name="password" type="password" autocomplete="current-password" required
-                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-red-600 sm:text-sm sm:leading-6"placeholder="Escribe tu contraseña electronico">
-                    </div>
-                </div>
-
-                <div>
-                    <button type="submit"
-                        class="flex w-full justify-center rounded-md bg-black px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-red-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red">Inicia
-                        sesion</button>
-                </div>
-            </form>
-
-            <p class="mt-10 text-center text-sm text-gray-500">
-                No tenes Cuenta?
-                <a href="#" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Registrate</a>
-            </p>
-        </div>
-    </div>
-
-</x-guest-layout>
- --}}
 
  <x-guest-layout>
     <x-auth-session-status class="mb-4" :status="session('status')" />
@@ -63,7 +10,7 @@
                 <img class="h-16 sm:h-24 lg:h-32" src="{{ asset('img/geologo.png') }}" alt="Geólogo">
             </div>
 
-            <a href="" class="flex items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+            <a href="{{ url('auth/google') }}" class="flex items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
                 <div class="px-4 py-2">
                     <svg class="w-6 h-6" viewBox="0 0 40 40">
                         <path d="M36.3425 16.7358H35V16.6667H20V23.3333H29.4192C28.045 27.2142 24.3525 30 20 30C14.4775 30 10 25.5225 10 20C10 14.4775 14.4775 9.99999 20 9.99999C22.5492 9.99999 24.8683 10.9617 26.6342 12.5325L31.3483 7.81833C28.3717 5.04416 24.39 3.33333 20 3.33333C10.7958 3.33333 3.33335 10.7958 3.33335 20C3.33335 29.2042 10.7958 36.6667 20 36.6667C29.2042 36.6667 36.6667 29.2042 36.6667 20C36.6667 18.8825 36.5517 17.7917 36.3425 16.7358Z" fill="#FFC107" />
