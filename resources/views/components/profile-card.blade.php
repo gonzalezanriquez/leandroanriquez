@@ -1,10 +1,9 @@
-<!-- component -->
 <div class="">
 
     <div class="">
         <div class="bg-white">
             <div class="photo-wrapper pt-6">
-                <img class="w-24 h-24 rounded-full mx-auto radius border border-gray-200" src="{{asset('img/genericUser.svg')}}" alt="">
+                <img class="w-24 h-24 rounded-full mx-auto radius border border-gray-200" src="{{ auth()->user()->avatar }}" alt="">
             </div>
             <div class="pt-2">
 
