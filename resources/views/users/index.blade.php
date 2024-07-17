@@ -1,5 +1,4 @@
 <x-app-layout>
-
     @if (session('success'))
         <x-alert type="success" :message="session('success')" />
     @endif
@@ -10,8 +9,7 @@
 
     <section class="container px-4 mx-auto">
         <div class="flex items-center gap-x-3">
-            <h2 class="text-lg font-medium text-gray-800 dark:text-white tracking-wider hidden md:table-cell">Usuarios</h2>
-
+            <h2 class="text-lg font-medium text-gray-800 dark:text-white tracking-wider">Usuarios</h2>
             <span class="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">{{ $users->count() }} usuarios</span>
         </div>
 
@@ -22,26 +20,15 @@
                         <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                             <thead class="bg-gray-50 dark:bg-gray-800">
                                 <tr>
-                                    <th scope="col" class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                        <div class="flex items-center gap-x-3">
-
-                                            <span>Nombre</span>
-                                        </div>
-                                    </th>
-
-                                    <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                        Rol
-                                    </th>
-
-                                    <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                        Acción
-                                    </th>
+                                    <th scope="col" class="py-3.5 px-4 text-sm font-normal text-left text-gray-500 dark:text-gray-400">Nombre</th>
+                                    <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left text-gray-500 dark:text-gray-400">Rol</th>
+                                    <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left text-gray-500 dark:text-gray-400">Acción</th>
                                 </tr>
                             </thead>
 
                             @foreach ($users as $user)
                                 <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
-                                    <tr class="tr-class flex flex-col mb-4 sm:table-row">
+                                    <tr class="flex flex-col mb-4 sm:table-row">
                                         <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                                             <div class="inline-flex items-center gap-x-3">
                                                 <div class="flex items-center gap-x-2">
@@ -51,8 +38,8 @@
                                                         <img class="object-cover w-10 h-10 rounded-full" src="{{ asset('img/genericUser.svg') }}" alt="">
                                                     @endif
                                                     <div>
-                                                        <h2 class="font-medium text-gray-800 dark:text-white">{{ $user->name }} {{ $user->lastname }}</h2>
-                                                        <p class="text-sm font-normal text-gray-600 dark:text-gray-400">{{ $user->email }}</p>
+                                                        <h2 class="font-medium text-black dark:text-white font-bold uppercase">{{ $user->lastname }}, {{ $user->name }} </h2>
+                                                        <p class="text-sm font-normal text-gray-500 dark:text-gray-200">{{ $user->email }}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -61,26 +48,30 @@
                                         <td class="px-4 py-4 text-sm text-gray-700 whitespace-nowrap">
                                             @if($user->roles->isNotEmpty())
                                                 @foreach($user->roles as $role)
-                                                    <span class="inline-flex items-center px-2 py-1 text-xs font-medium leading-none text-green-800 bg-green-100 rounded-full dark:bg-gray-800 dark:text-green-400">{{ $role->name }}</span>
+                                                    <span class="inline-flex items-center px-2 py-1 text-xs font-medium leading-none text-green-800 bg-green-100 rounded-full dark:bg-ambier-800 dark:text-green-400 md:inline-block">
+                                                        {{ $role->name }}
+                                                    </span>
                                                 @endforeach
                                             @else
-                                                <span class="inline-flex items-center px-2 py-1 text-xs font-medium leading-none text-green-800 bg-green-100 rounded-full dark:bg-gray-800 dark:text-green-400">Sin definir</span>
+                                                <span class="inline-flex items-center px-2 py-1 text-xs font-medium leading-none text-black-900 bg-amber-400 rounded-full dark:bg-amber-500 dark:text-amber-900 sm:hidden">
+                                                    Sin definir
+                                                </span>
                                             @endif
                                         </td>
-
+                                        
                                         <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                                             <div class="flex items-center gap-x-3">
-                                                <a href="{{ route('user.edit', $user->id) }}" class="px-3 py-1 text-sm text-green-600 bg-green-100 rounded-full hover:text-white hover:bg-green-500 dark:bg-gray-800 dark:text-green-400">
-                                                    Editar
-                                                </a>
+                                                <a href="{{ route('user.edit', $user->id) }}" class="px-3 py-1 text-sm text-green-600 bg-green-100 rounded-full hover:text-white hover:bg-green-500 dark:bg-gray-800 dark:text-green-400 flex items-center gap-2">
+                                                    <x-heroicon-o-pencil class="w-5 h-5" />
+                                                 </a>
 
                                                 <form action="{{ route('users.destroy', $user->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
 
-                                                    <button type="submit" class="px-3 py-1 text-sm text-red-600 bg-red-100 rounded-full hover:text-white hover:bg-red-500 dark:bg-gray-800 dark:text-red-400">
-                                                        Eliminar
-                                                    </button>
+                                                    <button type="submit" class="px-3 py-1 text-sm text-red-600 bg-red-100 rounded-full hover:text-white hover:bg-red-500 dark:bg-gray-800 dark:text-red-400 flex items-center gap-2">
+                                                        <x-heroicon-o-trash class="w-5 h-5" />
+                                                         </button>
                                                 </form>
                                             </div>
                                         </td>
@@ -93,5 +84,4 @@
             </div>
         </div>
     </section>
-
 </x-app-layout>

@@ -13,6 +13,7 @@ use App\View\Auth\Register;
 use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\MuseoController;
 use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\PDFController;
 
 
 Route::get('/museos', [MuseoController::class, 'index'])->name('museos.index');;
@@ -68,6 +69,12 @@ Route::middleware('auth')->group(function () {
 
     // Route::get('/roles', [RoleController::class, 'index'])->name('roles.index');
     // Route::get('/roles', [RoleController::class, 'create'])->name('roles.create');
+
+
+    // PDF
+
+    Route::get('/user/{id}/pdf', [PDFController::class, 'downloadPDF'])->name('user.pdf');
+
 
 });
 

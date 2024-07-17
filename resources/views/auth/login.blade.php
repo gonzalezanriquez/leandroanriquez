@@ -7,7 +7,7 @@
         
         <div class="w-full px-6 py-8 md:px-8 lg:w-1/2">
             <div class="flex justify-center mx-auto">
-                <img class="h-16 sm:h-24 lg:h-32" src="{{ asset('img/geologo.png') }}" alt="Geólogo">
+                <img class="h-16 sm:h-24 lg:h-32" src="{{ asset('/img/gelogo.png') }}" alt="Geólogo">
             </div>
 
             <a href="{{ url('auth/google') }}" class="flex items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
