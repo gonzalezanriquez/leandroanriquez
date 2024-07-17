@@ -9,7 +9,7 @@
     </svg>
 </button>
 
-<aside id="default-sidebar" class="fixed top-0 left-0 z-40 w-72 h-screen transition-transform -translate-x-full sm:translate-x-0 shadow-md bg-white sm:bg-transparent" aria-label="Sidebar">
+<aside id="default-sidebar" class="fixed top-0 left-0 z-40 w-70 h-screen transition-transform -translate-x-full sm:translate-x-0 shadow-md bg-white " aria-label="Sidebar">
     <div class="flex mt-10 items-center px-4">
         @if(Auth::check() && Auth::user()->avatar)
             <img class="h-16 w-auto max-w-full align-middle rounded" src="{{ Auth::user()->avatar }}" alt="Avatar de {{ Auth::user()->name }}" />
