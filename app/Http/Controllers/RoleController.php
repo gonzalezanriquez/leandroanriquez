@@ -6,19 +6,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+use App\Models\User;
+
 
 class RoleController extends Controller
 {
+   
     public function index()
     {
+        $user = User::all(); // Fetch all users
         $roles = Role::all();
-
-        return view('roles.index', compact('roles'));
+        $permissions = Permission::all();
+        return view('roles_permissions.index', compact('user', 'roles', 'permissions'));
     }
 
     public function create()
     {
-        return view('roles.create');
+        return view('roles_permissions.create');
     }
 
     public function store(Request $request)
@@ -27,31 +32,28 @@ class RoleController extends Controller
             'name' => 'required|unique:roles',
         ]);
 
-        Role::create(['name' => $request->name]);
+        Role::create(['name' => $request->input('name')]);
 
-        return redirect()->route('roles.index')->with('success', 'Role creado exitosamente');
+        return redirect()->route('roles_permissions.index')->with('success', 'Role created successfully.');
     }
 
-    public function edit(Role $role)
+    public function assignRolePermission()
+{
+    // Assuming you want to fetch a specific user by their ID, adjust this accordingly
+    $users = User::all(); // Fetch all users
+    $roles = Role::all();
+    $permissions = Permission::all();
+    return view('roles_permissions.assign', compact('users', 'roles', 'permissions'));
+}
+
+
+    public function updateRolePermission(Request $request, User $user)
     {
-        return view('roles.edit', compact('role'));
-    }
+        $user->syncRoles($request->input('roles'));
+        $user->syncPermissions($request->input('permissions'));
 
-    public function update(Request $request, Role $role)
-    {
-        $request->validate([
-            'name' => 'required|unique:roles,name,' . $role->id,
-        ]);
-
-        $role->update(['name' => $request->name]);
-
-        return redirect()->route('roles.index')->with('success', 'Rol editado exitosamente');
-    }
-
-    public function destroy(Role $role)
-    {
-        $role->delete();
-
-        return redirect()->route('roles.index')->with('success', 'Rol eliminado exitosamente');
+        return redirect()->route('roles_permissions.index')->with('success', 'Roles and Permissions updated successfully.');
     }
 }
+    
+

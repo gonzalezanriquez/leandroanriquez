@@ -67,8 +67,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/materia/{id}/edit', [MateriaController::class, 'edit'])->name('materia.edit');
     Route::patch('/materia/{id}', [MateriaController::class, 'update'])->name('materia.update');
 
-    // Route::get('/roles', [RoleController::class, 'index'])->name('roles.index');
-    // Route::get('/roles', [RoleController::class, 'create'])->name('roles.create');
+
+
+    
 
 
     // PDF
@@ -77,6 +78,12 @@ Route::middleware('auth')->group(function () {
 
 
 });
-
+Route::middleware('auth')->group(function () {
+    Route::get('/roles-permissions', [RoleController::class, 'index'])->name('roles_permissions.index');
+    Route::get('/roles-permissions/create', [RoleController::class, 'create'])->name('roles_permissions.create');
+    Route::post('/roles-permissions', [RoleController::class, 'store'])->name('roles_permissions.store');
+    Route::get('/roles-permissions/assign', [RoleController::class, 'assignRolePermission'])->name('roles_permissions.assign');
+    Route::post('/roles-permissions/update/{id}', [RoleController::class, 'updateRolePermission'])->name('roles_permissions.update');
+});
 
 require __DIR__.'/auth.php';

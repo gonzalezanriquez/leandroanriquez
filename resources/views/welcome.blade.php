@@ -20,85 +20,55 @@
 
 <body class="font-sans antialiased">
 
+
+  <div class="bg-transparent pt-16 pr-4 pb-16 pl-4 flex mr-auto ml-auto flex-col items-center relative lg:flex-row
+  lg:py-32 xl:py-48 md:px-8 max-w-screen-2xl">
+<div class="flex justify-center items-center w-full h-full overflow-hidden lg:w-1/2 lg:justify-end lg:bottom-0
+    lg:left-0 lg:items-center">
+  <img src="https://res.cloudinary.com/macxenon/image/upload/v1626953574/Group_1_zrmcxj.png" class="object-contain
+      object-top lg:w-auto lg:h-full w-full h-auto"/>
+</div>
+<div class="mr-auto ml-auto flex justify-end relative max-w-xl xl:pr-32 lg:max-w-screen-xl">
+  <div class="mb-16 lg:pr-5 lg:max-w-lg lg:mb-0">
+    <div class="mb-6 max-w-xl">
+      <p class="inline-block pt-1 pr-3 pb-1 pl-3 mb-4 text-pink-200 bg-pink-500 rounded-2xl uppercase text-xs
+          font-semibold tracking-wider">Brand new</p>
+      <div class="text-3xl font-bold tracking-tight text-gray-900 max-w-lg sm:text-4xl sm:leading-none mb-6">
+        <p class="text-black text-3xl font-bold tracking-tight sm:text-4xl sm:leading-none">Gestiones Educativas</p>
+        {{-- <p class="inline-block text-black text-3xl font-bold tracking-tight mr-2 sm:text-4xl
+            sm:leading-none">Soluciones</p>
+        <p class="inline-block text-blue-500 text-md font-bold tracking-tight sm:text-4xl
+            sm:leading-none">Creativas</p> --}}
+      </div>
+      <p class="text-gray-700 text-base md:text-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.</p>
+    </div>
+    <div class="flex flex-col md:flex-row">
+      <input type="text" fontfamily="Raleway" placeholder="Full Name" class="md:mr-2 focus:border-blue-700
+          focus:outline-none focus:shadow-outline flex-grow transition duration-200 appearance-none text-black
+          bg-gray-100 font-normal w-full h-12 text-xs rounded-md pt-3 pr-4 pb-3 pl-4 mb-2 border-2 shadow-sm
+          border-gray-300"/>
+      <input type="text" fontfamily="Raleway" placeholder="Email Address" class="md:mr-2 focus:border-blue-700
+          focus:outline-none focus:shadow-outline flex-grow transition duration-200 appearance-none text-black
+          bg-gray-100 font-normal w-full h-12 text-xs rounded-md pt-3 pr-4 pb-3 pl-4 mb-2 border-2 shadow-sm
+          border-gray-300"/>
+    </div>
+    <div class="flex items-center mt-4 mr-0 mb-0 ml-0">
+      <button fontfamily="Arial" class="transition duration-200 hover:bg-blue-900 focus:shadow-outline
+          focus:outline-none bg-blue-700 text-white inline-flex font-semibold tracking-wide text-medium h-12 shadow-md
+          items-center justify-center pr-6 pl-6 mr-6 rounded-lg">Get Started</button>
+      <a href="#" class="text-black items-center inline-flex font-semibold pt-2 pr-2 pb-2 pl-2 transition-colors
+          duration-200 hover:text-blue-300">
+        <p>Learn More</p>
+      </a>
+    </div>
+  </div>
+</div>
+</div>
+
     <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
        
 
-        <div class="bg-white">
-            <header class="absolute inset-x-0 top-0 z-50">
-              <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
-                <div class="flex lg:flex-1">
-                  <a href="#" class="-m-1.5 p-1.5">
-                    <span class="sr-only">Your Company</span>
-                    <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="">
-                  </a>
-                </div>
-                <div class="flex lg:hidden">
-                  <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
-                    <span class="sr-only">Open main menu</span>
-                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                    </svg>
-                  </button>
-                </div>
-                <div class="hidden lg:flex lg:gap-x-12">
-                  <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Product</a>
-                  <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Features</a>
-                  <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Marketplace</a>
-                  <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Company</a>
-                </div>
-                <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-                    @if (Route::has('login'))
-                    <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                        @auth
-                            <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
-                        @else
-                            <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
-        
-                            @if (Route::has('register'))
-                                <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-                            @endif
-                        @endauth
-                    </div>
-                @endif
-        
-                </div>
-              </nav>
-              <!-- Mobile menu, show/hide based on menu open state. -->
-              <div class="lg:hidden" role="dialog" aria-modal="true">
-                <!-- Background backdrop, show/hide based on slide-over state. -->
-                <div class="fixed inset-0 z-50"></div>
-                <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
-                  <div class="flex items-center justify-between">
-                    <a href="#" class="-m-1.5 p-1.5">
-                      <span class="sr-only">Your Company</span>
-                      <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="">
-                    </a>
-                    <button type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700">
-                      <span class="sr-only">Close menu</span>
-                      <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                      </svg>
-                    </button>
-                  </div>
-                  <div class="mt-6 flow-root">
-                    <div class="-my-6 divide-y divide-gray-500/10">
-                      <div class="space-y-2 py-6">
-                        <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Product</a>
-                        <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Features</a>
-                        <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Marketplace</a>
-                        <a href="#" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Company</a>
-                      </div>
-                      <div class="py-6">
-                        <a href="#" class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Log in</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </header>
-          
-
-        </div>
 
         <div class="relative isolate px-6 pt-14 lg:px-8">
             <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
@@ -107,7 +77,7 @@
             <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
               <div class="hidden sm:mb-8 sm:flex sm:justify-center">
                 <div class="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-                  Announcing our next round of funding. <a href="#" class="font-semibold text-indigo-600"><span class="absolute inset-0" aria-hidden="true"></span>Read more <span aria-hidden="true">&rarr;</span></a>
+                  Gestiones Educativas. <a href="#" class="font-semibold text-indigo-600"><span class="absolute inset-0" aria-hidden="true"></span>Read more <span aria-hidden="true">&rarr;</span></a>
                 </div>
               </div>
               <div class="text-center">
