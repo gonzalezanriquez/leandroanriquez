@@ -1,44 +1,79 @@
-<x-dash-layout>
-    <div class="container mx-auto px-4">
-        @if (session('status'))
-            <div class="bg-green-500 text-white p-4 mb-4">
-                {{ session('status') }}
+<x-app-layout>
+<div class="container  px-4 py-5 my-5 ">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                    <img class="mx-auto d-flex justify-content-center" src="{{asset('/img/roles.png')}}" alt="Imagen Noticias" height="200px">
+
+                        <h1 class="text-center">Asignacion de Roles</h1>
+                        {{-- <p  class="h6 text-center ">({{$user->name}})</p> --}}
+                       
+                        @if(session()->has('message'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session()->get('message') }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+                    @endif
+
+                        <form id="postRol" method="POST" action="">
+                            @csrf
+                            <input class="form-control" type="hidden" name="userId" value="">
+                            <div class="row mb-3">
+                                <!-- <label for="roles" class="col-md-4 col-form-label text-md-center"></label> -->
+                                <div class="col-md-12 text-center">
+                                    <select class="form-select " name="roles" id="roles">
+
+                                        {{-- @foreach($allroles as $role)
+                                            <option value="{{$role}}">{{$role}}</option>
+                                        @endforeach --}}
+                                    </select>
+                                </div>
+                            </div>
+                            @if($errors->any())
+                                <h4 class="text-danger fs-6 text-center">{{$errors->first()}}</h4>
+                            @endif
+                            <div class="row mb-0">
+                                <div class="col-12 text-center">
+                                    <button type="submit" class="btn btn-primary">
+                                        {{ __('Agregar Rol') }}
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">Rol</th>
+                                <th style="text-align: end" scope="col">Acciones</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                                {{-- @foreach($roles as $role)
+                                    <tr>
+                                        <td>{{$role}}</td>
+                                        <td style="text-align: end">
+                                            <a class="btn btn-danger" href="{{route('roles.delete', ['userId' => $user->id, 'role' => $role])}}">Eliminar</a>
+                                        </td>
+                                    </tr>
+                                @endforeach --}}
+                            </tbody>
+
+
+                        </table>
+                        <div class="row mb-0">
+                                <div class="col-12 text-center">
+                                <a class="btn btn-secondary" href="{{route('users.index')}}"><i class="bi bi-arrow-left-square"></i>            </a>
+
+                                </div>
+                            </div>
+                    </div>
+                </div>
             </div>
-        @endif
-        <h2 class="text-2xl font-bold mb-4">Roles</h2>
-        <a href="{{ route('roles.create') }}" class="bg-green-500 text-white px-4 py-2 rounded">Create Role</a>
-        <table class="table mt-3">
-            <thead>
-                <tr>
-                    <th class="py-2">ID</th>
-                    <th class="py-2">Name</th>
-                    <th class="py-2">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse ($roles as $role)
-                    <tr>
-                        <td class="py-2">{{ $role->id }}</td>
-                        <td class="py-2">{{ $role->name }}</td>
-                        <td class="py-2 flex space-x-2">
-                            <a href="{{ route('roles.edit', $role->id) }}" class="bg-blue-500 text-white px-2 py-1 rounded">
-                                <i data-feather="edit"></i>
-                            </a>
-                            <form action="{{ route('roles.destroy', $role->id) }}" method="POST" class="inline-block">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="bg-red-500 text-white px-2 py-1 rounded" onclick="return confirm('Are you sure?')">
-                                    <i data-feather="trash-2"></i>
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="3">No roles found</td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
+        </div>
     </div>
-</x-dash-layout>
+
+
+</x-app-layout>

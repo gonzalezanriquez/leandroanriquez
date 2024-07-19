@@ -10,6 +10,7 @@
 </button>
 
 <aside id="default-sidebar" class="fixed top-0 left-0 z-40 w-70 h-screen transition-transform -translate-x-full sm:translate-x-0 shadow-md bg-white " aria-label="Sidebar">
+    
     <a href="{{ route('profile.edit') }}">
         <div class="flex mt-10 items-center px-4">
             @if (Auth::check() && Auth::user()->avatar)
@@ -50,6 +51,8 @@
                 <span class="ms-3">Inicio</span>
             </a>
         </li>
+     
+        @if (Auth::user()->hasRole('admin'))
 
         <li>
             <a href="{{ route('users.index') }}"
@@ -68,7 +71,7 @@
                 <span class="ms-3">Estudiantes</span>
             </a>
         </li>
-
+        @else
         <li>
             <a href="{{ route('docente.index') }}"
                 class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group 
@@ -87,14 +90,13 @@
             </a>
         </li>
         <li>
-            <a href="{{ route('roles_permissions.index') }}"
-                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group 
-                {{ Request::is('materia') ? 'bg-gray-200 dark:bg-amber-400' : 'hover:bg-gray-200 dark:hover:bg-gray-200' }}">
-                <x-heroicon-o-book-open class="w-6 h-6" stroke-width="1" />
-                <span class="ms-3">roles</span>
-            </a>
-        </li>
-
+            <a href="{{ route('roles.index') }}"
+            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group 
+            {{ Request::is('roles') ? 'bg-gray-200 dark:bg-amber-400' : 'hover:bg-gray-200 dark:hover:bg-gray-200' }}">
+            <x-heroicon-o-book-open class="w-6 h-6" stroke-width="1" />
+            <span class="ms-3">Roles</span>
+        </a>
+        
         <li>
             <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                 class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group 
@@ -108,7 +110,7 @@
         </li>
 
     </ul>
-
+@endif
 
 </aside>
 

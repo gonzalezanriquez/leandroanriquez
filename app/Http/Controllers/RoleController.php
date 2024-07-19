@@ -1,59 +1,38 @@
 <?php
-
 namespace App\Http\Controllers;
-
-// app/Http/Controllers/RoleController.php
 
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Models\User;
 
-
 class RoleController extends Controller
 {
-   
-    public function index()
+    public function createRole()
     {
-        $user = User::all(); // Fetch all users
-        $roles = Role::all();
-        $permissions = Permission::all();
-        return view('roles_permissions.index', compact('user', 'roles', 'permissions'));
+        $role = Role::create(['name' => 'admin']);
+        $permission = Permission::create(['name' => 'editar']);
+        $role->givePermissionTo($permission);
+
+        return "Role and permission created!";
     }
 
-    public function create()
+    public function assignRoleToUser($userId)
     {
-        return view('roles_permissions.create');
+        $user = User::find($userId);
+        $user->assignRole('admin');
+
+        return "Role assigned to user!";
     }
 
-    public function store(Request $request)
+    public function checkUserRole($userId)
     {
-        $request->validate([
-            'name' => 'required|unique:roles',
-        ]);
+        $user = User::find($userId);
 
-        Role::create(['name' => $request->input('name')]);
+        if ($user->hasRole('admin')) {
+            return "User is a admin!";
+        }
 
-        return redirect()->route('roles_permissions.index')->with('success', 'Role created successfully.');
-    }
-
-    public function assignRolePermission()
-{
-    // Assuming you want to fetch a specific user by their ID, adjust this accordingly
-    $users = User::all(); // Fetch all users
-    $roles = Role::all();
-    $permissions = Permission::all();
-    return view('roles_permissions.assign', compact('users', 'roles', 'permissions'));
-}
-
-
-    public function updateRolePermission(Request $request, User $user)
-    {
-        $user->syncRoles($request->input('roles'));
-        $user->syncPermissions($request->input('permissions'));
-
-        return redirect()->route('roles_permissions.index')->with('success', 'Roles and Permissions updated successfully.');
+        return "User is not a writer.";
     }
 }
-    
-
