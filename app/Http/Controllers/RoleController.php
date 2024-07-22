@@ -10,9 +10,9 @@ class RoleController extends Controller
 {
     public function createRole()
     {
-        // $role = Role::create(['name' => 'admin']);
-        // $permission = Permission::create(['name' => 'editar']);
-        // $role->givePermissionTo($permission);
+        $role = Role::create(['name' => 'admin']);
+        $permission = Permission::create(['name' => 'editar']);
+        $role->givePermissionTo($permission);
 
         return "Role and permission created!";
     }

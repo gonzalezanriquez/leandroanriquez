@@ -18,6 +18,10 @@
     <script src="//unpkg.com/alpinejs" defer></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+{{-- sweet alert --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
 </head>
 
 <body class="font-sans antialiased">
@@ -44,21 +48,11 @@
     <body class="font-sans antialiased">
     
         @include('layouts.sidebar') 
+
     
-        {{-- <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200 font-roboto">
-            
-            <div class="flex-1 flex flex-col overflow-hidden">
-                @include('layouts.header')
-    
-                <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
-                    <div class="container mx-auto px-6 py-8">
-                      
-                        {{ $slot }}
-                    </div>
-                </main>
-            </div>
-        </div> --}}
-    
+
+        <script src="sweetalert2.all.min.js"></script>
+
 </body>
 
 </html>

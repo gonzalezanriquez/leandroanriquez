@@ -52,7 +52,7 @@
             </a>
         </li>
      
-        @if (Auth::user()->hasRole('admin'))
+      
 
         <li>
             <a href="{{ route('users.index') }}"
@@ -71,7 +71,7 @@
                 <span class="ms-3">Estudiantes</span>
             </a>
         </li>
-        @else
+    
         <li>
             <a href="{{ route('docente.index') }}"
                 class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group 
@@ -110,7 +110,6 @@
         </li>
 
     </ul>
-@endif
 
 </aside>
 

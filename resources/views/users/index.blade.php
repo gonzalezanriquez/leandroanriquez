@@ -1,16 +1,17 @@
 <x-app-layout>
-    @if (session('success'))
-        <x-alert type="success" :message="session('success')" />
-    @endif
-
-    @if (session('error'))
-        <x-alert type="error" :message="session('error')" />
-    @endif
-
     <section class="container px-4 mx-auto">
-        <div class="flex items-center gap-x-3">
-            <h2 class="text-lg font-medium text-gray-800 dark:text-white tracking-wider">Usuarios</h2>
-            <span class="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">{{ $users->count() }} usuarios</span>
+        <div class="flex items-center justify-between gap-x-3">
+            <div class="flex items-center gap-x-3">
+                <x-heroicon-o-user-plus class="w-6 h-6" stroke-width="1" />
+                <h2 class="text-lg font-medium text-gray-800 dark:text-white tracking-wider">Usuarios</h2>
+                <span class="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">{{ $users->count() }} usuarios</span>
+            </div>
+            <a href="{{ route('users.index') }}">
+                <button class="inline-flex items-center justify-center gap-1.5 rounded-lg border border-gray-200 bg-white px-3 py-2 text-gray-500 transition hover:text-gray-700 focus:outline-none focus:ring text-sm">
+                    <span class="font-medium">Crear nuevo Usuario</span>
+                    <x-heroicon-o-plus-circle class="w-4 h-4" stroke-width="1"/>
+                </button>
+            </a>
         </div>
 
         <div class="flex flex-col mt-6">
@@ -61,15 +62,15 @@
                                         
                                         <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                                             <div class="flex items-center gap-x-3">
-                                                <a href="{{ route('user.edit', $user->id) }}" class="px-3 py-1 text-sm text-green-600 bg-green-100 rounded-full hover:text-white hover:bg-green-500 dark:bg-gray-800 dark:text-green-400 flex items-center gap-2">
+                                                <a href="{{ route('users.edit', $user->id) }}" class="px-3 py-1 text-sm text-green-600 bg-green-100 rounded-full hover:text-white hover:bg-green-500 dark:bg-gray-800 dark:text-green-400 flex items-center gap-2">
                                                     <x-heroicon-o-pencil class="w-5 h-5" />
                                                  </a>
 
-                                                <form action="{{ route('users.destroy', $user->id) }}" method="POST">
+                                                <form id="delete-form-{{ $user->id }}" action="{{ route('users.destroy', $user->id) }}" method="POST" style="display: inline;">
                                                     @csrf
                                                     @method('DELETE')
 
-                                                    <button type="submit" class="px-3 py-1 text-sm text-red-600 bg-red-100 rounded-full hover:text-white hover:bg-red-500 dark:bg-gray-800 dark:text-red-400 flex items-center gap-2">
+                                                    <button type="button" onclick="confirmDelete({{ $user->id }})" class="px-3 py-1 text-sm text-red-600 bg-red-100 rounded-full hover:text-white hover:bg-red-500 dark:bg-gray-800 dark:text-red-400 flex items-center gap-2">
                                                         <x-heroicon-o-trash class="w-5 h-5" />
                                                          </button>
                                                 </form>
@@ -84,4 +85,24 @@
             </div>
         </div>
     </section>
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function confirmDelete(userId) {
+            Swal.fire({
+                title: "Seguro deseas eliminar a este Usuario?",
+                text: "Esta acción no podra revertirse",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#fcba03",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Si, elimilar!",
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('delete-form-' + userId).submit();
+                }
+            });
+        }
+    </script>
 </x-app-layout>
