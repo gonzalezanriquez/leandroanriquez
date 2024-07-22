@@ -64,9 +64,9 @@
         </li>
 
         <li>
-            <a href="{{ route('estudiante.index') }}"
+            <a href="{{ route('estudiantes.index') }}"
                 class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group 
-                {{ Request::is('estudiante') ? 'bg-gray-200 dark:bg-amber-400' : 'hover:bg-gray-200 dark:hover:bg-gray-200' }}">
+                {{ Request::is('estudiantes') ? 'bg-gray-200 dark:bg-amber-400' : 'hover:bg-gray-200 dark:hover:bg-gray-200' }}">
                 <x-heroicon-o-user-group class="w-6 h-6" stroke-width="1" />
                 <span class="ms-3">Estudiantes</span>
             </a>

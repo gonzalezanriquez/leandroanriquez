@@ -23,52 +23,29 @@ Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
 Route::get('google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
 Route::middleware('auth')->group(function () {
-    // DASHBOARD
+
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    // PROFILE
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::put('/profile', [UserController::class, 'updatePassword'])->name('password.update');
+    
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
-    // USUARIOS
-    Route::get('/users', [UserController::class, 'index'])->name('users.index');
-    Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
-    Route::post('/users', [UserController::class, 'store'])->name('users.store');
-    Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
-    Route::patch('/users/{id}', [UserController::class, 'update'])->name('users.update');
-    Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
-});
 
-Route::middleware(['auth', 'docente'])->group(function () {
-    // ESTUDIANTES
-    Route::get('/estudiante', [EstudianteController::class, 'index'])->name('estudiante.index');
-    Route::get('/estudiante/{id}/edit', [EstudianteController::class, 'edit'])->name('estudiante.edit');
-    Route::patch('/estudiante/{id}', [EstudianteController::class, 'update'])->name('estudiante.update');
-});
+    Route::resource('users', UserController::class);
+    Route::resource('users', UserController::class);
+    Route::resource('estudiantes', EstudianteController::class);
+    Route::resource('docente', DocenteController::class);
+    Route::resource('materia', MateriaController::class);
+    Route::resource('roles', RoleController::class);
+    Route::resource('museos', RoleController::class);
 
-Route::middleware(['auth', 'alumno'])->group(function () {
-    // DOCENTES
-    Route::get('/docente', [DocenteController::class, 'index'])->name('docente.index');
-    Route::get('/docente/{id}/edit', [DocenteController::class, 'edit'])->name('docente.edit');
-    Route::patch('/docente/{id}', [DocenteController::class, 'update'])->name('docente.update');
+   
+   
 
-    // MATERIAS
-    Route::get('/materia', [MateriaController::class, 'index'])->name('materia.index');
-    Route::get('/materia/{id}/edit', [MateriaController::class, 'edit'])->name('materia.edit');
-    Route::patch('/materia/{id}', [MateriaController::class, 'update'])->name('materia.update');
-
-    // ROLES
-    Route::get('/roles', [RoleController::class, 'index'])->name('roles.index');
-    Route::get('/roles/create', [RoleController::class, 'create'])->name('roles.create');
-    Route::post('/roles', [RoleController::class, 'store'])->name('roles.store');
-    Route::get('/roles/assign', [RoleController::class, 'assignRolePermission'])->name('roles.assign');
-    Route::patch('/roles/{user}', [RoleController::class, 'updateRolePermission'])->name('roles.update');
-
-    // LOGOUT
     Route::post('/logout', [ProfileController::class, 'logout'])->name('logout');
 
     // API MUSEOS
@@ -77,5 +54,7 @@ Route::middleware(['auth', 'alumno'])->group(function () {
     // PDF
     Route::get('/user/{id}/pdf', [PDFController::class, 'downloadPDF'])->name('user.pdf');
 });
+
+
 
 require __DIR__.'/auth.php';

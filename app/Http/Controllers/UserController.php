@@ -71,43 +71,43 @@ class UserController extends Controller
     }
 
     public function update(Request $request, $id)
-    {
-        // Validación base
+{
+    // Validación base
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'lastname' => 'required|string|max:255',
+        'roles' => 'required|string', // Validar que roles sea una cadena
+    ]);
+
+    // Validación condicional para la contraseña solo si se proporciona
+    if ($request->filled('password')) {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'lastname' => 'required|string|max:255',
-            'roles' => 'required|string', // Validar que roles sea una cadena
+            'password' => 'nullable|string|min:8',
         ]);
-
-        // Validación condicional para la contraseña
-        if ($request->filled('password')) {
-            $request->validate([
-                'password' => 'nullable|string|min:8|confirmed',
-            ]);
-        }
-
-        $user = User::findOrFail($id);
-
-        // Actualizar información básica
-        $user->update([
-            'name' => $request->input('name'),
-            'lastname' => $request->input('lastname'),
-        ]);
-
-        // Actualizar roles
-        if ($request->filled('roles')) {
-            $user->syncRoles($request->input('roles')); // Actualizar roles del usuario si se proporcionan
-        }
-
-        // Actualizar contraseña solo si se proporciona una nueva
-        if ($request->filled('password')) {
-            $user->update([
-                'password' => bcrypt($request->input('password')),
-            ]);
-        }
-
-        return redirect()->route('users.index')->with('success', 'Usuario actualizado exitosamente');
     }
+
+    $user = User::findOrFail($id);
+
+    // Actualizar información básica
+    $user->update([
+        'name' => $request->input('name'),
+        'lastname' => $request->input('lastname'),
+    ]);
+
+    // Actualizar roles
+    if ($request->filled('roles')) {
+        $user->syncRoles($request->input('roles')); // Actualizar roles del usuario si se proporcionan
+    }
+
+    // Actualizar contraseña solo si se proporciona una nueva
+    if ($request->filled('password')) {
+        $user->update([
+            'password' => bcrypt($request->input('password')),
+        ]);
+    }
+
+    return redirect()->route('users.index')->with('success', 'Usuario actualizado exitosamente');
+}
 
     public function destroy(User $user)
     {
