@@ -17,10 +17,11 @@
 
 <body>
 
-        @include('nav.superiornav')
-        <main class="mt-5 pt-5 ">
-            <div class="headerwelcome ">
-
+      @include('nav.superiornav') 
+        
+  
+        <main class="mt-5">        
+                       
                 <div class="container-fluid bgheader py-5">
                     <div class="container ">
                         <div class="row mx-md-5 align-items-center text -xs-center  ">
@@ -35,79 +36,61 @@
                         </div>
                     </div>
                 </div>
-            </div>
+
+        
         
         <!-- TARJETAS PRESENTACIONES -->
-    <section class="bg-gray-2 dark:bg-dark pb-10  ">
-        <div class="container mx-auto">
-            <div class="flex flex-wrap -mx-2">
-                
-                <div class="w-full px-4 md:w-1/2 xl:w-1/3 ">
-                    <div class="mb-10 overflow-hidden duration-300 bg-white rounded-lg dark:bg-dark-2 shadow-1 hover:shadow-3 dark:shadow-card dark:hover:shadow-3 shadow-md">
-                        <img src="{{ asset('img/1.jpg')}}"
-                            alt="image" class="w-full" />
-                        <div class="p-8 text-center sm:p-9 md:p-7 xl:p-9">
-                            <h2  class="text-dark dark:text-white hover:text-primary mb-4 block text-xl font-semibold sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px]">
-                                EFICAZ
-                            </h2>
-                            <p class="text-base leading-relaxed text-body-color dark:text-dark-6 mb-7">
-                                Creemos en una solución eficaz e integral, que logre abordar tanto las necesidades del alumno, del docente así como también y la dirección académica todo en un mismo espacio
-                            </p>
+
+        <section class="bg-gray-200 dark:bg-dark py-10 mt-5">
+            <div class="container mx-auto">
+                <div class="flex flex-wrap -mx-2">
+        
+                    <div class="w-full px-4 md:w-1/2 xl:w-1/3 mb-8">
+                        <div class="h-full overflow-hidden bg-white rounded-lg dark:bg-dark-2 shadow-md transition-shadow duration-300 hover:shadow-lg dark:shadow-card dark:hover:shadow-lg">
+                            <img src="{{ asset('img/1.jpg')}}" alt="image" class="w-full" />
+                            <div class="p-8 text-center sm:p-9 md:p-7 xl:p-9">
+                                <h2 class="text-dark dark:text-white hover:text-primary mb-4 block text-xl font-semibold sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px]">
+                                    EFICAZ
+                                </h2>
+                                <p class="text-base leading-relaxed text-body-color dark:text-dark-6 mb-7">
+                                    Creemos en una solución eficaz e integral, que logre abordar tanto las necesidades del alumno, del docente así como también y la dirección académica todo en un mismo espacio
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                
-                <div class="w-full px-4 md:w-1/2 xl:w-1/3 ">
-                    <div class="mb-10 overflow-hidden duration-300 bg-white rounded-lg dark:bg-dark-2 shadow-1 hover:shadow-3 dark:shadow-card dark:hover:shadow-3 shadow-md">
-                        <img src="{{ asset('img/2.jpg')}}" alt="image" class="w-full" />
-                        <div class="p-8 text-center sm:p-9 md:p-7 xl:p-9">
-                            <h2  class="text-dark dark:text-white hover:text-primary mb-4 block text-xl font-semibold sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px]">
-                                ADAPTABLE
-                            </h2>
-                            <p class="text-base leading-relaxed text-body-color dark:text-dark-6 mb-7">
-                                Armado de estructuras inteligentes y dinamicas para una organización clara y eficiente.                            </p>
+        
+                    <div class="w-full px-4 md:w-1/2 xl:w-1/3 mb-8">
+                        <div class="h-full overflow-hidden bg-white rounded-lg dark:bg-dark-2 shadow-md transition-shadow duration-300 hover:shadow-lg dark:shadow-card dark:hover:shadow-lg">
+                            <img src="{{ asset('img/3.jpg')}}" alt="image" class="w-full" />
+                            <div class="p-8 text-center sm:p-9 md:p-7 xl:p-9">
+                                <h2 class="text-dark dark:text-white hover:text-primary mb-4 block text-xl font-semibold sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px]">
+                                    VIRTUAL
+                                </h2>
+                                <p class="text-base leading-relaxed text-body-color dark:text-dark-6 mb-7">
+                                    Digitalizar los procesos administrativos escolares. Establecer un punto de comunicación digital Alumno - Institución - docente. Brindar información académica general.
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-
-                <div class="w-full px-4 md:w-1/2 xl:w-1/3 ">
-                    <div class="mb-10 overflow-hidden duration-300 bg-white rounded-lg dark:bg-dark-2 shadow-1 hover:shadow-3 dark:shadow-card dark:hover:shadow-3 shadow-md">
-                        <img src="{{ asset('img/1.jpg')}}"
-                            alt="image" class="w-full" />
-                        <div class="p-8 text-center sm:p-9 md:p-7 xl:p-9">
-                            <h2  class="text-dark dark:text-white hover:text-primary mb-4 block text-xl font-semibold sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px]">
-                                EFICAZ
-                            </h2>
-                            <p class="text-base leading-relaxed text-body-color dark:text-dark-6 mb-7">
-                                Creemos en una solución eficaz e integral, que logre abordar tanto las necesidades del alumno, del docente así como también y la dirección académica todo en un mismo espacio
-                            </p>
+        
+                    <div class="w-full px-4 md:w-1/2 xl:w-1/3 mb-8">
+                        <div class="h-full overflow-hidden bg-white rounded-lg dark:bg-dark-2 shadow-md transition-shadow duration-300 hover:shadow-lg dark:shadow-card dark:hover:shadow-lg">
+                            <img src="{{ asset('img/2.jpg')}}" alt="image" class="w-full" />
+                            <div class="p-8 text-center sm:p-9 md:p-7 xl:p-9">
+                                <h2 class="text-dark dark:text-white hover:text-primary mb-4 block text-xl font-semibold sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px]">
+                                    ADAPTABLE
+                                </h2>
+                                <p class="text-base leading-relaxed text-body-color dark:text-dark-6 mb-7">
+                                    Armado de estructuras inteligentes y dinamicas para una organización clara y eficiente.
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-
-
-                <div class="w-full px-4 md:w-1/2 xl:w-1/3">
-                    <div
-                        class="mb-10 overflow-hidden duration-300 bg-white rounded-lg dark:bg-dark-2 shadow-1 hover:shadow-3 dark:shadow-card dark:hover:shadow-3">
-                        <img src="{{ asset('img/3.jpg')}}"
-                            alt="image" class="w-full" />
-                        <div class="p-8 text-center sm:p-9 md:p-7 xl:p-9">
-                            <h2  class="text-dark dark:text-white hover:text-primary mb-4 block text-xl font-semibold sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px]">
-                                VIRTUAL
-                            </h2>
-                            <p class="text-base leading-relaxed text-body-color mb-7">
-                                Digitalizar los procesos administrativos escolares. Establecer un punto de comunicación digital Alumno - Institución - docente. Brindar información académica general.
-                            </p>
-                           
-                        </div>
-                    </div>
+        
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+        
 
 
 

@@ -3,23 +3,40 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Barryvdh\DomPDF\Facade as PDF;
+use Dompdf\Dompdf;
+use Dompdf\Options;
+use Illuminate\Support\Facades\Storage;
+
+
 
 class ReportController extends Controller
 {
     public function generateUserReport()
     {
-        // Datos del usuario (normalmente obtenidos de la base de datos)
-        $userData = [
+        $dompdf = new Dompdf();
+
+        // Load HTML content
+        $html = view('reports.user_report', [
             'name' => 'John Doe',
             'email' => 'john.doe@example.com',
-            'joined_date' => '2023-01-01'
-        ];
+            'joined_date' => '2023-01-01',
+        ])->render();
 
-        // Generar el PDF
-        $pdf = PDF::loadView('reports.user_report', $userData);
+        $dompdf->loadHtml($html);
 
-        // Descargar el PDF
-        return $pdf->download('user_report.pdf');
+        // (Optional) Setup the paper size and orientation
+        $dompdf->setPaper('A4', 'landscape');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Save PDF locally
+        $pdfPath = storage_path('app/reports/user_report.pdf');
+        file_put_contents($pdfPath, $dompdf->output());
+
+        // Get URL to the file
+        $uploadedFilePath = Storage::url('reports/user_report.pdf');
+
+        return response()->json(['message' => 'The file has been uploaded.', 'path' => $uploadedFilePath]);
     }
 }
