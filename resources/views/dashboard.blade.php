@@ -2,10 +2,12 @@
 <header class="bg-gray-50">
     <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
       <div class="sm:flex sm:items-center sm:justify-between">
-        <div class="text-center sm:text-left">
-          <h1 class="text-2xl font-bold text-gray-900 sm:text-3xl">  Te damos la Bienvenida, {{ auth()->user()->name }}! 👋</h1>
-  
-          <p class="mt-1.5 text-sm text-gray-500">Aqui podras encotrar todo lo que necesitas para la gestion de tu secretaria.</p>
+        <div class="flex items-center justify-center sm:justify-start text-center sm:text-left">
+            <x-heroicon-o-rectangle-group class="w-10 h-10 mr-3" stroke-width="1" />
+            <div>
+                <h1 class="text-2xl font-bold text-gray-900 sm:text-3xl">Te damos la Bienvenida, {{ auth()->user()->name }}! 👋</h1>
+                <p class="mt-1.5 text-sm text-gray-500">Aquí podrás encontrar todo lo que necesitas para la gestión de tu secretaria.</p>
+            </div>
         </div>
   
         <div class="mt-4 flex flex-col gap-4 sm:mt-0 sm:flex-row sm:items-center">

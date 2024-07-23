@@ -25,7 +25,7 @@ Route::get('google/callback', [GoogleController::class, 'handleGoogleCallback'])
 Route::middleware('auth')->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
+    
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -36,12 +36,11 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::resource('users', UserController::class);
-    Route::resource('users', UserController::class);
     Route::resource('estudiantes', EstudianteController::class);
     Route::resource('docente', DocenteController::class);
     Route::resource('materia', MateriaController::class);
     Route::resource('roles', RoleController::class);
-    Route::resource('museos', RoleController::class);
+    Route::resource('museos', MuseoController::class);
 
    
    
@@ -51,8 +50,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
     // API MUSEOS
     Route::get('/museos', [MuseoController::class, 'index'])->name('museos.index');
 
-    // PDF
-    Route::get('/user/{id}/pdf', [PDFController::class, 'downloadPDF'])->name('user.pdf');
 });
 
 

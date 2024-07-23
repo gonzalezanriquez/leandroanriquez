@@ -25,8 +25,8 @@ class UserController extends Controller
 
     public function create()
     {
-        $roles = Role::all(); // Obtener todos los roles para asignarlos al usuario
-        return view('users.create', compact('roles')); // Crear una vista para el formulario de creación
+        $roles = Role::all();
+        return view('users.create', compact('roles')); 
     }
     public function store(Request $request)
     {
@@ -34,7 +34,7 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
             'email' => 'required|email|unique:users|max:255',
-            'password' => 'required|string|min:8|confirmed',
+            'password' => 'required|string|min:8',
             'roles' => 'required|string',
         ]);
     
@@ -48,12 +48,11 @@ class UserController extends Controller
     
             $user->assignRole($request->input('roles'));
     
-            return redirect()->route('users.index')->with('success', 'Usuario creado exitosamente');
+            return response()->json(['success' => 'Usuario creado exitosamente']);
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'No se pudo crear el usuario');
+            return response()->json(['error' => 'No se pudo crear el usuario'], 500);
         }
     }
-    
     
     
 
@@ -66,20 +65,18 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        $roles = Role::all(); // Obtener todos los roles
+        $roles = Role::all(); 
         return view('users.edit', compact('user', 'roles'));
     }
 
     public function update(Request $request, $id)
 {
-    // Validación base
     $request->validate([
         'name' => 'required|string|max:255',
         'lastname' => 'required|string|max:255',
-        'roles' => 'required|string', // Validar que roles sea una cadena
+        'roles' => 'required|string', 
     ]);
 
-    // Validación condicional para la contraseña solo si se proporciona
     if ($request->filled('password')) {
         $request->validate([
             'password' => 'nullable|string|min:8',
@@ -88,18 +85,15 @@ class UserController extends Controller
 
     $user = User::findOrFail($id);
 
-    // Actualizar información básica
     $user->update([
         'name' => $request->input('name'),
         'lastname' => $request->input('lastname'),
     ]);
 
-    // Actualizar roles
     if ($request->filled('roles')) {
-        $user->syncRoles($request->input('roles')); // Actualizar roles del usuario si se proporcionan
+        $user->syncRoles($request->input('roles')); 
     }
 
-    // Actualizar contraseña solo si se proporciona una nueva
     if ($request->filled('password')) {
         $user->update([
             'password' => bcrypt($request->input('password')),

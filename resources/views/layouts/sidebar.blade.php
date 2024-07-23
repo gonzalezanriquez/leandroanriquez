@@ -9,24 +9,22 @@
     </svg>
 </button>
 
-<aside id="default-sidebar" class="fixed top-0 left-0 z-40 w-70 h-screen transition-transform -translate-x-full sm:translate-x-0 shadow-md bg-white " aria-label="Sidebar">
-    
+<aside id="default-sidebar" class="fixed top-0 left-0 z-40 w-72 h-screen transition-transform -translate-x-full sm:translate-x-0 shadow-md bg-white " aria-label="Sidebar">
+   
     <a href="{{ route('profile.edit') }}">
-        <div class="flex mt-10 items-center px-4">
+        <div class="flex flex-col items-center mt-10 px-4">
             @if (Auth::check() && Auth::user()->avatar)
-                <img class="h-16 w-auto max-w-full align-middle rounded" src="{{ Auth::user()->avatar }}"
-                    alt="Avatar de {{ Auth::user()->name }}" />
+                <img class="h-16 w-auto max-w-full align-middle rounded" src="{{ Auth::user()->avatar }}" alt="Avatar de {{ Auth::user()->name }}" />
             @else
-                <img class="h-16 w-auto max-w-full align-middle rounded" src="{{ asset('img/genericUser.svg') }}"
-                    alt="Avatar de {{ Auth::user()->name }}" />
+                <img class="h-16 w-auto max-w-full align-middle rounded" src="{{ asset('img/genericUser.svg') }}" alt="Avatar de {{ Auth::user()->name }}" />
             @endif
-            <div class="flex ml-3 flex-col">
+            <div class="flex flex-col items-center mt-3">
                 <h3 class="font-medium">{{ auth()->user()->name }}</h3>
                 <p class="text-xs text-gray-500">{{ auth()->user()->email }}</p>
             </div>
         </div>
-        
     </a>
+    
     <div class="pt-6 mt-4 flex flex-col gap-4 sm:mt-0 sm:flex-row sm:items-center justify-center">
         <a href="{{ route('profile.edit') }}">
             <button class="inline-flex items-center justify-center gap-1.5 rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm text-gray-500 transition hover:text-gray-700 focus:outline-none focus:ring">
@@ -47,11 +45,20 @@
             <a href="{{ route('dashboard') }}"
                 class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group 
                 {{ Request::is('dashboard') ? 'bg-gray-200 dark:bg-amber-400' : 'hover:bg-gray-200 dark:hover:bg-gray-200' }}">
-                <x-heroicon-o-presentation-chart-bar class="w-6 h-6" stroke-width="1" />
+                <x-heroicon-o-rectangle-group class="w-6 h-6" stroke-width="1" />
                 <span class="ms-3">Inicio</span>
             </a>
         </li>
-     
+        @can('admin') <!-- Reemplaza 'admin' con el nombre del rol adecuado si es diferente -->
+        <li>
+            <a href="{{ route('users.index') }}"
+                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group 
+                {{ Request::is('users') ? 'bg-gray-200 dark:bg-amber-400' : 'hover:bg-gray-200 dark:hover:bg-gray-200' }}">
+                <x-heroicon-o-user-plus class="w-6 h-6" stroke-width="1" />
+                <span class="ms-3">Usuarios</span>
+            </a>
+        </li>
+    @endcan
       
 
         <li>
@@ -93,8 +100,8 @@
             <a href="{{ route('roles.index') }}"
             class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group 
             {{ Request::is('roles') ? 'bg-gray-200 dark:bg-amber-400' : 'hover:bg-gray-200 dark:hover:bg-gray-200' }}">
-            <x-heroicon-o-book-open class="w-6 h-6" stroke-width="1" />
-            <span class="ms-3">Roles</span>
+            <x-heroicon-o-lock-open class="w-6 h-6" stroke-width="1" /> 
+             <span class="ms-3">Roles</span>
         </a>
         
         <li>
@@ -113,7 +120,7 @@
 
 </aside>
 
-<div class="p-6 sm:ml-64">
+<div class="px-10 pt-6 sm:ml-64">
     <div class="p-6 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
         {{ $slot }}
     </div>
