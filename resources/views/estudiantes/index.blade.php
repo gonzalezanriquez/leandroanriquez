@@ -2,7 +2,8 @@
     <section class="container px-4 mx-auto">
         <div class="flex items-center justify-between gap-x-3">
             <div class="flex items-center gap-x-3">
-                <x-heroicon-o-user-group class="w-6 h-6" stroke-width="1" />                <h2 class="text-lg font-medium text-gray-800 dark:text-white tracking-wider">Estudiantes</h2>
+                <x-heroicon-o-user-group class="w-6 h-6" stroke-width="1" />
+                <h2 class="text-lg font-medium text-gray-800 dark:text-white tracking-wider">Estudiantes</h2>
                 <span class="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">{{ $datas->count() }} estudiantes</span>
             </div>
             <a href="{{ route('estudiantes.create') }}">
@@ -46,32 +47,22 @@
                                         </td>
 
                                         <td class="px-4 py-4 text-sm text-gray-700 whitespace-nowrap">
-                                            @if($data->roles->isNotEmpty())
-                                                @foreach($data->roles as $role)
-                                                    <span class="inline-flex items-center px-2 py-1 text-xs font-medium leading-none text-green-800 bg-green-100 rounded-full dark:bg-ambier-800 dark:text-green-400 md:inline-block">
-                                                        {{ $role->name }}
-                                                    </span>
-                                                @endforeach
-                                            @else
-                                                <span class="inline-flex items-center px-2 py-1 text-xs font-medium leading-none text-black-900 bg-amber-400 rounded-full dark:bg-amber-500 dark:text-amber-900 sm:hidden">
-                                                    Sin definir
-                                                </span>
-                                            @endif
+                                            {{ $data->lastname }}
                                         </td>
                                         
                                         <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                                             <div class="flex items-center gap-x-3">
-                                                <a href="{{ route('users.edit', $data->id) }}" class="px-3 py-1 text-sm text-green-600 bg-green-100 rounded-full hover:text-white hover:bg-green-500 dark:bg-gray-800 dark:text-green-400 flex items-center gap-2">
+                                                <a href="{{ route('estudiantes.edit', $data->id) }}" class="px-3 py-1 text-sm text-green-600 bg-green-100 rounded-full hover:text-white hover:bg-green-500 dark:bg-gray-800 dark:text-green-400 flex items-center gap-2">
                                                     <x-heroicon-o-pencil class="w-5 h-5" />
-                                                 </a>
+                                                </a>
 
-                                                <form id="delete-form-{{ $data->id }}" action="{{ route('users.destroy', $data->id) }}" method="POST" style="display: inline;">
+                                                <form id="delete-form-{{ $data->id }}" action="{{ route('estudiantes.destroy', $data->id) }}" method="POST" style="display: inline;">
                                                     @csrf
                                                     @method('DELETE')
 
                                                     <button type="button" onclick="confirmDelete({{ $data->id }})" class="px-3 py-1 text-sm text-red-600 bg-red-100 rounded-full hover:text-white hover:bg-red-500 dark:bg-gray-800 dark:text-red-400 flex items-center gap-2">
                                                         <x-heroicon-o-trash class="w-5 h-5" />
-                                                         </button>
+                                                    </button>
                                                 </form>
                                             </div>
                                         </td>
@@ -90,16 +81,16 @@
         function confirmDelete(dataId) {
             Swal.fire({
                 title: "Seguro deseas eliminar a este Estudiante?",
-                text: "Esta acción no podra revertirse",
+                text: "Esta acción no podrá revertirse",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#fcba03",
                 cancelButtonColor: "#d33",
-                confirmButtonText: "Si, elimilar!",
+                confirmButtonText: "Sí, eliminar!",
                 cancelButtonText: 'Cancelar'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    document.getElementById('delete-form-' + userId).submit();
+                    document.getElementById('delete-form-' + dataId).submit();
                 }
             });
         }

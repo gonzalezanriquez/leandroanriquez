@@ -4,41 +4,33 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateEstudiantesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('estudiantes', function (Blueprint $table) {
             $table->id();
-            $table->string('apellido');
-            $table->string('nombre');
-            $table->string('genero');
-            $table->date('fecha_nacimiento');
-            $table->string('lugar_nacimiento'); 
-            $table->string('nacionalidad');
-            $table->string('domicilio');
+            $table->unsignedBigInteger('user_id');
+            $table->string('name'); // Add the name column
+            $table->string('genero')->nullable();
+            $table->date('fecha_nacimiento')->nullable();
+            $table->string('lugar_nacimiento')->nullable();
+            $table->string('nacionalidad')->nullable();
+            $table->string('domicilio')->nullable();
             $table->string('depto_torre_piso')->nullable();
-            $table->string('localidad');
-            $table->string('codigo_postal');
-            $table->string('dni');
-            $table->string('cuil');
+            $table->string('localidad')->nullable();
+            $table->string('codigo_postal')->nullable();
+            $table->string('dni')->nullable();
+            $table->string('cuil')->nullable();
             $table->timestamps();
+            
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
-
     }
-     
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+
+
     public function down()
     {
         Schema::dropIfExists('estudiantes');
     }
-};
+}

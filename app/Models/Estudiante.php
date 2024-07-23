@@ -4,15 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+
 class Estudiante extends Model
 {
     use HasFactory;
+
     protected $fillable = [
-        'apellido',
-        'nombre',
+        'user_id',
+        'name',
+        'lastname',
+        'password',
         'genero',
         'fecha_nacimiento',
-        'lugar_nacimiento',
+        'lugar_nacimiento', 
         'nacionalidad',
         'domicilio',
         'depto_torre_piso',
@@ -21,4 +25,9 @@ class Estudiante extends Model
         'dni',
         'cuil',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
+}

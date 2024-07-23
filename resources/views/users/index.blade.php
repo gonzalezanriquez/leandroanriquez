@@ -65,6 +65,9 @@
                                                 <a href="{{ route('users.edit', $user->id) }}" class="px-3 py-1 text-sm text-green-600 bg-green-100 rounded-full hover:text-white hover:bg-green-500 dark:bg-gray-800 dark:text-green-400 flex items-center gap-2">
                                                     <x-heroicon-o-pencil class="w-5 h-5" />
                                                  </a>
+                                                 <a href="{{ route('users.edit', $user->id) }}" class="px-3 py-1 text-sm text-green-600 bg-green-100 rounded-full hover:text-white hover:bg-green-500 dark:bg-gray-800 dark:text-green-400 flex items-center gap-2">
+                                                    <x-heroicon-o-pencil class="w-5 h-5" />
+                                                 </a>
 
                                                 <form id="delete-form-{{ $user->id }}" action="{{ route('users.destroy', $user->id) }}" method="POST" style="display: inline;">
                                                     @csrf

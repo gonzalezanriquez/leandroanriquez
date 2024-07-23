@@ -88,14 +88,7 @@
             </a>
         </li>
 
-        <li>
-            <a href="{{ route('museos.index') }}"
-                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group 
-                {{ Request::is('materia') ? 'bg-gray-200 dark:bg-amber-400' : 'hover:bg-gray-200 dark:hover:bg-gray-200' }}">
-                <x-heroicon-o-book-open class="w-6 h-6" stroke-width="1" />
-                <span class="ms-3">Museos</span>
-            </a>
-        </li>
+        
         <li>
             <a href="{{ route('roles.index') }}"
             class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group 
@@ -103,11 +96,20 @@
             <x-heroicon-o-lock-open class="w-6 h-6" stroke-width="1" /> 
              <span class="ms-3">Roles</span>
         </a>
-        
+        <li>
+            <a href="{{ route('museos.index') }}"
+                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group 
+                {{ Request::is('museos') ? 'bg-gray-200 dark:bg-amber-400' : 'hover:bg-gray-200 dark:hover:bg-gray-200' }}">
+                <x-heroicon-o-book-open class="w-6 h-6" stroke-width="1" />
+                <span class="ms-3">Museos</span>
+                <span class="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">conexion API</span>
+
+            </a>
+        </li>
         <li>
             <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group 
-                      {{ Request::is('materia') ? 'bg-gray-200 dark:bg-amber-400' : 'hover:bg-gray-200 dark:hover:bg-gray-200' }}">
+                class="flex items-center p-2 text-red-950 rounded-lg dark:text-white group 
+                      {{ Request::is('Logout') ? 'bg-amber-400 dark:bg-amber-400' : 'hover:bg-gray-200 dark:hover:bg-gray-200' }}">
                 <x-heroicon-o-arrow-left-start-on-rectangle class="w-6 h-6" stroke-width="1" />
                 <span class="ms-3">Logout</span>
             </a>

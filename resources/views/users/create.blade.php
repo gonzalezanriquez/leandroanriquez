@@ -72,10 +72,10 @@
     <script>
         document.getElementById('createUserForm').addEventListener('submit', function(event) {
             event.preventDefault(); // Previene el envío del formulario
-
+    
             var form = event.target;
             var formData = new FormData(form);
-
+    
             fetch(form.action, {
                 method: 'POST',
                 body: formData,
@@ -91,8 +91,9 @@
                         title: 'Éxito!',
                         text: data.success,
                         icon: 'success',
-                        confirmButtonText: 'Aceptar'
-
+                        confirmButtonText: 'Aceptar',
+                        showConfirmButton: false,
+                        timer: 1500
                     }).then(() => {
                         window.location.href = "{{ route('users.index') }}"; 
                     });
@@ -101,7 +102,9 @@
                         title: 'Error!',
                         text: data.error,
                         icon: 'error',
-                        confirmButtonText: 'Aceptar'
+                        confirmButtonText: 'Aceptar',
+                        showConfirmButton: false,
+                        timer: 1500
                     });
                 }
             })
@@ -110,10 +113,38 @@
                     title: 'Error!',
                     text: 'Ocurrió un error inesperado',
                     icon: 'error',
-                    confirmButtonText: 'Aceptar'
+                    confirmButtonText: 'Aceptar',
+                    showConfirmButton: false,
+                    timer: 1500
+                   
                 });
             });
         });
     </script>
+    
+    <!-- Agrega el siguiente estilo CSS para personalizar los botones -->
+    <style>
+        .btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+    
+        .btn-success {
+            background-color: #28a745; /* Verde éxito */
+        }
+    
+        .btn-danger {
+            background-color: #dc3545; /* Rojo error */
+        }
+    
+        .btn:hover {
+            opacity: 0.8;
+        }
+    </style>
+    
  
 </x-app-layout>

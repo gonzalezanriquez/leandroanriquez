@@ -13,6 +13,9 @@ use App\Http\Controllers\MuseoController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\PDFController;
 
+
+
+
 // BIENVENIDA
 Route::get('/', function () { return view('welcome'); });
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
@@ -35,7 +38,9 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'admin'])->group(function () {
 
+    
     Route::resource('users', UserController::class);
+    
     Route::resource('estudiantes', EstudianteController::class);
     Route::resource('docente', DocenteController::class);
     Route::resource('materia', MateriaController::class);

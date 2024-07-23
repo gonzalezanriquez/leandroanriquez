@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Estudiante;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
@@ -47,6 +48,25 @@ class UserController extends Controller
             ]);
     
             $user->assignRole($request->input('roles'));
+            if ($request->input('roles') === 'estudiante') {
+                Estudiante::create([
+                    'user_id' => $user->id,
+                    'name' => $user->name,
+                    'genero' => $request->input('genero'),
+                    'fecha_nacimiento' => $request->input('fecha_nacimiento'),
+                    'lugar_nacimiento' => $request->input('lugar_nacimiento'),
+                    'nacionalidad' => $request->input('nacionalidad'),
+                    'domicilio' => $request->input('domicilio'),
+                    'depto_torre_piso' => $request->input('depto_torre_piso'),
+                    'localidad' => $request->input('localidad'),
+                    'codigo_postal' => $request->input('codigo_postal'),
+                    'dni' => $request->input('dni'),
+                    'cuil' => $request->input('cuil'),
+                ]);
+            }
+    
+
+            
     
             return response()->json(['success' => 'Usuario creado exitosamente']);
         } catch (\Exception $e) {
@@ -74,7 +94,7 @@ class UserController extends Controller
     $request->validate([
         'name' => 'required|string|max:255',
         'lastname' => 'required|string|max:255',
-        'roles' => 'required|string', 
+        'roles' => 'required|string',
     ]);
 
     if ($request->filled('password')) {
@@ -91,7 +111,26 @@ class UserController extends Controller
     ]);
 
     if ($request->filled('roles')) {
-        $user->syncRoles($request->input('roles')); 
+        $user->syncRoles($request->input('roles'));
+
+        if ($request->input('roles') === 'estudiante') {
+            Estudiante::create([
+                'user_id' => $user->id,
+                'name' => $user->name, // Ensure 'name' is passed
+                'genero' => $request->input('genero'),
+                'fecha_nacimiento' => $request->input('fecha_nacimiento'),
+                'lugar_nacimiento' => $request->input('lugar_nacimiento'),
+                'nacionalidad' => $request->input('nacionalidad'),
+                'domicilio' => $request->input('domicilio'),
+                'depto_torre_piso' => $request->input('depto_torre_piso'),
+                'localidad' => $request->input('localidad'),
+                'codigo_postal' => $request->input('codigo_postal'),
+                'dni' => $request->input('dni'),
+                'cuil' => $request->input('cuil'),
+            ]);
+
+            return redirect()->route('users.index')->with('success', 'Usuario actualizado y movido a la tabla estudiantes exitosamente');
+        }
     }
 
     if ($request->filled('password')) {
@@ -102,6 +141,9 @@ class UserController extends Controller
 
     return redirect()->route('users.index')->with('success', 'Usuario actualizado exitosamente');
 }
+
+
+    
 
     public function destroy(User $user)
     {
