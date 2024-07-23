@@ -1,98 +1,288 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
+
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
-    <!-- Scripts -->
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <link rel="stylesheet" href="https://cdn.tailgrids.com/tailgrids-fallback.css" />
+
+
 </head>
 
-<body class="font-sans antialiased">
-    <div
-        class="bg-transparent pt-16 pr-4 pb-16 pl-4 flex mr-auto ml-auto flex-col items-center relative lg:flex-row lg:py-32 xl:py-48 md:px-8 max-w-screen-2xl">
-        <div
-            class="flex justify-center items-center w-full h-full overflow-hidden lg:w-1/2 lg:justify-end lg:bottom-0 lg:left-0 lg:items-center">
-            <img src="https://res.cloudinary.com/macxenon/image/upload/v1626953574/Group_1_zrmcxj.png"
-                class="object-contain object-top lg:w-auto lg:h-full w-full h-auto" />
-        </div>
-        <div class="mr-auto ml-auto flex justify-end relative max-w-xl xl:pr-32 lg:max-w-screen-xl">
-            <div class="mb-16 lg:pr-5 lg:max-w-lg lg:mb-0">
-                <div class="mb-6 max-w-xl">
+<body>
 
+        @include('nav.superiornav')
+        <main class="mt-5 pt-5 ">
+            <div class="headerwelcome ">
+
+                <div class="container-fluid bgheader py-5">
+                    <div class="container ">
+                        <div class="row mx-md-5 align-items-center text -xs-center  ">
+                            <div class="col-12 col-lg-6 px-lg-3 pt-lg-4">
+                                <h1 class="titulo animate__animated animate__fadeInDown">Soluciones integrales para tus <span class="highlight ::after">gestiones escolares</span></h1>
+                                <p class="bajadaTitulo mt-5 animate__animated animate__fadeIn">Te ayudamos a sistematizar todas tus labores administrativas escolares
+                                    brindando una respuesta rapida y sencilla a docentes, alumnos y personal escolar. </p>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <img class="img-fluid animate__animated animate__fadeInRight" src="{{ asset('img/app2.png')}}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        <!-- TARJETAS PRESENTACIONES -->
+<!-- component -->
+    <!-- ====== Cards Section Start -->
+    <section class="bg-gray-2 dark:bg-dark pb-10  ">
+        <div class="container mx-auto">
+            <div class="flex flex-wrap -mx-2">
+                
+                <div class="w-full px-4 md:w-1/2 xl:w-1/3 ">
+                    <div class="mb-10 overflow-hidden duration-300 bg-white rounded-lg dark:bg-dark-2 shadow-1 hover:shadow-3 dark:shadow-card dark:hover:shadow-3 shadow-md">
+                        <img src="https://cdn.tailgrids.com/2.0/image/application/images/cards/card-01/image-01.jpg"
+                            alt="image" class="w-full" />
+                        <div class="p-8 text-center sm:p-9 md:p-7 xl:p-9">
+                            <h3>
+                                <a href="javascript:void(0)" class="text-dark dark:text-white hover:text-primary mb-4 block text-xl font-semibold sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px]">
+                                </a>
+                            </h3>
+                            <p class="text-base leading-relaxed text-body-color dark:text-dark-6 mb-7">
+                                Lorem ipsum dolor sit amet pretium consectetur adipiscing
+                                elit. Lorem consectetur adipiscing elit.
+                            </p>
+                            <a href="javascript:void(0)" class="inline-block py-2 text-base font-medium transition border rounded-full text-body-color hover:border-primary hover:bg-primary border-gray-3 px-7 hover:text-white dark:border-dark-3 dark:text-dark-6">
+                                View Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full px-4 md:w-1/2 xl:w-1/3">
                     <div
-                        class="text-3xl font-bold tracking-tight text-gray-900 max-w-lg sm:text-4xl sm:leading-none mb-6">
-                        <p
-                            class="text-black text-3xl font-bold tracking-tight sm:text-4xl  sm:text-center xs:text-center">
-                            Gestiones Educativas</p>
+                        class="mb-10 overflow-hidden duration-300 bg-white rounded-lg dark:bg-dark-2 shadow-1 hover:shadow-3 dark:shadow-card dark:hover:shadow-3">
+                        <img src="https://cdn.tailgrids.com/2.0/image/application/images/cards/card-01/image-02.jpg"
+                            alt="image" class="w-full" />
+                        <div class="p-8 text-center sm:p-9 md:p-7 xl:p-9">
+                            <h3>
+                                <a href="javascript:void(0)"
+                                    class="text-dark dark:text-white hover:text-primary mb-4 block text-xl font-semibold sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px]">
+                                    The ultimate UX and UI guide to card design
+                                </a>
+                            </h3>
+                            <p class="text-base leading-relaxed text-body-color mb-7">
+                                Lorem ipsum dolor sit amet pretium consectetur adipiscing
+                                elit. Lorem consectetur adipiscing elit.
+                            </p>
+                            <a href="javascript:void(0)"
+                                class="inline-block py-2 text-base font-medium transition border rounded-full text-body-color hover:border-primary hover:bg-primary border-gray-3 px-7 hover:text-white dark:border-dark-3 dark:text-dark-6">
+                                View Details
+                            </a>
+                        </div>
                     </div>
-                    <p class="text-gray-700 text-base md:text-lg">Lorem ipsum dolor sit amet, consectetur adipiscing
-                        elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.</p>
                 </div>
-
-                <form action="{{ route('login') }}" method="get">
-                    <button type="submit"
-                        class="transition duration-200 hover:bg-blue-900 focus:shadow-outline focus:outline-none bg-blue-700 text-white inline-flex font-semibold tracking-wide text-medium h-12 shadow-md items-center justify-center pr-6 pl-6 mr-6 rounded-lg">
-                        LOGIN
-                    </button>
-                </form>
-
-
-            </div>
-        </div>
-    </div>
-    </div>
-
-    <div
-        class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-        <div class="relative isolate px-6 pt-14 lg:px-8">
-            <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
-                aria-hidden="true">
-                <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
-                    style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
-                </div>
-            </div>
-            <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
-                <div class="hidden sm:mb-8 sm:flex sm:justify-center">
+                <div class="w-full px-4 md:w-1/2 xl:w-1/3">
                     <div
-                        class="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-                        Gestiones Educativas. <a href="#" class="font-semibold text-indigo-600"><span
-                                class="absolute inset-0" aria-hidden="true"></span>Read more <span
-                                aria-hidden="true">&rarr;</span></a>
+                        class="mb-10 overflow-hidden duration-300 bg-white rounded-lg dark:bg-dark-2 shadow-1 hover:shadow-3 dark:shadow-card dark:hover:shadow-3">
+                        <img src="https://cdn.tailgrids.com/2.0/image/application/images/cards/card-01/image-03.jpg"
+                            alt="image" class="w-full" />
+                        <div class="p-8 text-center sm:p-9 md:p-7 xl:p-9">
+                            <h3>
+                                <a href="javascript:void(0)"
+                                    class="text-dark dark:text-white hover:text-primary mb-4 block text-xl font-semibold sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px]">
+                                    Creative Card Component designs graphic elements
+                                </a>
+                            </h3>
+                            <p class="text-base leading-relaxed text-body-color mb-7">
+                                Lorem ipsum dolor sit amet pretium consectetur adipiscing
+                                elit. Lorem consectetur adipiscing elit.
+                            </p>
+                            <a href="javascript:void(0)"
+                                class="inline-block py-2 text-base font-medium transition border rounded-full text-body-color hover:border-primary hover:bg-primary border-gray-3 px-7 hover:text-white dark:border-dark-3 dark:text-dark-6">
+                                View Details
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <div class="text-center">
-                    <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Data to enrich your online
-                        business</h1>
-                    <p class="mt-6 text-lg leading-8 text-gray-600">Anim aute id magna aliqua ad ad non deserunt sunt.
-                        Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.</p>
-                    <div class="mt-10 flex items-center justify-center gap-x-6">
-                        <a href="#"
-                            class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Get
-                            started</a>
-                        <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Learn more <span
-                                aria-hidden="true">→</span></a>
-                    </div>
-                </div>
-            </div>
-            <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
-                aria-hidden="true">
-                <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
-                    style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+
+
+
+
+
+
+
+        
+            <div class="container text-center py-5 reveal">
+                <div class="row gy-4 justify-content-center d-flex align-content-center">
+                    <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+                        <div class=" h-100 bg-white rounded shadow-sm  animate__animated animate__fadeInLeft">
+                            <img src="{{ asset('img/1.jpg')}}" class="card-img-top" alt="...">
+                            <div class="card-body py-5 px-4">
+                                <h5 class="card-title fw-bold">EFICAZ</h5>
+                                <p class="card-text">Creemos en una solución eficaz e integral, que logre abordar tanto las necesidades del alumno, del docente así como también y la dirección académica todo en un mismo espacio
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+                        <div class="h-100 bg-white rounded shadow-sm  animate__animated animate__fadeInUp">
+                            <img src="{{ asset('img/2.jpg')}}" class="card-img-top" alt="...">
+                            <div class="card-body py-5 px-4" >
+                                <h5 class="card-title fw-bold">VIRTUAL</h5>
+                                <p class="card-text ">Digitalizar los procesos administrativos escolares. Establecer un punto de comunicación digital Alumno - Institución - docente. Brindar información académica general.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+                        <div class="h-100  bg-white rounded shadow-sm  animate__animated animate__fadeInRight">
+                            <img src="{{ asset('img/3.jpg')}}" class="card-img-top" alt="...">
+                            <div class="card-body py-5 px-4 ">
+                                <h5 class="card-title fw-bold">ADAPTABLE</h5>
+                                <p class="card-text">Armado de estructuras inteligentes y dinamicas para una organización clara y eficiente.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        
+        <!-- TESTIMONIO -->
+        <div class=" quote reveal ">
+            <div class="container py-5 ">
+                    <div class="">
+                  <blockquote class=" px-5 mx-lg-5">
+                    <p>"La tecnología nos brinda herramientas para enfatizar el enfoque en el verdadero proceso que se encuentra en las aulas y en el aprendizaje. Que la burocracia no debe ser un obstáculo y tenemos que usar todas las herramientas necesarias para ello." </p>
+                  </blockquote>
+                </div>
+                        <div class="quoteAutor">Fernando Gaitan- Director de Proyectos Web - Davinci</div>
+        
+                </div>
+          </div>
+        
+        <!-- NOSOTROS -->
+        
+        
+        <div class="container text-center py-5 reveal">
+            <h3 class="p-5 titulo">Nuestro equipo Creativo</h3>
+            <div class="row gy-4 justify-content-center d-flex align-content-center">
+                <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+                    <div class=" h-100 bg-white rounded shadow-sm ">
+                        <img src="{{ asset('img/leandro.jpg')}}" class="card-img-top" alt="...">
+                        <div class="card-body py-5 px-4 ">
+                            <h5 class="card-title fw-bold">LEANDRO ANRIQUEZ</h5>
+                            <p class="card-text">Founder &amp; Frontend Developer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+                    <div class="h-100 bg-white rounded shadow-sm  animate__animated animate__fadeInUp">
+                        <img src="{{{ asset('img/kevin.jpg')}}}" class="card-img-top" alt="...">
+                        <div class="card-body py-5 px-4" >
+                            <h5 class="card-title fw-bold">KEVIN HERCOG</h5>
+                            <p class="card-text">Founder &amp; Backend Developer</p>
+                        </div>
+                    </div>
+                </div>
+        
+        
+        
+            </div>
+          </div>
+        
+        
+        
+        <!-- CONTACT FORM  -->
+            <section class="pt-5 contactForm reveal ">
+                <div class="col-sm-7 col-lg-5 mx-auto">
+                    <div class="container ">
+                        <div class="row justify-content-center shadow p-3 mb-5 bg-body rounded">
+                            <form action="" method="post" class="border p-5 rounded-2">
+        
+                                <div class="text-center ">
+                                    <img class="img-fluid " src="{{ asset('img/contactForm.png')}}" alt="">
+                                    <h2 class=" fw-bold pb-4">CONTACTATE CON NOSOTROS</h2>
+                                </div>
+                                @csrf
+                                @if (session('message'))
+                                    <div class="alert alert-success text-center">
+                                        {{ session('message') }}
+                                    </div>
+                                @endif
+                                <!-- name -->
+                                <div class="mb-3">
+                                    <label class="form-label" for="name">Nombre y Apellido</label>
+                                    <input type="text" name="name" placeholder="Ingrese su nombre y apellido" value="{{ old('name') }}"
+                                           class="form-control">
+                                    @error('name')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+        
+                                <!-- email -->
+                                <div class="mb-3">
+                                    <label class="form-label" for="email">E-mail</label>
+                                    <input type="text" value="{{ old('email') }}" name="email" placeholder="Ingrese su e-mail"
+                                           class="form-control">
+                                    @error('email')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+        
+                                <!-- subject -->
+                                <div class="mb-3">
+                                    <label class="form-label" for="subject">Asunto</label>
+                                    <input type="text" value="{{ old('subject') }}" name="subject" placeholder="Ingrese su asunto"
+                                           class="form-control">
+                                    @error('subject')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+        
+                                <!-- message -->
+                                <div class="mb-3">
+                                    <label class="form-label" for="message">Mensaje</label>
+                                    <textarea class="form-control" value="{{ old('message') }}" name="message" placeholder="Ingrese su mensaje"></textarea>
+                                    @error('message')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+        
+                                <!-- submit -->
+        
+        
+        
+        
+                                <div class="d-grid gap-2">
+                                    <input type="submit" name="submit" value="Enviar" class="boton btn ">
+                                  </div>
+        
+        
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        
+
+
+
+        </main>
+
+
+
 
 </body>
-
 </html>
+
+
+
+

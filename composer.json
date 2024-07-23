@@ -17,7 +17,8 @@
         "livewire/livewire": "^2.12",
         "nesbot/carbon": "^2.72",
         "phpoffice/phpword": "^1.2",
-        "spatie/laravel-permission": "^6.9"
+        "spatie/laravel-permission": "^6.9",
+        "tecnickcom/tcpdf": "^6.7"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

@@ -21,6 +21,7 @@
                         <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                             <thead class="bg-gray-50 dark:bg-gray-800">
                                 <tr>
+                                    <th scope="col" class="py-3.5 px-4 text-sm font-normal text-left text-gray-500 dark:text-gray-400">Id</th>
                                     <th scope="col" class="py-3.5 px-4 text-sm font-normal text-left text-gray-500 dark:text-gray-400">Rol</th>
                                     <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left text-gray-500 dark:text-gray-400">Acción</th>
                                 </tr>
@@ -29,6 +30,17 @@
                             @foreach ($datas as $data)
                                 <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
                                     <tr class="flex flex-col mb-4 sm:table-row">
+
+                                        <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
+                                            <div class="inline-flex items-center gap-x-3">
+                                                
+                                                        <h2 class="font-medium text-black dark:text-white font-bold uppercase">{{ $data->id }} </h2>
+                                                  
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+
                                         <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                                             <div class="inline-flex items-center gap-x-3">
                                                 
@@ -41,7 +53,7 @@
 
                                      
                                          
-                                        </td>
+                                        
                                         
                                         <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                                             <div class="flex items-center gap-x-3">

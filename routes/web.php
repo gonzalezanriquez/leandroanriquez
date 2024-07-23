@@ -12,6 +12,9 @@ use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\MuseoController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\PDFController;
+use App\Http\Controllers\ReportController;
+
+Route::get('/user-report', [ReportController::class, 'generateUserReport']);
 
 
 
