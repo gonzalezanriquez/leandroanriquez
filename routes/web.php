@@ -13,8 +13,10 @@ use App\Http\Controllers\MuseoController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\CiclolectivoController;
+use App\Http\Controllers\CursoController;
 
-Route::get('/user-report', [ReportController::class, 'generateUserReport']);
+
 
 
 
@@ -29,6 +31,8 @@ Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
 Route::get('google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
 Route::middleware('auth')->group(function () {
+    Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
+    Route::post('/generate-report', [ReportController::class, 'generateUserReport'])->name('reports.generate');
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     
@@ -36,6 +40,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::put('/profile', [UserController::class, 'updatePassword'])->name('password.update');
+    
     
 });
 
@@ -49,6 +54,11 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('materia', MateriaController::class);
     Route::resource('roles', RoleController::class);
     Route::resource('museos', MuseoController::class);
+    Route::resource('ciclolectivos', CiclolectivoController::class);
+    Route::resource('cursos', CursoController::class);
+
+
+
 
    
    

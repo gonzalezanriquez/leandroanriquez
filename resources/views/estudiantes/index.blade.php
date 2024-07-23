@@ -39,7 +39,7 @@
                                                         <img class="object-cover w-10 h-10 rounded-full" src="{{ asset('img/genericUser.svg') }}" alt="">
                                                     @endif
                                                     <div>
-                                                        <h2 class="font-medium text-black dark:text-white font-bold uppercase">{{ $data->lastname }}, {{ $data->name }} </h2>
+                                                        <h2 class="font-medium text-black dark:text-white font-bold uppercase">{{ $data->name }}, {{ $data->apellido }} </h2>
                                                         <p class="text-sm font-normal text-gray-500 dark:text-gray-200">{{ $data->email }}</p>
                                                     </div>
                                                 </div>

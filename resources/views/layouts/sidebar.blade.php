@@ -49,7 +49,7 @@
                 <span class="ms-3">Inicio</span>
             </a>
         </li>
-        @can('admin') <!-- Reemplaza 'admin' con el nombre del rol adecuado si es diferente -->
+        @can('admin') 
         <li>
             <a href="{{ route('users.index') }}"
                 class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group 
@@ -90,12 +90,21 @@
 
         
         <li>
-            <a href="{{ route('roles.index') }}"
-            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group 
-            {{ Request::is('roles') ? 'bg-gray-200 dark:bg-amber-400' : 'hover:bg-gray-200 dark:hover:bg-gray-200' }}">
-            <x-heroicon-o-lock-open class="w-6 h-6" stroke-width="1" /> 
-             <span class="ms-3">Roles</span>
-        </a>
+            <a href="{{ route('roles.index') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group 
+                {{ Request::is('roles') ? 'bg-gray-200 dark:bg-amber-400' : 'hover:bg-gray-200 dark:hover:bg-gray-200' }}">
+                <x-heroicon-o-lock-open class="w-6 h-6" stroke-width="1" /> 
+                <span class="ms-3">Roles</span>
+            </a>
+        </li>
+        
+        <li>
+            <a href="{{ route('ciclolectivos.index') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group 
+                {{ Request::is('ciclolectivos') ? 'bg-gray-200 dark:bg-amber-400' : 'hover:bg-gray-200 dark:hover:bg-gray-200' }}">
+                <x-heroicon-o-calendar-days class="w-6 h-6" stroke-width="1" /> 
+                <span class="ms-3">Ciclos Lectivos</span>
+            </a>
+        </li>
+
         <li>
             <a href="{{ route('museos.index') }}"
                 class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group 

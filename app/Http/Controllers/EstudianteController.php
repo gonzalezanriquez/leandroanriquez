@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Estudiante;
 use App\Models\User;
+use App\Models\Ciclolectivo;
 
 class EstudianteController extends Controller
 {
@@ -16,7 +17,9 @@ class EstudianteController extends Controller
 
     public function create()
     {
-        return view('estudiantes.create');
+
+        $ciclolectivos= Ciclolectivo::all();
+        return view('estudiantes.create', compact('ciclolectivos'));
     }
 
     public function store(Request $request)

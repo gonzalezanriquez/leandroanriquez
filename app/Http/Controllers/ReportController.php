@@ -4,39 +4,53 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Dompdf\Dompdf;
-use Dompdf\Options;
 use Illuminate\Support\Facades\Storage;
-
-
+use App\Models\Estudiante;
 
 class ReportController extends Controller
 {
-    public function generateUserReport()
+    public function index()
     {
+        // Obtener todos los estudiantes
+        $students = Estudiante::all();
+
+        // Pasar los estudiantes a la vista
+        return view('report.index', ['students' => $students]);
+    }
+
+    public function generateUserReport(Request $request)
+    {
+        // Validar el estudiante seleccionado
+        $request->validate([
+            'student_id' => 'required|exists:students,id',
+        ]);
+
+        $student = Student::find($request->input('student_id'));
+
         $dompdf = new Dompdf();
 
-        // Load HTML content
+        // Cargar contenido HTML
         $html = view('reports.user_report', [
-            'name' => 'John Doe',
-            'email' => 'john.doe@example.com',
-            'joined_date' => '2023-01-01',
+            'name' => $student->name,
+            'email' => $student->email,
+            'joined_date' => $student->joined_date,
         ])->render();
 
         $dompdf->loadHtml($html);
 
-        // (Optional) Setup the paper size and orientation
+        // (Opcional) Configurar tamaño y orientación del papel
         $dompdf->setPaper('A4', 'landscape');
 
-        // Render the HTML as PDF
+        // Renderizar el HTML como PDF
         $dompdf->render();
 
-        // Save PDF locally
+        // Guardar PDF localmente
         $pdfPath = storage_path('app/reports/user_report.pdf');
         file_put_contents($pdfPath, $dompdf->output());
 
-        // Get URL to the file
+        // Obtener la URL del archivo
         $uploadedFilePath = Storage::url('reports/user_report.pdf');
 
-        return response()->json(['message' => 'The file has been uploaded.', 'path' => $uploadedFilePath]);
+        return response()->json(['message' => 'El archivo ha sido guardado.', 'path' => $uploadedFilePath]);
     }
 }

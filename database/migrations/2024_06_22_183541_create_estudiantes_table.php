@@ -10,24 +10,33 @@ class CreateEstudiantesTable extends Migration
     {
         Schema::create('estudiantes', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('ciclolectivos_id');
             $table->unsignedBigInteger('user_id');
-            $table->string('name'); // Add the name column
-            $table->string('genero')->nullable();
-            $table->date('fecha_nacimiento')->nullable();
-            $table->string('lugar_nacimiento')->nullable();
-            $table->string('nacionalidad')->nullable();
-            $table->string('domicilio')->nullable();
-            $table->string('depto_torre_piso')->nullable();
-            $table->string('localidad')->nullable();
-            $table->string('codigo_postal')->nullable();
-            $table->string('dni')->nullable();
-            $table->string('cuil')->nullable();
+            $table->unsignedBigInteger('curso_id'); // Reemplaza 'nivel' con 'curso_id'
+            $table->string('apellidos');
+            $table->string('nombres');
+            $table->string('genero');
+            $table->string('dni');
+            $table->string('cuil');
+            $table->date('fecha_nacimiento');
+            $table->string('lugar_nacimiento');
+            $table->string('nacionalidad');
+            $table->string('domicilio');
+            $table->string('piso_torre_depto')->nullable();
+            $table->string('localidad');
+            $table->string('provincia');
+            $table->string('codigo_postal');
+            $table->string('telefono');
+            $table->string('nombre_establecimiento_anterior')->nullable();
+            $table->string('nivel_anterior')->nullable();
             $table->timestamps();
-            
+
+            // Foreign keys
+            $table->foreign('ciclolectivos_id')->references('id')->on('ciclolectivos')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('curso_id')->references('id')->on('cursos')->onDelete('cascade'); // Relaciona con 'cursos'
         });
     }
-
 
     public function down()
     {

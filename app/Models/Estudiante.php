@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -9,22 +10,41 @@ class Estudiante extends Model
 {
     use HasFactory;
 
+    // Tabla asociada
+    protected $table = 'estudiantes';
+
     protected $fillable = [
+        'ciclolectivo_id',
         'user_id',
-        'name',
-        'lastname',
-        'password',
+        'curso_id',
+        'apellidos',
+        'nombres',
         'genero',
-        'fecha_nacimiento',
-        'lugar_nacimiento', 
-        'nacionalidad',
-        'domicilio',
-        'depto_torre_piso',
-        'localidad',
-        'codigo_postal',
         'dni',
         'cuil',
+        'fecha_nacimiento',
+        'lugar_nacimiento',
+        'nacionalidad',
+        'domicilio',
+        'piso_torre_depto',
+        'localidad',
+        'provincia',
+        'codigo_postal',
+        'telefono',
+        'nombre_establecimiento_anterior',
+        'nivel_anterior',
     ];
+
+    // Relaciones
+    public function ciclolectivo()
+    {
+        return $this->belongsTo(Ciclolectivo::class);
+    }
+
+    public function curso()
+    {
+        return $this->belongsTo(Curso::class);
+    }
 
     public function user()
     {
