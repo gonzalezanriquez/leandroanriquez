@@ -18,5 +18,13 @@ class Noticia extends Model
     public function role()
     {
         return $this->belongsTo(Role::class);
+        
     }
+
+    public function roles()
+{
+    return $this->belongsToMany(Role::class, 'noticia_role', 'noticia_id', 'role_id');
+   
+}
+
 }

@@ -13,9 +13,11 @@ class NoticiaController extends Controller
         $user = auth()->user();
         $userRoles = auth()->user()->roles->pluck('id');
         $userRol = $user->roles->first()->name;
-        $noticias = Noticia::whereIn('role_id', $userRoles)->get();
+        $noticias = Noticia::whereHas('roles', function ($query) use ($userRoles) {
+            $query->whereIn('role_id', $userRoles);
+        })->get();
     
-        return view('noticias.index', compact('noticias','userRol'));
+        return view('noticias.index', compact('noticias', 'userRol'));
     }
 
     public function create()
@@ -30,10 +32,10 @@ class NoticiaController extends Controller
             'title' => 'required|string|max:255',
             'content' => 'required',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'role_id' => 'required|exists:roles,id',
+            'role_ids' => 'required|array|exists:roles,id', // Asegúrate de que sea un array
         ]);
 
-        $data = $request->all();
+        $data = $request->except('role_ids');
 
         if ($request->hasFile('image')) {
             $fileName = time() . '.' . $request->image->extension();
@@ -41,7 +43,8 @@ class NoticiaController extends Controller
             $data['image'] = 'images/noticias/' . $fileName;
         }
 
-        Noticia::create($data);
+        $noticia = Noticia::create($data);
+        $noticia->roles()->attach($request->role_ids);
 
         return redirect()->route('noticias.index')->with('success', 'Noticia creada exitosamente.');
     }
@@ -58,10 +61,10 @@ class NoticiaController extends Controller
             'title' => 'required|string|max:255',
             'content' => 'required',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'role_id' => 'required|exists:roles,id',
+            'role_ids' => 'required|array|exists:roles,id',
         ]);
 
-        $data = $request->all();
+        $data = $request->except('role_ids');
 
         if ($request->hasFile('image')) {
             $fileName = time() . '.' . $request->image->extension();
@@ -70,10 +73,10 @@ class NoticiaController extends Controller
         }
 
         $noticia->update($data);
+        $noticia->roles()->sync($request->role_ids); // Sincroniza los roles asociados
 
         return redirect()->route('noticias.index')->with('success', 'Noticia actualizada exitosamente.');
     }
-
 
     public function show(Noticia $noticia)
 {
@@ -94,4 +97,6 @@ class NoticiaController extends Controller
         $noticia->delete();
         return redirect()->route('noticias.index')->with('success', 'Noticia eliminada exitosamente.');
     }
+
+    
 }
