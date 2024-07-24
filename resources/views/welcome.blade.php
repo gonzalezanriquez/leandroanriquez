@@ -239,12 +239,45 @@
         </div>
     </nav>
 
+<!-- Hero -->
+<div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 mt-5">
+  <!-- Grid -->
+  <div class="grid md:grid-cols-2 gap-4 md:gap-8 xl:gap-20 md:items-center">
+    <div>
+      <h1 class="block text-3xl font-bold text-gray-800 sm:text-4xl lg:text-6xl lg:leading-tight dark:text-white">Soluciones Integrales para tus <span class="text-amber-400">gestiones escolares</span></h1>
+      <p class="mt-3 text-lg text-gray-800 dark:text-neutral-400">Te ayudamos a sistematizar todas
+        tus labores administrativas escolares
+        brindando una respuesta rapida y sencilla a docentes, alumnos y personal escolar.</p>
 
+      {{-- <!-- Buttons -->
+      <div class="mt-7 grid gap-3 w-full sm:inline-flex">
+        <a class="py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none" href="#">
+          Get started
+          <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </a>
+        <a class="py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800 dark:focus:bg-neutral-800" href="#">
+          Contact sales team
+        </a>
+      </div> --}}
+      <!-- End Buttons -->
+
+    </div>
+
+    <div class="relative ms-4">
+      <img class="w-full rounded-md" src="{{asset('img/app2.png')}}" alt="Hero Image">
+      <div class="absolute inset-0 -z-[1] bg-gradient-to-tr from-gray-200 via-white/0 to-white/0 size-full rounded-md mt-4 -mb-4 me-4 -ms-4 lg:mt-6 lg:-mb-6 lg:me-6 lg:-ms-6 dark:from-neutral-800 dark:via-neutral-900/0 dark:to-neutral-900/0"></div>
+
+    </div>
+    <!-- End Col -->
+  </div>
+  <!-- End Grid -->
+</div>
+<!-- End Hero -->
 
 
     {{-- HERO --}}
     <main>
-        <div class="container-fluid bgheader py-5">
+        {{-- <div class="container-fluid bgheader py-5">
             <div class="container ">
                 <div class="row mx-md-5 align-items-center text -xs-center  ">
                     <div class="col-12 col-lg-6 px-lg-3 pt-lg-4">
@@ -260,13 +293,13 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <!-- CARACTERISTICAS -->
-        <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto ">
+        <div class="max-w-[85rem] px-4 my-py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto ">
             <div class="max-w-2xl mx-auto text-center mb-10 lg:mb-14">
-                <h2 class="text-2xl font-bold md:text-4xl md:leading-tight dark:text-white">CARACTERISTICAS</h2>
-                <p class="mt-1 text-gray-600 dark:text-neutral-400">Amplia experiencia en el mundo de la tecnologia</p>
+                {{-- <h2 class="text-2xl font-bold md:text-4xl md:leading-tight dark:text-white">CARACTERISTICAS</h2>
+                <p class="mt-1 text-gray-600 dark:text-neutral-400">Amplia experiencia en el mundo de la tecnologia</p> --}}
             </div>
 
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -284,7 +317,7 @@
                             class="text-xl font-semibold text-gray-800 group-hover:text-gray-600 dark:text-neutral-300 dark:group-hover:text-white">
                             EFICAZ
                         </h3>
-                        <p class="mt-3 text-gray-800 dark:text-neutral-200">
+                        <p class="mt-3 text-xl text-gray-500 dark:text-neutral-200">
                             Creemos en una solución eficaz e integral, que logre abordar tanto las necesidades del
                             alumno, del docente así como también y la dirección académica todo en un mismo espacio.</p>
 
@@ -305,8 +338,8 @@
                             class="text-xl font-semibold text-gray-800 group-hover:text-gray-600 dark:text-neutral-300 dark:group-hover:text-white">
                             VIRTUAL
                         </h3>
-                        <p class="mt-3 text-gray-800 dark:text-neutral-200">
-                            Digitalizar los procesos administrativos escolares. Establecer un punto de comunicación
+                        <p class="mt-3 text-xl text-gray-500 dark:text-neutral-200">
+                      Digitalizar los procesos administrativos escolares. Establecer un punto de comunicación
                             digital Alumno - Institución - docente. Brindar información académica general.</p>
 
                     </div>
@@ -326,11 +359,12 @@
                             class="text-xl font-semibold text-gray-800 group-hover:text-gray-600 dark:text-neutral-300 dark:group-hover:text-white">
                             SEGURA
                         </h3>
-                        <p class="mt-3 text-gray-800 dark:text-neutral-200">
-                            La proteccion de los datos de nuestros clientes es nuestra prioridad. Cada informacion
-                            cuenta con medidas de seguiridad para que sean resguardada de la mejor manera para la
-                            tranquilidad de nuestros clientes.
-                        </p>
+                        <p class="mt-3 text-xl text-gray-500 dark:text-neutral-200">
+                          La protección de los datos de nuestros clientes es nuestra prioridad. Cada información
+                          cuenta con medidas de seguridad para que sea resguardada de la mejor manera para la
+                          tranquilidad de nuestros clientes.
+                      </p>
+                      
                     </div>
 
             </div>
@@ -340,32 +374,30 @@
 
 
         <!-- TESTIMONIO -->
-        <div class="relative overflow-hidden shadow-xl">
-            <div class="max-w-[85rem] px-4 py-12 sm:px-6 lg:px-8 lg:py-16 mx-auto">
-                <div aria-hidden="true" class="flex -z-[1] absolute start-0">
-                    <div
-                        class="bg-purple-200 opacity-20 blur-3xl w-[1036px] h-[300px] dark:bg-purple-900 dark:opacity-20">
-                    </div>
-                </div>
-               <div class="lg:grid lg:grid-cols-6 lg:gap-8 lg:items-center">
-                    <div class="hidden lg:block lg:col-span-2">
-                        <img class="rounded-xl"
-                            src="{{asset('img/clases.jpg')}}"
-                            alt="Avatar">
-                    </div>
+ 
+        <div class="relative overflow-hidden shadow-xl my-10 w-full bg-amber-400 rounded-xl ">
+          <div class="w-full px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+              <div aria-hidden="true" class="flex -z-[1] absolute start-0 w-full">
+                  <div class="bg-amber-400   w-full h-[400px]">
+                  </div>
+              </div>
+              <div class="lg:grid lg:grid-cols-6 lg:gap-8 lg:items-center">
+                  <div class="hidden lg:block lg:col-span-2">
+                      <img class="rounded-xl w-full"
+                          src="{{asset('img/app2.png')}}"
+                          alt="Avatar">
+                  </div>
+                  <div class="lg:col-span-4">
+                      <blockquote>
+                          <p class="text-xl font-medium text-gray-800 lg:text-2xl lg:leading-normal dark:text-neutral-200">
+                              La tecnología nos brinda herramientas para enfatizar el enfoque en el verdadero proceso que se encuentra en las aulas y en el aprendizaje. Que la burocracia no debe ser un obstáculo y tenemos que usar todas las herramientas necesarias para ello.
+                          </p>
+                      </blockquote>
+                  </div>
+              </div>
+          </div>
+      </div>
 
-                    <div class="lg:col-span-4">
-                        <blockquote>        
-                            <p
-                                class="text-xl font-medium text-gray-800 lg:text-2xl lg:leading-normal dark:text-neutral-200">
-                                La tecnología nos brinda herramientas para enfatizar el enfoque en el verdadero proceso que se encuentra en las aulas y en el aprendizaje. Que la burocracia no debe ser un obstáculo y tenemos que usar todas las herramientas necesarias para ello.
-                            </p>
-
-                        </blockquote>
-                    </div>
-                </div>
-            </div>
-        </div>
 
 
 
@@ -373,51 +405,47 @@
 
 
 
-        <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto ">
+        <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
           <div class="max-w-2xl mx-auto text-center mb-10 lg:mb-14">
               <h2 class="text-2xl font-bold md:text-4xl md:leading-tight dark:text-white">NOSOTROS</h2>
               <p class="mt-1 text-gray-600 dark:text-neutral-400">Nuestro Equipo Creativo</p>
           </div>
-
-          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div class="group flex flex-col focus:outline-none">
-                  <div class="relative pt-[50%] sm:pt-[70%] rounded-xl overflow-hidden shadow-xl">
-                      <img class="absolute inset-0 object-cover w-full h-full transition-transform duration-500 ease-in-out rounded-xl group-hover:scale-105 group-focus:scale-105"
-                          src="{{ asset('img/leandro.jpg') }}" alt="Blog Image">
-        
+      
+          <div class="flex justify-center">
+              <div class="grid sm:grid-cols-2 lg:grid-cols-2 gap-6">
+                  <div class="group flex flex-col focus:outline-none">
+                      <div class="relative pt-[50%] sm:pt-[70%] rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-500">
+                          <img class="absolute inset-0 object-cover w-full h-full transition-transform duration-500 ease-in-out rounded-xl group-hover:scale-105 group-focus:scale-105"
+                              src="{{ asset('img/leandro.jpg') }}" alt="Blog Image">
+                      </div>
+                      <div class="mt-7 text-center">
+                          <h3 class="text-xl font-semibold text-gray-800 group-hover:text-gray-600 dark:text-neutral-300 dark:group-hover:text-white">
+                              LEANDRO GONZALEZ ANRIQUEZ
+                          </h3>
+                          <p class="mt-3 text-gray-800 dark:text-neutral-200">
+                              Founder &amp; Frontend Developer &amp; Backend Developer
+                          </p>
+                      </div>
                   </div>
-                  <div class="mt-7 text-center ">
-                      <h3
-                          class="text-xl font-semibold text-gray-800 group-hover:text-gray-600 dark:text-neutral-300 dark:group-hover:text-white">
-                          LEANDRO GONZALEZ ANRIQUEZ
-                      </h3>
-                      <p class="mt-3 text-gray-800 dark:text-neutral-200">
-                        Founder &amp; Frontend Developer & Backend Developer</p>
-
+      
+                  <div class="group flex flex-col focus:outline-none">
+                      <div class="relative pt-[50%] sm:pt-[70%] rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-500">
+                          <img class="absolute inset-0 object-cover w-full h-full transition-transform duration-500 ease-in-out rounded-xl group-hover:scale-105 group-focus:scale-105"
+                              src="{{ asset('img/kevin.jpg') }}" alt="Blog Image">
+                      </div>
+                      <div class="mt-7 text-center">
+                          <h3 class="text-xl font-semibold text-gray-800 group-hover:text-gray-600 dark:text-neutral-300 dark:group-hover:text-white">
+                              KEVIN HERCOG
+                          </h3>
+                          <p class="mt-3 text-gray-800 dark:text-neutral-200">
+                              Founder &amp; Backend Developer
+                          </p>
+                      </div>
                   </div>
               </div>
-
-              <div class="group flex flex-col focus:outline-none">
-                <div class="relative pt-[50%] sm:pt-[70%] rounded-xl overflow-hidden shadow-xl">
-                    <img class="absolute inset-0 object-cover w-full h-full transition-transform duration-500 ease-in-out rounded-xl group-hover:scale-105 group-focus:scale-105"
-                        src="{{ asset('img/kevin.jpg') }}" alt="Blog Image">      
-                </div>
-                <div class="mt-7 text-center ">
-                    <h3
-                        class="text-xl font-semibold text-gray-800 group-hover:text-gray-600 dark:text-neutral-300 dark:group-hover:text-white">
-                        KEVIN HERCOG
-                    </h3>
-                    <p class="mt-3 text-gray-800 dark:text-neutral-200">
-                      Founder &amp; Backend Developer</p>
-
-                </div>
-            </div>
-
-            
-              
-
           </div>
       </div>
+      
 
 
 
@@ -513,7 +541,25 @@
 
 
 
+    
     </main>
+
+
+    <!-- ========== FOOTER ========== -->
+<footer class="mt-auto w-full max-w py-10 px-4 sm:px-6 lg:px-8 mx-auto bg-gray-200">
+  <!-- Grid -->
+  <div class="text-center">
+    <div>
+      <p class="flex-none text-xl font-semibold text-black dark:text-white"  aria-label="Brand">Codificando Ideas</p>
+
+    </div>
+
+    <div class="">
+      <p class="text-gray-500 dark:text-neutral-500">© Codificando Ideas. 2024. Todos los derechos reservados.</p>
+    </div>    
+  </div>
+</footer>
+<!-- ========== END FOOTER ========== -->
 
 
     <script>
@@ -532,6 +578,9 @@
             });
         });
     </script>
+
+
+
 
 </body>
 
