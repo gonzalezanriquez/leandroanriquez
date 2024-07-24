@@ -44,10 +44,12 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::put('/profile', [UserController::class, 'updatePassword'])->name('password.update');
-    
+  
+
     Route::post('/logout', [ProfileController::class, 'logout'])->name('logout');
 
     Route::resource('noticias', NoticiaController::class);
+    Route::resource('museos', MuseoController::class);
 
 
 });
@@ -66,7 +68,6 @@ Route::middleware('auth')->group(function () {
         Route::resource('docente', DocenteController::class);
         Route::resource('materia', MateriaController::class);
         Route::resource('roles', RoleController::class);
-        Route::resource('museos', MuseoController::class);
         Route::resource('ciclolectivos', CiclolectivoController::class);
         Route::resource('cursos', CursoController::class);
         Route::post('/logout', [ProfileController::class, 'logout'])->name('logout');
@@ -75,7 +76,6 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware(['estudiante'])->group(function () {
 
-                Route::resource('museos', MuseoController::class);
 
 
     });

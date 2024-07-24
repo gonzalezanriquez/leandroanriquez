@@ -9,7 +9,7 @@
           <h2 class="text-2xl font-bold md:text-3xl dark:text-white text-center">{{ $noticia->title }}</h2>
   
           <figure>
-            <img class="w-full object-cover rounded-xl" src="{{ asset($noticia->image) }}" alt="Blog Image">          
+            <img class="w-full object-cover rounded-xl" src="{{ asset('storage/' . $noticia->image) }}" alt="{{ $noticia->title }}>          
           </figure>
     
           <p class="text-lg text-gray-800 dark:text-neutral-200 text-justify">{{ $noticia->content }}</p>
