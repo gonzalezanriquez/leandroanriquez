@@ -72,6 +72,21 @@ class NoticiaController extends Controller
         return redirect()->route('noticias.index')->with('success', 'Noticia actualizada exitosamente.');
     }
 
+
+    public function show(Noticia $noticia)
+{
+    $user = auth()->user();
+    $roles = $user->roles->pluck('id');
+
+    // Verificar si el usuario tiene acceso a la noticia
+    if (!$noticia->role_id || !$roles->contains($noticia->role_id)) {
+        abort(403, 'Unauthorized access');
+    }
+
+    return view('noticias.show', compact('noticia'));
+}
+
+
     public function destroy(Noticia $noticia)
     {
         $noticia->delete();

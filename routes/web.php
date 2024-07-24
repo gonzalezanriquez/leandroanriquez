@@ -23,6 +23,7 @@ use App\Http\Controllers\NoticiaController;
 Route::resource('noticias', NoticiaController::class)->middleware('auth');
 
 
+
 // BIENVENIDA
 Route::get('/', function () { return view('welcome'); });
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
