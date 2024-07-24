@@ -16,8 +16,11 @@
     </head>
     <body>
         
-            <div class="flex justify-center items-center h-screen">
+        <div class="flex justify-center items-center h-screen ">
+            <div class="w-full max-w-4xl">
                 {{ $slot }}
             </div>
+        </div>
+        
     </body>
 </html>
