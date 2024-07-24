@@ -98,7 +98,7 @@
                     <!-- Nombre -->
                     <div class="mb-4">
                         <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Nombre</label>
-                        <input type="text" id="name" name="name" value="{{ old('name', $user->name) }}" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300" autofocus />
+                        <input type="text" id="name" name="name" value="{{ old('name', $user->name) }}" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300" autofocus autocomplete="off"/>
                         @error('name')
                             <p class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
                         @enderror
@@ -107,7 +107,7 @@
                     <!-- Apellido -->
                     <div class="mb-4">
                         <label for="lastname" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Apellido</label>
-                        <input type="text" id="lastname" name="lastname" value="{{ old('lastname', $user->lastname) }}" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300" />
+                        <input type="text" id="lastname" name="lastname" value="{{ old('lastname', $user->lastname) }}" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300" autocomplete="off"/>
                         @error('lastname')
                             <p class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
                         @enderror
@@ -123,7 +123,7 @@
                     <!-- Password -->
                     <div class="mb-4">
                         <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Password</label>
-                        <input type="password" id="password" name="password" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300" />
+                        <input type="password" id="password" name="password" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300" autocomplete="off"/>
                         @error('password')
                             <p class="mt-2 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
                         @enderror
@@ -133,6 +133,7 @@
                     <div class="mb-4">
                         <label for="roles" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Rol</label>
                         <select id="roles" name="roles" class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300">
+                            <option value="" disabled selected>Seleccionar rol</option>
                             @foreach($roles as $role)
                                 <option value="{{ $role->name }}" {{ old('roles') == $role->name ? 'selected' : '' }}>
                                     {{ $role->name }}

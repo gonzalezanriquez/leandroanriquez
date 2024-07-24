@@ -16,7 +16,7 @@
                 <label for="image" class="block text-gray-700 font-semibold mb-2">Imagen</label>
                 <input type="file" name="image" id="image" class="w-full border border-gray-300 rounded-lg p-2">
                 @if ($noticia->image)
-                    <img src="{{ asset($noticia->image) }}" alt="{{ $noticia->title }}" class="mt-2 w-32 h-32 object-cover">
+                    <img src="{{ asset('storage/' . $noticia->image) }}" alt="{{ $noticia->title }}" class="mt-2 w-32 h-32 object-cover">
                 @endif
             </div>
             <div class="mb-4">

@@ -11,8 +11,9 @@ class CreateNoticiasTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('content');
-            $table->string('image')->nullable(); // Para la URL o ruta de la imagen
-            $table->unsignedBigInteger('role_id'); // Relación con el rol
+            $table->string('image')->nullable(); 
+            $table->unsignedBigInteger('role_id')->nullable();
+            $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
             $table->timestamps();
         });
     }

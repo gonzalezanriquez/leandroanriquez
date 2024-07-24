@@ -20,7 +20,7 @@
                         <div class="relative pt-[50%] sm:pt-[70%] rounded-xl overflow-hidden">
                             @if ($noticia->image)
                                 <img class="absolute inset-0 object-cover w-full h-full transition-transform duration-500 ease-in-out rounded-xl group-hover:scale-105 group-focus:scale-105"
-                                    src="{{ asset($noticia->image) }}" alt="{{ $noticia->title }}">
+                                src="{{ asset('storage/' . $noticia->image) }}" alt="{{ $noticia->title }}">
                                 <span class="absolute top-0 end-0 rounded-se-xl rounded-es-xl text-xs font-medium bg-gray-800 text-white py-1.5 px-3 dark:bg-neutral-900">
                                     {{ $userRol}}
                                 </span>

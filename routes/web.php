@@ -20,7 +20,6 @@ use App\Http\Controllers\NoticiaController;
 
 
 
-Route::resource('noticias', NoticiaController::class)->middleware('auth');
 
 
 
@@ -33,10 +32,12 @@ Route::get('/Auth/register', function () { return view('register'); })->name('re
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
 Route::get('google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
-Route::middleware('auth')->group(function () {
-    Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
-    Route::post('/generate-report', [ReportController::class, 'generateUserReport'])->name('reports.generate');
 
+
+
+
+
+Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -44,36 +45,72 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::put('/profile', [UserController::class, 'updatePassword'])->name('password.update');
     
-    
-});
-
-Route::middleware(['auth', 'admin'])->group(function () {
-
-    
-    Route::resource('users', UserController::class);
-    
-    Route::resource('estudiantes', EstudianteController::class);
-    Route::resource('docente', DocenteController::class);
-    Route::resource('materia', MateriaController::class);
-    Route::resource('roles', RoleController::class);
-    Route::resource('museos', MuseoController::class);
-    Route::resource('ciclolectivos', CiclolectivoController::class);
-    Route::resource('cursos', CursoController::class);
-
-
-
-
-
-
-   
-   
-
     Route::post('/logout', [ProfileController::class, 'logout'])->name('logout');
 
-    // API MUSEOS
-    Route::get('/museos', [MuseoController::class, 'index'])->name('museos.index');
+    Route::resource('noticias', NoticiaController::class);
+
 
 });
+
+
+
+
+
+
+
+    Route::middleware(['auth', 'admin'])->group(function () {
+        Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
+        Route::post('/generate-report', [ReportController::class, 'generateUserReport'])->name('reports.generate');
+        Route::resource('users', UserController::class);
+        Route::resource('estudiantes', EstudianteController::class);
+        Route::resource('docente', DocenteController::class);
+        Route::resource('materia', MateriaController::class);
+        Route::resource('roles', RoleController::class);
+        Route::resource('museos', MuseoController::class);
+        Route::resource('ciclolectivos', CiclolectivoController::class);
+        Route::resource('cursos', CursoController::class);
+        Route::post('/logout', [ProfileController::class, 'logout'])->name('logout');
+    });
+
+
+    Route::middleware(['estudiante'])->group(function () {
+
+                Route::resource('museos', MuseoController::class);
+
+
+    });
+
+
+// Route::middleware(['auth', 'admin','estudiante'])->group(function () {
+
+    
+//     Route::resource('users', UserController::class);
+    
+//     Route::resource('estudiantes', EstudianteController::class);
+//     Route::resource('docente', DocenteController::class);
+//     Route::resource('materia', MateriaController::class);
+//     Route::resource('roles', RoleController::class);
+//     Route::resource('museos', MuseoController::class);
+//     Route::resource('ciclolectivos', CiclolectivoController::class);
+//     Route::resource('cursos', CursoController::class);
+//     Route::resource('noticias', NoticiaController::class);
+//     Route::resource('noticias', NoticiaController::class);
+
+
+
+
+
+
+
+   
+   
+
+//     Route::post('/logout', [ProfileController::class, 'logout'])->name('logout');
+
+//     // API MUSEOS
+//     Route::get('/museos', [MuseoController::class, 'index'])->name('museos.index');
+
+// });
 
 
 

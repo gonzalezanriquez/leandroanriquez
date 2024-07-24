@@ -19,6 +19,8 @@ class CreateNoticiaRoleTable extends Migration
             $table->foreignId('role_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
+        
+        
     }
 
     /**

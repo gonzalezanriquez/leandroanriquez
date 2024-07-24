@@ -49,9 +49,23 @@
                                         <td class="px-4 py-4 text-sm text-gray-700 whitespace-nowrap">
                                             @if($user->roles->isNotEmpty())
                                                 @foreach($user->roles as $role)
-                                                    <span class="inline-flex items-center px-2 py-1 text-xs font-medium leading-none text-green-800 bg-green-100 rounded-full dark:bg-ambier-800 dark:text-green-400 md:inline-block">
-                                                        {{ $role->name }}
-                                                    </span>
+                                                    @if($role->name === 'admin')
+                                                        <span class="inline-flex items-center px-2 py-1 text-xs font-medium leading-none text-red-800 bg-red-100 rounded-full dark:bg-red-800 dark:text-red-400 md:inline-block">
+                                                            {{ $role->name }}
+                                                        </span>
+                                                    @elseif($role->name === 'estudiante')
+                                                        <span class="inline-flex items-center px-2 py-1 text-xs font-medium leading-none text-green-800 bg-green-100 rounded-full dark:bg-ambier-800 dark:text-green-400 md:inline-block">
+                                                            {{ $role->name }}
+                                                        </span>
+                                                    @elseif($role->name === 'docente')
+                                                        <span class="inline-flex items-center px-2 py-1 text-xs font-medium leading-none text-amber-800 bg-amber-400 rounded-full dark:bg-amber-500 dark:text-amber-900 md:inline-block">
+                                                            {{ $role->name }}
+                                                        </span>
+                                                    @elseif($role->name === 'familia')
+                                                        <span class="inline-flex items-center px-2 py-1 text-xs font-medium leading-none text-gray-800 bg-gray-100 rounded-full dark:bg-gray-800 dark:text-gray-400 md:inline-block">
+                                                            {{ $role->name }}
+                                                        </span>
+                                                    @endif
                                                 @endforeach
                                             @else
                                                 <span class="inline-flex items-center px-2 py-1 text-xs font-medium leading-none text-black-900 bg-amber-400 rounded-full dark:bg-amber-500 dark:text-amber-900 sm:hidden">
