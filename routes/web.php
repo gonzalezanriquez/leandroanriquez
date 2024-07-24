@@ -16,9 +16,11 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\CiclolectivoController;
 use App\Http\Controllers\CursoController;
 
+use App\Http\Controllers\NoticiaController;
 
 
 
+Route::resource('noticias', NoticiaController::class)->middleware('auth');
 
 
 // BIENVENIDA
@@ -56,6 +58,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('museos', MuseoController::class);
     Route::resource('ciclolectivos', CiclolectivoController::class);
     Route::resource('cursos', CursoController::class);
+
+
 
 
 
