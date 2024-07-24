@@ -10,10 +10,12 @@ class NoticiaController extends Controller
 {
     public function index()
     {
+        $user = auth()->user();
         $userRoles = auth()->user()->roles->pluck('id');
+        $userRol = $user->roles->first()->name;
         $noticias = Noticia::whereIn('role_id', $userRoles)->get();
     
-        return view('noticias.index', compact('noticias'));
+        return view('noticias.index', compact('noticias','userRol'));
     }
 
     public function create()
