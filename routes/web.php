@@ -16,6 +16,9 @@ use App\Http\Controllers\CiclolectivoController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\NoticiaController;
 use App\Http\Controllers\AuthenticatedSessionController;
+use App\Http\Controllers\FamiliarController;
+
+Route::resource('familiars', FamiliarController::class);
 
 // BIENVENIDA
 Route::get('/', function () { return view('welcome'); });
@@ -41,13 +44,6 @@ Route::middleware('auth')->group(function () {
     
     Route::get('/news', [NoticiaController::class, 'noticias'])->name('noticias.noticias');
     Route::get('/noticias/{noticia}', [NoticiaController::class, 'show'])->name('noticias.show');
-});
-
-// ADMIN
-Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
-    Route::post('/generate-report', [ReportController::class, 'generateUserReport'])->name('reports.generate');
-
     Route::get('/noticias', [NoticiaController::class, 'index'])->name('noticias.index');    
     Route::get('/noticias/create', [NoticiaController::class, 'create'])->name('noticias.create');
     Route::get('/noticias/{noticia}/edit', [NoticiaController::class, 'edit'])->name('noticias.edit');
@@ -56,6 +52,14 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('/noticias', [NoticiaController::class, 'store'])->name('noticias.store');
     Route::put('/noticias/{noticia}', [NoticiaController::class, 'update'])->name('noticias.update');
 
+});
+
+// ADMIN
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
+    Route::post('/generate-report', [ReportController::class, 'generateUserReport'])->name('reports.generate');
+
+ 
     Route::resource('users', UserController::class);
     Route::resource('estudiantes', EstudianteController::class);
     Route::resource('materia', MateriaController::class);

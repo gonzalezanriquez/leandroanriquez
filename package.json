@@ -19,6 +19,7 @@
     },
     "dependencies": {
         "@heroicons/react": "^2.1.4",
+        "@heroicons/vue": "^2.1.5",
         "@material-tailwind/html": "^2.2.2",
         "animate.css": "^4.1.1",
         "bootstrap": "^5.3.3",

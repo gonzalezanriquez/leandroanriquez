@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\Estudiante;
-use App\Models\Docente; // Asegúrate de importar el modelo Docente
+use App\Models\Familiar;
 use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
+use App\Models\Curso;
+use App\Models\Ciclolectivo;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -21,71 +21,47 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::all();
-        return view('users.create', compact('roles')); 
+        $cursos = Curso::all();
+        $ciclolectivos = Ciclolectivo::all();
+        $familiares = User::all();
+        return view('users.create', compact(['roles', 'cursos', 'ciclolectivos', 'familiares']));
     }
     
     public function store(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'lastname' => 'required|string|max:255',
-            'email' => 'required|email|unique:users|max:255',
-            'password' => 'required|string|min:8',
-            'roles' => 'required|string',
-        ]);
+{
+    // Valida los datos del formulario
+    $request->validate([
+        'nombre' => 'required|string|max:255',
+        'apellido' => 'required|string|max:255',
+        'email' => 'required|email|unique:users,email',
+        'password' => 'required|string|min:8|confirmed',
+        'role' => 'required|string|exists:roles,name', // Valida que 'role' sea un nombre de rol válido
+        'curso_id' => 'nullable|exists:cursos,id',
+        'ciclolectivo_id' => 'nullable|exists:ciclolectivos,id',
+        'familiar_id' => 'nullable|exists:users,id',
+    ]);
 
-        try {
-            $user = User::create([
-                'name' => $request->input('name'),
-                'lastname' => $request->input('lastname'),
-                'email' => $request->input('email'),
-                'password' => bcrypt($request->input('password')),
-            ]);
+    // Crea el usuario
+    $user = User::create([
+        'nombre' => $request->nombre,
+        'apellido' => $request->apellido,
+        'email' => $request->email,
+        'password' => Hash::make($request->password),
+        'curso_id' => $request->curso_id,
+        'ciclolectivo_id' => $request->ciclolectivo_id,
+        'familiar_id' => $request->familiar_id,
+    ]);
 
-            $user->assignRole($request->input('roles'));
+    // Encuentra el rol por su nombre
+    $role = Role::where('name', $request->role)->first();
 
-            if ($request->input('roles') === 'estudiante') {
-                Estudiante::create([
-                    'user_id' => $request->input('user_id'),
-                    'name' => $user->name,
-                    'genero' => $request->input('genero'),
-                    'fecha_nacimiento' => $request->input('fecha_nacimiento'),
-                    'lugar_nacimiento' => $request->input('lugar_nacimiento'),
-                    'nacionalidad' => $request->input('nacionalidad'),
-                    'domicilio' => $request->input('domicilio'),
-                    'depto_torre_piso' => $request->input('depto_torre_piso'),
-                    'localidad' => $request->input('localidad'),
-                    'codigo_postal' => $request->input('codigo_postal'),
-                    'dni' => $request->input('dni'),
-                    'cuil' => $request->input('cuil'),
-                ]);
-            }
-
-            if ($roles === 'docente') {
-                Docente::create([
-                    'user_id' => $request->input('user_id'),
-                    'apellido' => $request->input('lastname'),
-                    'nombre' => $request->input('name'),
-                    'mail' => $request->input('email'),
-                    'genero' => $request->input('genero'),
-                    'fecha_nacimiento' => $request->input('fecha_nacimiento'),
-                    'antiguedad' => $request->input('antiguedad'),
-                    'nacionalidad' => $request->input('nacionalidad'),
-                    'domicilio' => $request->input('domicilio'),
-                    'depto_torre_piso' => $request->input('depto_torre_piso'),
-                    'localidad' => $request->input('localidad'),
-                    'codigo_postal' => $request->input('codigo_postal'),
-                    'dni' => $request->input('dni'),
-                    'cuil' => $request->input('cuil'),
-                    'telefono' => $request->input('telefono'),
-                ]);
-            }
-
-            return response()->json(['success' => 'Usuario creado exitosamente']);
-        } catch (\Exception $e) {
-            return response()->json(['error' => 'No se pudo crear el usuario'], 500);
-        }
+    if ($role) {
+        // Asigna el rol al usuario
+        $user->assignRole($role);
     }
+
+    return redirect()->route('users.index')->with('success', 'Usuario creado exitosamente.');
+}
 
     public function show($id)
     {
@@ -96,85 +72,46 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        $roles = Role::all(); 
-        return view('users.edit', compact('user', 'roles'));
+        $roles = Role::all();
+        $cursos = Curso::all();
+        $ciclosLectivos = CicloLectivo::all();
+        $familiars = Familiar::all();
+        return view('users.edit', compact('user', 'roles', 'cursos', 'ciclosLectivos', 'familiars'));
     }
-
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        $user = User::findOrFail($id);
-        
-        $user->name = $request->input('name');
-        $user->lastname = $request->input('lastname');
-        $user->email = $request->input('email');
+
+        $validatedData = $request->validate([
+            'nombre' => 'required|string|max:255',
+            'apellido' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users,email,' . $user->id,
+            'password' => 'nullable|string|min:8', 
+            'roles' => 'required|string|exists:roles,name',
+        ]);
     
-        if ($request->filled('password')) {
-            $user->password = bcrypt($request->input('password'));
+
+        $user->nombre = $validatedData['nombre'];
+        $user->apellido = $validatedData['apellido'];
+        $user->email = $validatedData['email'];
+    
+
+        if (!empty($validatedData['password'])) {
+            $user->password = bcrypt($validatedData['password']);
         }
+    
+        $user->syncRoles($validatedData['roles']);
         
         $user->save();
-        
-        $roles = $request->input('roles');
-        $user->syncRoles($roles);
-        
-        if ($roles === 'docente') {
-            $docente = Docente::where('user_id', $user->id)->first();
     
-            if (!$docente) {
-                Docente::create([
-                    'user_id' => $request->input('user_id'),
-                     'apellido' => $request->input('lastname'),
-                    'nombre' => $request->input('name'),
-                    'mail' => $request->input('email'),
-                    'genero' => $request->input('genero'),
-                    'fecha_nacimiento' => $request->input('fecha_nacimiento'),
-                    'antiguedad' => $request->input('antiguedad'),
-                    'nacionalidad' => $request->input('nacionalidad'),
-                    'domicilio' => $request->input('domicilio'),
-                    'depto_torre_piso' => $request->input('depto_torre_piso'),
-                    'localidad' => $request->input('localidad'),
-                    'codigo_postal' => $request->input('codigo_postal'),
-                    'dni' => $request->input('dni'),
-                    'cuil' => $request->input('cuil'),
-                    'telefono' => $request->input('telefono'),
-                ]);
-            } else {
-                $docente->update([
-                    'user_id' => $request->input('user_id'),
-                    'apellido' => $request->input('lastname'),
-                    'nombre' => $request->input('name'),
-                    'mail' => $request->input('email'),
-                    'genero' => $request->input('genero'),
-                    'fecha_nacimiento' => $request->input('fecha_nacimiento'),
-                    'antiguedad' => $request->input('antiguedad'),
-                    'nacionalidad' => $request->input('nacionalidad'),
-                    'domicilio' => $request->input('domicilio'),
-                    'depto_torre_piso' => $request->input('depto_torre_piso'),
-                    'localidad' => $request->input('localidad'),
-                    'codigo_postal' => $request->input('codigo_postal'),
-                    'dni' => $request->input('dni'),
-                    'cuil' => $request->input('cuil'),
-                    'telefono' => $request->input('telefono'),
-                ]);
-            }
-    
-            return redirect()->route('users.index')->with('success', 'Usuario actualizado y movido a la tabla docentes exitosamente');
-        }
-    
-        return redirect()->route('users.index')->with('success', 'Usuario actualizado exitosamente');
+        return redirect()->route('users.index')->with('success', 'Usuario actualizado con éxito.');
     }
+    
+    
+
     
 
     public function destroy(User $user)
     {
-        if ($estudiante = Estudiante::where('user_id', $user->id)->first()) {
-            $estudiante->delete();
-        }
-
-        if ($docente = Docente::where('user_id', $user->id)->first()) {
-            $docente->delete();
-        }
-
         $user->delete();
         return redirect()->route('users.index')->with('success', 'Usuario eliminado exitosamente.');
     }

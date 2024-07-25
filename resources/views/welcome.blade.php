@@ -7,7 +7,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
 
     <link rel="stylesheet" href="https://cdn.tailgrids.com/tailgrids-fallback.css" />
