@@ -23,4 +23,9 @@ class Docente extends Model
         'cuil',
         'telefono'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

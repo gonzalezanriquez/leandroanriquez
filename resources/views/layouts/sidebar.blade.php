@@ -49,17 +49,9 @@
                 <span class="ms-3">Inicio</span>
             </a>
         </li>
-        @can('admin') 
-        <li>
-            <a href="{{ route('users.index') }}"
-                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group 
-                {{ Request::is('users') ? 'bg-gray-200 dark:bg-amber-400' : 'hover:bg-gray-200 dark:hover:bg-gray-200' }}">
-                <x-heroicon-o-user-plus class="w-6 h-6" stroke-width="1" />
-                <span class="ms-3">Usuarios</span>
-            </a>
-        </li>
-    @endcan
-      
+        @role(['admin'])
+
+   
 
         <li>
             <a href="{{ route('users.index') }}"
@@ -104,6 +96,9 @@
                 <span class="ms-3">Ciclos Lectivos</span>
             </a>
         </li>
+       
+        @endrole
+        @role(['admin','estudiantes', 'docentes', 'familiares'])
         <li>
             <a href="{{ route('noticias.index') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group 
                 {{ Request::is('noticias') ? 'bg-gray-200 dark:bg-amber-400' : 'hover:bg-gray-200 dark:hover:bg-gray-200' }}">
@@ -121,6 +116,7 @@
 
             </a>
         </li>
+        @endrole
         <li>
             <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                 class="flex items-center p-2 text-red-950 rounded-lg dark:text-white group 

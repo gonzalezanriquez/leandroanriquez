@@ -18,7 +18,7 @@ class DashboardController extends Controller
             return view('espera'); // Redirige a la vista 'espera.blade.php'
         }
 
-        if ($user->hasRole('estudiante')) {
+        if ($user->hasRole(['estudiante','docente'])) {
             return view('dashboardAlumnos'); 
         }
 
