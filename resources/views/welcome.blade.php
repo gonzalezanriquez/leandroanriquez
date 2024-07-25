@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
 
     <link rel="stylesheet" href="https://cdn.tailgrids.com/tailgrids-fallback.css" />
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.css" rel="stylesheet" />
@@ -222,94 +223,7 @@
 
 
 
-
-
-
-
-
-
-
-            {{-- <section class="mt-10 ">
-
-            <div class="container mx-auto">
-                <h2 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-10">NOSOTROS</h2>
-                <div class="flex flex-wrap justify-center gap-4">
-
-                    <div class="max-w-sm rounded overflow-hidden shadow-lg">
-                        <img class="w-full" src="{{ asset('img/leandro.jpg') }}" alt="Sunset in the mountains">
-                        <div class="px-6 py-4">
-                            <div class="font-bold text-xl mb-2">Leandro Gonzalez Anriquez</div>
-                            <p class="text-gray-700 text-base">
-                                Founder &amp; Frontend Developer & Backend Developer
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="max-w-sm rounded overflow-hidden shadow-lg">
-                        <img class="w-full" src="{{ asset('img/kevin.jpg') }}" alt="Sunset in the mountains">
-                        <div class="px-6 py-4">
-                            <div class="font-bold text-xl mb-2">Kevin Hercog</div>
-                            <p class="text-gray-700 text-base">
-                                Founder &amp; Backend Developer
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
             </section>
-
-
-            {{-- CONTACTO --}}{{--       
-        <div
-            class="relative flex-[1_auto] flex flex-col break-words min-w-0 bg-clip-border rounded-xl border border-dashed border-stone-200 bg-white mb-5 draggable">
-            <!-- card body  -->
-            <div class="flex-auto block py-8 px-9">
-                <form action="#" method="post" class="group/form">
-                    <div class="flex flex-col mb-9">
-                        <h1 class="font-semibold text-3xl text-dark mb-2 font-display">Contact Us</h1>
-                        <span class="text-lg font-medium text-muted block"> Feel free to reach out to us with any
-                            questions or inquiries. We'll be happy to assist you! </span>
-                    </div>
-                    <div class="flex flex-wrap mb-5 -mx-3">
-                        <div class="w-1/2 px-3">
-                            <label class="inline-block mb-2 text-[1.15rem] font-medium text-dark" for="Name"> Full
-                                Name </label>
-                            <input type="text" name="Name" id="Name" value=""
-                                class="peer w-full px-4 py-3 text-base/normal rounded-xl font-medium block transition-colors duration-200 ease-in-out bg-secondary-light focus:bg-secondary/40 text-stone-500 border focus:outline-none"
-                                placeholder="Enter your full name" required="">
-                        </div>
-                        <div class="w-1/2 px-3">
-                            <label class="inline-block mb-2 text-[1.15rem] font-medium text-dark" for="Email">
-                                Email Address </label>
-                            <input type="email" name="Email" id="Email"
-                                class="peer w-full px-4 py-3 text-base/normal rounded-xl font-medium block transition-colors duration-200 ease-in-out bg-secondary-light focus:bg-secondary/40 text-stone-500 border focus:outline-none"
-                                placeholder="Enter your email address" required="">
-                        </div>
-                    </div>
-                    <div class="w-full mb-5">
-                        <label class="inline-block mb-2 text-[1.15rem] font-medium text-dark" for="Subject"> Subject
-                        </label>
-                        <input type="text" name="Subject" id="Subject"
-                            class="w-full px-4 py-3 text-base/normal rounded-xl font-medium block transition-colors duration-200 ease-in-out bg-secondary-light focus:bg-secondary/40 text-stone-500 border focus:outline-none"
-                            placeholder="Enter the subject">
-                    </div>
-                    <div class="w-full mb-10">
-                        <label class="inline-block mb-2 text-[1.15rem] font-medium text-dark" for="Message"> Message
-                        </label>
-                        <textarea rows="6" type="text" name="Message" id="Message"
-                            class="w-full px-4 py-3 text-base/normal rounded-xl font-medium block transition-colors duration-200 ease-in-out bg-secondary-light focus:bg-secondary/40 text-stone-500 border focus:outline-none"
-                            placeholder="Enter your message"></textarea>
-                    </div>
-                    <div class="text-end">
-                        <button
-                            class="inline-block text-base font-medium leading-normal text-center align-middle cursor-pointer rounded-xl transition-colors duration-150 ease-in-out text-white bg-dark shadow-none border-0 px-5 py-4 hover:bg-dark-dark active:bg-dark-dark focus:bg-dark-dark ms-auto"
-                            type="submit">Send Message</button>
-                    </div>
-                </form>
-            </div>
-        </div> --}}
-
-
 
 
     </main>
@@ -351,6 +265,8 @@
         });
     </script>
 
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.13.1/datatables.min.js"></script>
 
 
 

@@ -104,12 +104,21 @@
                 <span class="ms-3">Cursos</span>
             </a>
         </li>
-       
-        @endrole
-        @role(['admin','estudiantes', 'docentes', 'familiares'])
+
         <li>
             <a href="{{ route('noticias.index') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group 
                 {{ Request::is('noticias') ? 'bg-gray-200 dark:bg-amber-400' : 'hover:bg-gray-200 dark:hover:bg-gray-200' }}">
+                <x-heroicon-o-newspaper class="w-6 h-6" stroke-width="1" /> 
+                <span class="ms-3">Cracion Noticias </span>
+            </a>
+        </li>
+       
+        @endrole
+
+        @role(['admin','estudiante', 'docentes', 'familiares'])
+        <li>
+            <a href="{{ route('noticias.noticias') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group 
+                {{ Request::is('news') ? 'bg-gray-200 dark:bg-amber-400' : 'hover:bg-gray-200 dark:hover:bg-gray-200' }}">
                 <x-heroicon-o-newspaper class="w-6 h-6" stroke-width="1" /> 
                 <span class="ms-3">Noticias</span>
             </a>
@@ -125,6 +134,8 @@
             </a>
         </li>
         @endrole
+
+        
         <li>
             <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                 class="flex items-center p-2 text-red-950 rounded-lg dark:text-white group 

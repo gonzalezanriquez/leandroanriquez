@@ -22,9 +22,9 @@ class Noticia extends Model
     // }
 
     public function roles()
-{
-    return $this->belongsToMany(Role::class, 'noticia_role');
-   
-}
+    {
+        return $this->belongsToMany(Role::class);
+    }
+    
 
 }

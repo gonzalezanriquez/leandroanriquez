@@ -17,7 +17,7 @@
     <div class="max-w-screen-xl mx-auto px-4 my-10 sm:px-6 lg:px-8 lg:py-14">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-24">
             <!-- Card 1 -->
-            <a href="{{ route('noticias.index') }}" class="group flex flex-col focus:outline-none">
+            <a href="{{ route('noticias.noticias') }}" class="group flex flex-col focus:outline-none">
                 <div class="relative pt-[50%] sm:pt-[70%] rounded-xl overflow-hidden shadow-xl">
                     <img class="absolute inset-0 object-cover w-full h-full transition-transform duration-500 ease-in-out rounded-xl group-hover:scale-105 group-focus:scale-105"
                         src="{{ asset('img/news.jpg') }}" alt="Noticias Image">

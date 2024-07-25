@@ -11,8 +11,9 @@ class NoticiaController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $userRoles = auth()->user()->roles->pluck('id');
+        $userRoles = $user->roles->pluck('id');
         $userRol = $user->roles->first()->name;
+
         $noticias = Noticia::whereHas('roles', function ($query) use ($userRoles) {
             $query->whereIn('role_id', $userRoles);
         })->get();
@@ -20,52 +21,51 @@ class NoticiaController extends Controller
         return view('noticias.index', compact('noticias', 'userRol'));
     }
 
+    public function noticias()
+    {
+        $user = auth()->user();
+        $userRoles = $user->roles->pluck('id');
+        $userRol = $user->roles->first()->name;
+
+        $noticias = Noticia::whereHas('roles', function ($query) use ($userRoles) {
+            $query->whereIn('role_id', $userRoles);
+        })->get();
+
+        return view('noticias.noticias', compact('noticias', 'userRol'));
+    }
     public function create()
     {
         $roles = Role::all();
         return view('noticias.create', compact('roles'));
     }
-
+    
     public function store(Request $request)
-{
-    // Validate the request
-    $request->validate([
-        'title' => 'required|string|max:255',
-        'content' => 'required|string',
-        'roles' => 'nullable|array',
-        'roles.*' => 'exists:roles,id',
-        'image' => 'nullable|image|mimes:jpg,png,jpeg,gif|max:2048',
-    ]);
+    {
+        // Validate the request
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+            'roles' => 'nullable|array',
+            'roles.*' => 'exists:roles,id',
+            'image' => 'nullable|image|mimes:jpg,png,jpeg,gif|max:2048',
+        ]);
 
-    // Create the Noticia instance with a default role
-    $defaultRoleId = 1; // Replace with the ID of your default role
+        // Create the Noticia instance
+        $noticia = Noticia::create([
+            'title' => $request->title,
+            'content' => $request->content,
+            'image' => $request->hasFile('image') ? $request->file('image')->store('images', 'public') : null,
+        ]);
 
-    $noticia = Noticia::create([
-        'title' => $request->title,
-        'content' => $request->content,
-        'image' => $request->hasFile('image') ? $request->file('image')->store('images', 'public') : null,
-    ]);
+        // Attach roles
+        $roles = $request->roles ?? [];
+        if (!in_array(1, $roles)) {
+            $roles[] = 1; // Attach default role if not present
+        }
+        $noticia->roles()->sync($roles);
 
-    // Attach the default role
-    $noticia->roles()->attach($defaultRoleId);
-
-    // Attach additional roles if provided
-    if ($request->has('roles')) {
-        $additionalRoles = array_filter($request->roles, function($roleId) use ($defaultRoleId) {
-            return $roleId != $defaultRoleId;
-        });
-        $noticia->roles()->attach($additionalRoles);
+        return redirect()->route('noticias.index')->with('success', 'Noticia creada exitosamente.');
     }
-
-    return redirect()->route('noticias.index');
-}
-
-    
-    
-    
-
-
-
 
     public function edit(Noticia $noticia)
     {
@@ -74,26 +74,26 @@ class NoticiaController extends Controller
     }
 
     public function update(Request $request, Noticia $noticia)
-{
-    $request->validate([
-        'title' => 'required|string|max:255',
-        'content' => 'required|string',
-        'roles' => 'required|array',
-        'roles.*' => 'exists:roles,id',
-        'image' => 'nullable|image|mimes:jpg,png,jpeg,gif|max:2048', // Validar el archivo de imagen
-    ]);
-
-    $noticia->update([
-        'title' => $request->title,
-        'content' => $request->content,
-        'image' => $request->hasFile('image') ? $request->file('image')->store('images', 'public') : $noticia->image,
-    ]);
-
-    $noticia->roles()->sync($request->roles);
-
-    return redirect()->route('noticias.index');
-}
-
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+            'roles' => 'required|array',
+            'roles.*' => 'exists:roles,id',
+            'image' => 'nullable|image|mimes:jpg,png,jpeg,gif|max:2048',
+        ]);
+    
+        $noticia->update([
+            'title' => $request->title,
+            'content' => $request->content,
+            'image' => $request->hasFile('image') ? $request->file('image')->store('images', 'public') : $noticia->image,
+        ]);
+    
+        $noticia->roles()->sync($request->roles);
+    
+        return redirect()->route('noticias.index')->with('success', 'Noticia actualizada exitosamente.');
+    }
+    
 
     public function show(Noticia $noticia)
     {

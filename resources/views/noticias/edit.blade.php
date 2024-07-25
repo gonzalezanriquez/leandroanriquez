@@ -20,10 +20,10 @@
                 @endif
             </div>
             <div class="mb-4">
-                <label for="role_id" class="block text-gray-700 font-semibold mb-2">Rol</label>
-                <select name="role_id" id="role_id" class="w-full border border-gray-300 rounded-lg p-2" required>
+                <label for="roles" class="block text-gray-700 font-semibold mb-2">Roles</label>
+                <select name="roles[]" id="roles" class="w-full border border-gray-300 rounded-lg p-2" multiple required>
                     @foreach ($roles as $role)
-                        <option value="{{ $role->id }}" {{ $noticia->role_id == $role->id ? 'selected' : '' }}>{{ $role->name }}</option>
+                        <option value="{{ $role->id }}" {{ in_array($role->id, $noticia->roles->pluck('id')->toArray()) ? 'selected' : '' }}>{{ $role->name }}</option>
                     @endforeach
                 </select>
             </div>
