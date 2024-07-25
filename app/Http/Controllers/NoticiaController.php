@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Noticia;
@@ -14,8 +13,9 @@ class NoticiaController extends Controller
         $userRoles = $user->roles->pluck('id');
         $userRol = $user->roles->first()->name;
 
+        // Filtrar noticias según los roles del usuario
         $noticias = Noticia::whereHas('roles', function ($query) use ($userRoles) {
-            $query->whereIn('role_id', $userRoles);
+            $query->whereIn('roles.id', $userRoles);
         })->get();
 
         return view('noticias.index', compact('noticias', 'userRol'));
@@ -27,12 +27,14 @@ class NoticiaController extends Controller
         $userRoles = $user->roles->pluck('id');
         $userRol = $user->roles->first()->name;
 
+        // Filtrar noticias según los roles del usuario
         $noticias = Noticia::whereHas('roles', function ($query) use ($userRoles) {
-            $query->whereIn('role_id', $userRoles);
+            $query->whereIn('roles.id', $userRoles);
         })->get();
 
         return view('noticias.noticias', compact('noticias', 'userRol'));
     }
+
     public function create()
     {
         $roles = Role::all();
@@ -41,7 +43,6 @@ class NoticiaController extends Controller
     
     public function store(Request $request)
     {
-        // Validate the request
         $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
@@ -50,17 +51,15 @@ class NoticiaController extends Controller
             'image' => 'nullable|image|mimes:jpg,png,jpeg,gif|max:2048',
         ]);
 
-        // Create the Noticia instance
         $noticia = Noticia::create([
             'title' => $request->title,
             'content' => $request->content,
             'image' => $request->hasFile('image') ? $request->file('image')->store('images', 'public') : null,
         ]);
 
-        // Attach roles
         $roles = $request->roles ?? [];
         if (!in_array(1, $roles)) {
-            $roles[] = 1; // Attach default role if not present
+            $roles[] = 1; 
         }
         $noticia->roles()->sync($roles);
 
@@ -94,7 +93,6 @@ class NoticiaController extends Controller
         return redirect()->route('noticias.index')->with('success', 'Noticia actualizada exitosamente.');
     }
     
-
     public function show(Noticia $noticia)
     {
         $user = auth()->user();

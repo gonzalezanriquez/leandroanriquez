@@ -42,6 +42,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('museos', MuseoController::class);
     
+    Route::resource('noticias', UserController::class);
     Route::get('/news', [NoticiaController::class, 'noticias'])->name('noticias.noticias');
     Route::get('/noticias/{noticia}', [NoticiaController::class, 'show'])->name('noticias.show');
     Route::get('/noticias', [NoticiaController::class, 'index'])->name('noticias.index');    

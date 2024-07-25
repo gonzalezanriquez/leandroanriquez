@@ -1,19 +1,20 @@
 <?php
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNoticiasTable extends Migration
+class CreateNoticiasTables extends Migration
 {
     public function up()
     {
-        Schema::create('noticia_role', function (Blueprint $table) {
+        Schema::create('noticias', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('noticia_id')->constrained()->onDelete('cascade');
-            $table->foreignId('role_id')->constrained()->onDelete('cascade');
+            $table->string('title');
+            $table->text('content');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
-        
     }
 
     public function down()
@@ -21,4 +22,3 @@ class CreateNoticiasTable extends Migration
         Schema::dropIfExists('noticias');
     }
 }
-

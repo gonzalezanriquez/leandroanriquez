@@ -62,6 +62,8 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <!-- Add pagination links if needed -->
+                        {{-- {{ $noticias->links() }} --}}
                     </div>
                 </div>
             </div>

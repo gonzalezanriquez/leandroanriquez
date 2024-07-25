@@ -2,10 +2,9 @@
     <section class="container px-4 mx-auto">
         <div class="flex items-center justify-between gap-x-3 mb-6">
             <div class="flex items-center gap-x-3">
-                <!-- Icono de editar -->
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3v18h18V3H3zm11 14h-2v-4H8v-2h4V7h2v6h3v2h-3v4z"/>
-                </svg>
+                
+                <x-heroicon-o-user-plus class="w-6 h-6" stroke-width="1" />                              
+               
                 <h2 class="text-lg font-medium text-gray-800 dark:text-white tracking-wider">Editar Usuario</h2>
             </div>
         </div>

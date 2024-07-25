@@ -23,8 +23,9 @@ class CantidadUsuarios extends Component
      public function __construct($cantidadUsuarios)
      {
         $this->cantidadUsuarios = User::count();
-        $this->cantidadEstudiantes = Estudiante::count();
-        $this->cantidadDocentes = Docente::count();
+        $this->cantidadEstudiantes = User::role('estudiante')->count();
+        $this->cantidadDocentes = User::role('docente')->count();
+        // $this->cantidadDocentes = Docente::count();
 
      }
  
