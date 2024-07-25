@@ -1,5 +1,3 @@
-
-
 <x-app-layout>
 
     <section class="container mx-auto px-4">
@@ -44,10 +42,10 @@
                                                     <x-heroicon-o-pencil class="w-5 h-5" />
                                                     Editar
                                                 </a>
-                                                <form action="{{ route('ciclolectivos.destroy', $ciclolectivo) }}" method="POST" style="display: inline;">
+                                                <form id="delete-form-{{ $ciclolectivo->id }}" action="{{ route('ciclolectivos.destroy', $ciclolectivo) }}" method="POST" style="display: inline;">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="px-3 py-1 text-sm text-red-600 bg-red-100 rounded-full hover:text-white hover:bg-red-500 dark:bg-gray-800 dark:text-red-400 flex items-center gap-2">
+                                                    <button type="button" onclick="confirmDelete({{ $ciclolectivo->id }})" class="px-3 py-1 text-sm text-red-600 bg-red-100 rounded-full hover:text-white hover:bg-red-500 dark:bg-gray-800 dark:text-red-400 flex items-center gap-2">
                                                         <x-heroicon-o-trash class="w-5 h-5" />
                                                         Eliminar
                                                     </button>
@@ -66,7 +64,7 @@
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        function confirmDelete(dataId) {
+        function confirmDelete(cicloId) {
             Swal.fire({
                 title: "¿Seguro deseas eliminar este ciclo?",
                 text: "Esta acción no podrá revertirse",
@@ -78,11 +76,13 @@
                 cancelButtonText: 'Cancelar'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    document.getElementById('delete-form-' + dataId).submit(); 
+                    // Encuentra el formulario por el id del ciclolectivo y envíalo
+                    document.getElementById('delete-form-' + cicloId).submit();
                 }
             });
         }
     </script>
+    
 
 </x-app-layout>
 

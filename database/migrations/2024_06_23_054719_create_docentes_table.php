@@ -29,6 +29,7 @@ return new class extends Migration
             $table->string('cuil')->nullable()->unique();
             $table->string('telefono')->nullable();
             $table->string('mail')->nullable();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->nullable();; 
             $table->timestamps();
         });
     }

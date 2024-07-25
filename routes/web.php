@@ -68,7 +68,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('docente', DocenteController::class);
         Route::resource('materia', MateriaController::class);
         Route::resource('roles', RoleController::class);
-        Route::resource('ciclolectivos', CiclolectivoController::class);
+        Route::resource('ciclolectivos', CicloLectivoController::class);
         Route::resource('cursos', CursoController::class);
         Route::post('/logout', [ProfileController::class, 'logout'])->name('logout');
     });

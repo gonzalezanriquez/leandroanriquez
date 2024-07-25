@@ -46,7 +46,7 @@ class UserController extends Controller
 
             if ($request->input('roles') === 'estudiante') {
                 Estudiante::create([
-                    'user_id' => $user->id,
+                    'user_id' => $request->input('user_id'),
                     'name' => $user->name,
                     'genero' => $request->input('genero'),
                     'fecha_nacimiento' => $request->input('fecha_nacimiento'),
@@ -61,11 +61,12 @@ class UserController extends Controller
                 ]);
             }
 
-            if ($request->input('roles') === 'docente') {
+            if ($roles === 'docente') {
                 Docente::create([
-                    'user_id' => $user->id,
+                    'user_id' => $request->input('user_id'),
                     'apellido' => $request->input('lastname'),
                     'nombre' => $request->input('name'),
+                    'mail' => $request->input('email'),
                     'genero' => $request->input('genero'),
                     'fecha_nacimiento' => $request->input('fecha_nacimiento'),
                     'antiguedad' => $request->input('antiguedad'),
@@ -101,96 +102,30 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'lastname' => 'required|string|max:255',
-            'roles' => 'required|string',
-            'email' => 'nullable|email|max:255|unique:users,email,' . $id,
-            'password' => 'nullable|string|min:8',
-            'avatar' => 'nullable|url',
-            'google_id' => 'nullable|string',
-            'genero' => 'nullable|string',
-            'fecha_nacimiento' => 'nullable|date',
-            'antiguedad' => 'nullable|integer',
-            'nacionalidad' => 'nullable|string',
-            'domicilio' => 'nullable|string',
-            'depto_torre_piso' => 'nullable|string',
-            'localidad' => 'nullable|string',
-            'codigo_postal' => 'nullable|string',
-            'dni' => 'nullable|string',
-            'cuil' => 'nullable|string',
-            'telefono' => 'nullable|string',
-        ]);
-
         $user = User::findOrFail($id);
-
-        $user->update([
-            'name' => $request->input('name'),
-            'lastname' => $request->input('lastname'),
-            'email' => $request->input('email') ?: $user->email,
-            'google_id' => $request->input('google_id') ?: $user->google_id,
-        ]);
-
+        
+        $user->name = $request->input('name');
+        $user->lastname = $request->input('lastname');
+        $user->email = $request->input('email');
+    
         if ($request->filled('password')) {
-            $user->update([
-                'password' => bcrypt($request->input('password')),
-            ]);
+            $user->password = bcrypt($request->input('password'));
         }
-
-        if ($request->filled('avatar')) {
-            $user->update([
-                'avatar' => $request->input('avatar'),
-            ]);
-        }
-
+        
+        $user->save();
+        
         $roles = $request->input('roles');
         $user->syncRoles($roles);
-
-        if ($roles === 'estudiante') {
-            $estudiante = Estudiante::where('user_id', $user->id)->first();
-
-            if (!$estudiante) {
-                Estudiante::create([
-                    'user_id' => $user->id,
-                    'name' => $user->name,
-                    'genero' => $request->input('genero'),
-                    'fecha_nacimiento' => $request->input('fecha_nacimiento'),
-                    'lugar_nacimiento' => $request->input('lugar_nacimiento'),
-                    'nacionalidad' => $request->input('nacionalidad'),
-                    'domicilio' => $request->input('domicilio'),
-                    'depto_torre_piso' => $request->input('depto_torre_piso'),
-                    'localidad' => $request->input('localidad'),
-                    'codigo_postal' => $request->input('codigo_postal'),
-                    'dni' => $request->input('dni'),
-                    'cuil' => $request->input('cuil'),
-                ]);
-            } else {
-                $estudiante->update([
-                    'name' => $user->name,
-                    'genero' => $request->input('genero'),
-                    'fecha_nacimiento' => $request->input('fecha_nacimiento'),
-                    'lugar_nacimiento' => $request->input('lugar_nacimiento'),
-                    'nacionalidad' => $request->input('nacionalidad'),
-                    'domicilio' => $request->input('domicilio'),
-                    'depto_torre_piso' => $request->input('depto_torre_piso'),
-                    'localidad' => $request->input('localidad'),
-                    'codigo_postal' => $request->input('codigo_postal'),
-                    'dni' => $request->input('dni'),
-                    'cuil' => $request->input('cuil'),
-                ]);
-            }
-
-            return redirect()->route('users.index')->with('success', 'Usuario actualizado y movido a la tabla estudiantes exitosamente');
-        }
-
+        
         if ($roles === 'docente') {
             $docente = Docente::where('user_id', $user->id)->first();
-
+    
             if (!$docente) {
                 Docente::create([
-                    'user_id' => $user->id,
-                    'apellido' => $request->input('lastname'),
+                    'user_id' => $request->input('user_id'),
+                     'apellido' => $request->input('lastname'),
                     'nombre' => $request->input('name'),
+                    'mail' => $request->input('email'),
                     'genero' => $request->input('genero'),
                     'fecha_nacimiento' => $request->input('fecha_nacimiento'),
                     'antiguedad' => $request->input('antiguedad'),
@@ -205,8 +140,10 @@ class UserController extends Controller
                 ]);
             } else {
                 $docente->update([
+                    'user_id' => $request->input('user_id'),
                     'apellido' => $request->input('lastname'),
                     'nombre' => $request->input('name'),
+                    'mail' => $request->input('email'),
                     'genero' => $request->input('genero'),
                     'fecha_nacimiento' => $request->input('fecha_nacimiento'),
                     'antiguedad' => $request->input('antiguedad'),
@@ -220,20 +157,13 @@ class UserController extends Controller
                     'telefono' => $request->input('telefono'),
                 ]);
             }
-
+    
             return redirect()->route('users.index')->with('success', 'Usuario actualizado y movido a la tabla docentes exitosamente');
         }
-
-        if ($estudiante = Estudiante::where('user_id', $user->id)->first()) {
-            $estudiante->delete();
-        }
-
-        if ($docente = Docente::where('user_id', $user->id)->first()) {
-            $docente->delete();
-        }
-
+    
         return redirect()->route('users.index')->with('success', 'Usuario actualizado exitosamente');
     }
+    
 
     public function destroy(User $user)
     {

@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -18,9 +19,9 @@ class EstudianteController extends Controller
 
     public function create()
     {
-
-        $ciclolectivos= Ciclolectivo::all();
-        return view('estudiantes.create', compact('ciclolectivos'));
+        $ciclolectivos = Ciclolectivo::all();
+        $cursos = Curso::all(); // Cargar los cursos también
+        return view('estudiantes.create', compact('ciclolectivos', 'cursos'));
     }
 
     public function store(Request $request)
@@ -28,10 +29,40 @@ class EstudianteController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
-            'email' => 'required|email|unique:estudiantes,email',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:8|confirmed',
+            'roles' => 'required|string',
+            'avatar' => 'nullable|url',
         ]);
 
-        Estudiante::create($request->all());
+        // Crear usuario
+        $user = User::create([
+            'name' => $request->input('name'),
+            'lastname' => $request->input('lastname'),
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('password')),
+            'avatar' => $request->input('avatar'),
+        ]);
+
+        // Asignar rol al usuario
+        $user->assignRole($request->input('roles'));
+
+        // Crear estudiante
+        Estudiante::create([
+            'user_id' => $user->id,
+            'nombres' => $user->name,
+            'apellidos' => $user->lastname,
+            'genero' => $request->input('genero'),
+            'fecha_nacimiento' => $request->input('fecha_nacimiento'),
+            'lugar_nacimiento' => $request->input('lugar_nacimiento'),
+            'nacionalidad' => $request->input('nacionalidad'),
+            'domicilio' => $request->input('domicilio'),
+            'depto_torre_piso' => $request->input('depto_torre_piso'),
+            'localidad' => $request->input('localidad'),
+            'codigo_postal' => $request->input('codigo_postal'),
+            'dni' => $request->input('dni'),
+            'cuil' => $request->input('cuil'),
+        ]);
 
         return redirect()->route('estudiantes.index')
             ->with('success', 'Estudiante creado exitosamente.');
@@ -39,18 +70,18 @@ class EstudianteController extends Controller
 
     public function show($id)
     {
-        $datas = Estudiante::findOrFail($id);
-        return view('estudiantes.show', compact('datas'));
+        $estudiante = Estudiante::findOrFail($id);
+        return view('estudiantes.show', compact('estudiante'));
     }
 
     public function edit($id)
-{
-    $estudiante = Estudiante::findOrFail($id);
-    $ciclolectivos = CicloLectivo::all(); 
-    $cursos = Curso::all(); 
+    {
+        $estudiante = Estudiante::findOrFail($id);
+        $ciclolectivos = Ciclolectivo::all();
+        $cursos = Curso::all();
 
-    return view('estudiantes.edit', compact('estudiante', 'ciclolectivos','cursos'));
-}
+        return view('estudiantes.edit', compact('estudiante', 'ciclolectivos', 'cursos'));
+    }
 
     public function update(Request $request, $id)
     {
@@ -59,126 +90,92 @@ class EstudianteController extends Controller
             'lastname' => 'required|string|max:255',
             'roles' => 'required|string',
             'email' => 'nullable|email|max:255|unique:users,email,' . $id,
-            'password' => 'nullable|string|min:8',
+            'password' => 'nullable|string|min:8|confirmed',
             'avatar' => 'nullable|url',
-            'google_id' => 'nullable|string',
+            'genero' => 'nullable|string|max:10',
+            'fecha_nacimiento' => 'nullable|date',
+            'lugar_nacimiento' => 'nullable|string|max:100',
+            'nacionalidad' => 'nullable|string|max:50',
+            'domicilio' => 'nullable|string|max:255',
+            'depto_torre_piso' => 'nullable|string|max:50',
+            'localidad' => 'nullable|string|max:100',
+            'codigo_postal' => 'nullable|string|max:10',
+            'dni' => 'nullable|string|max:20',
+            'cuil' => 'nullable|string|max:20',
         ]);
-    
+
         $user = User::findOrFail($id);
-    
+
         $user->update([
             'name' => $request->input('name'),
             'lastname' => $request->input('lastname'),
             'email' => $request->input('email') ?: $user->email,
-            'google_id' => $request->input('google_id') ?: $user->google_id,
         ]);
-    
+
         if ($request->filled('password')) {
             $user->update([
                 'password' => bcrypt($request->input('password')),
             ]);
         }
-    
+
         if ($request->filled('avatar')) {
             $user->update([
                 'avatar' => $request->input('avatar'),
             ]);
         }
-    
+
         $roles = $request->input('roles');
         $user->syncRoles($roles);
-    
-        if ($roles === 'estudiante') {
-            $estudiante = Estudiante::where('user_id', $user->id)->first();
-    
-            if (!$estudiante) {
-                Estudiante::create([
-                    'user_id' => $user->id,
-                    'nombres' => $user->name,
-                    'apellidos' => $user->lastname,
-                    'genero' => $request->input('genero'),
-                    'fecha_nacimiento' => $request->input('fecha_nacimiento'),
-                    'lugar_nacimiento' => $request->input('lugar_nacimiento'),
-                    'nacionalidad' => $request->input('nacionalidad'),
-                    'domicilio' => $request->input('domicilio'),
-                    'depto_torre_piso' => $request->input('depto_torre_piso'),
-                    'localidad' => $request->input('localidad'),
-                    'codigo_postal' => $request->input('codigo_postal'),
-                    'dni' => $request->input('dni'),
-                    'cuil' => $request->input('cuil'),
-                ]);
-            } else {
-                $estudiante->update([
-                    'nombres' => $user->name,
-                    'apellidos' => $user->lastname,
-                    'genero' => $request->input('genero'),
-                    'fecha_nacimiento' => $request->input('fecha_nacimiento'),
-                    'lugar_nacimiento' => $request->input('lugar_nacimiento'),
-                    'nacionalidad' => $request->input('nacionalidad'),
-                    'domicilio' => $request->input('domicilio'),
-                    'depto_torre_piso' => $request->input('depto_torre_piso'),
-                    'localidad' => $request->input('localidad'),
-                    'codigo_postal' => $request->input('codigo_postal'),
-                    'dni' => $request->input('dni'),
-                    'cuil' => $request->input('cuil'),
-                ]);
-            }
+
+        $estudiante = Estudiante::where('user_id', $user->id)->first();
+
+        if (!$estudiante) {
+            Estudiante::create([
+                'user_id' => $user->id,
+                'nombres' => $user->name,
+                'apellidos' => $user->lastname,
+                'genero' => $request->input('genero'),
+                'fecha_nacimiento' => $request->input('fecha_nacimiento'),
+                'lugar_nacimiento' => $request->input('lugar_nacimiento'),
+                'nacionalidad' => $request->input('nacionalidad'),
+                'domicilio' => $request->input('domicilio'),
+                'depto_torre_piso' => $request->input('depto_torre_piso'),
+                'localidad' => $request->input('localidad'),
+                'codigo_postal' => $request->input('codigo_postal'),
+                'dni' => $request->input('dni'),
+                'cuil' => $request->input('cuil'),
+            ]);
         } else {
-            if ($estudiante = Estudiante::where('user_id', $user->id)->first()) {
-                $estudiante->delete();
-            }
+            $estudiante->update([
+                'nombres' => $user->name,
+                'apellidos' => $user->lastname,
+                'genero' => $request->input('genero'),
+                'fecha_nacimiento' => $request->input('fecha_nacimiento'),
+                'lugar_nacimiento' => $request->input('lugar_nacimiento'),
+                'nacionalidad' => $request->input('nacionalidad'),
+                'domicilio' => $request->input('domicilio'),
+                'depto_torre_piso' => $request->input('depto_torre_piso'),
+                'localidad' => $request->input('localidad'),
+                'codigo_postal' => $request->input('codigo_postal'),
+                'dni' => $request->input('dni'),
+                'cuil' => $request->input('cuil'),
+            ]);
         }
-    
-        return redirect()->route('users.index')->with('success', 'Usuario actualizado exitosamente');
+
+        return redirect()->route('estudiantes.index')->with('success', 'Estudiante actualizado con éxito.');
     }
-    
+
     public function destroy($id)
     {
         $estudiante = Estudiante::findOrFail($id);
+        $user = $estudiante->user;
+
+        // Primero eliminar el estudiante
         $estudiante->delete();
 
-        return redirect()->route('estudiantes.index')
-            ->with('success', 'Estudiante eliminado exitosamente.');
+        // Luego eliminar el usuario asociado
+        $user->delete();
+
+        return redirect()->route('estudiantes.index')->with('success', 'Estudiante eliminado con éxito.');
     }
-
-
-    // public function assignRole(Request $request, User $user)
-    // {
-    //     $role = $request->input('role');
-        
-    //     // Asignar el rol al usuario
-    //     $user->assignRole($role);
-
-    //     // Verificar si el rol es 'estudiante'
-    //     if ($role === 'estudiante') {
-    //         // Validar los datos adicionales necesarios para crear un estudiante
-    //         $request->validate([
-    //             'genero' => 'required|string|max:255',
-    //             'fecha_nacimiento' => 'required|date',
-    //             'lugar_nacimiento' => 'required|string|max:255',
-    //             'nacionalidad' => 'required|string|max:255',
-    //             'domicilio' => 'required|string|max:255',
-    //             'localidad' => 'required|string|max:255',
-    //             'dni' => 'required|string|max:255',
-    //         ]);
-
-    //         // Crear el registro en la tabla `estudiantes`
-    //         Estudiante::create([
-    //             'user_id' => $user->id->nullable()->change(),
-    //             'genero' => $request->input('genero'),
-    //             'fecha_nacimiento' => $request->input('fecha_nacimiento'),
-    //             'lugar_nacimiento' => $request->input('lugar_nacimiento'),
-    //             'nacionalidad' => $request->input('nacionalidad'),
-    //             'domicilio' => $request->input('domicilio'),
-    //             'localidad' => $request->input('localidad'),
-    //             'dni' => $request->input('dni'),
-    //             'depto_torre_piso' => $request->input('depto_torre_piso'), // Puede ser nulo
-    //             'codigo_postal' => $request->input('codigo_postal'), // Puede ser nulo
-    //             'cuil' => $request->input('cuil'), // Puede ser nulo
-    //         ]);
-    //     }
-
-    //     return redirect()->back()->with('success', 'Rol asignado y estudiante creado con éxito');
-    // }
-
 }
