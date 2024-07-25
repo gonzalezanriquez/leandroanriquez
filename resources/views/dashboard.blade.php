@@ -19,8 +19,9 @@
       </div>
     </div>
   </header>
+  <x-cantidad-usuarios />
 
-<x-CantidadUsuarios :cantidadUsuarios="$cantidadUsuarios" /> 
+{{-- <x-CantidadUsuarios :cantidadUsuarios="$cantidadUsuarios" />  --}}
     
     <!-- ====== Cards Section Start -->
     <section class="bg-gray-2 dark:bg-dark pb-10  ">

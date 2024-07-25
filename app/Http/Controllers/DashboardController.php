@@ -22,10 +22,7 @@ class DashboardController extends Controller
             return view('dashboardAlumnos'); 
         }
 
-        $cantidadUsuarios = User::count(); 
-        $cantidadEstudiantes = Estudiante::count(); 
-        $cantidadDocentes = Docente::count(); 
-
-        return view('dashboard', compact('user', 'cantidadUsuarios', 'cantidadEstudiantes', 'cantidadDocentes'));
+       
+        return view('dashboard', compact('user'));
     }
 }
