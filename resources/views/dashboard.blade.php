@@ -21,82 +21,66 @@
   </header>
   <x-cantidad-usuarios />
 
-{{-- <x-CantidadUsuarios :cantidadUsuarios="$cantidadUsuarios" />  --}}
-    
-    <!-- ====== Cards Section Start -->
-    <section class="bg-gray-2 dark:bg-dark pb-10  ">
-        <div class="container mx-auto">
-            <div class="flex flex-wrap -mx-2">
-                
-                <div class="w-full px-4 md:w-1/2 xl:w-1/3 ">
-                    <div class="mb-10 overflow-hidden duration-300 bg-white rounded-lg dark:bg-dark-2 shadow-1 hover:shadow-3 dark:shadow-card dark:hover:shadow-3 shadow-md">
-                        <img src="https://cdn.tailgrids.com/2.0/image/application/images/cards/card-01/image-01.jpg"
-                            alt="image" class="w-full" />
-                        <div class="p-8 text-center sm:p-9 md:p-7 xl:p-9">
-                            <h3>
-                                <a href="javascript:void(0)" class="text-dark dark:text-white hover:text-primary mb-4 block text-xl font-semibold sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px]">
-                                   {{$user->name}}
-                                </a>
-                            </h3>
-                            <p class="text-base leading-relaxed text-body-color dark:text-dark-6 mb-7">
-                                Lorem ipsum dolor sit amet pretium consectetur adipiscing
-                                elit. Lorem consectetur adipiscing elit.
-                            </p>
-                            <a href="javascript:void(0)" class="inline-block py-2 text-base font-medium transition border rounded-full text-body-color hover:border-primary hover:bg-primary border-gray-3 px-7 hover:text-white dark:border-dark-3 dark:text-dark-6">
-                                View Details
-                            </a>
-                        </div>
-                    </div>
-                </div>
+  <div class="max-w-screen-xl mx-auto px-4 my-10 sm:px-6 lg:px-8 lg:py-14">
+    <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-24">
 
-                <div class="w-full px-4 md:w-1/2 xl:w-1/3">
-                    <div
-                        class="mb-10 overflow-hidden duration-300 bg-white rounded-lg dark:bg-dark-2 shadow-1 hover:shadow-3 dark:shadow-card dark:hover:shadow-3">
-                        <img src="https://cdn.tailgrids.com/2.0/image/application/images/cards/card-01/image-02.jpg"
-                            alt="image" class="w-full" />
-                        <div class="p-8 text-center sm:p-9 md:p-7 xl:p-9">
-                            <h3>
-                                <a href="javascript:void(0)"
-                                    class="text-dark dark:text-white hover:text-primary mb-4 block text-xl font-semibold sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px]">
-                                    The ultimate UX and UI guide to card design
-                                </a>
-                            </h3>
-                            <p class="text-base leading-relaxed text-body-color mb-7">
-                                Lorem ipsum dolor sit amet pretium consectetur adipiscing
-                                elit. Lorem consectetur adipiscing elit.
-                            </p>
-                            <a href="javascript:void(0)"
-                                class="inline-block py-2 text-base font-medium transition border rounded-full text-body-color hover:border-primary hover:bg-primary border-gray-3 px-7 hover:text-white dark:border-dark-3 dark:text-dark-6">
-                                View Details
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-full px-4 md:w-1/2 xl:w-1/3">
-                    <div
-                        class="mb-10 overflow-hidden duration-300 bg-white rounded-lg dark:bg-dark-2 shadow-1 hover:shadow-3 dark:shadow-card dark:hover:shadow-3">
-                        <img src="https://cdn.tailgrids.com/2.0/image/application/images/cards/card-01/image-03.jpg"
-                            alt="image" class="w-full" />
-                        <div class="p-8 text-center sm:p-9 md:p-7 xl:p-9">
-                            <h3>
-                                <a href="javascript:void(0)"
-                                    class="text-dark dark:text-white hover:text-primary mb-4 block text-xl font-semibold sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px]">
-                                    Creative Card Component designs graphic elements
-                                </a>
-                            </h3>
-                            <p class="text-base leading-relaxed text-body-color mb-7">
-                                Lorem ipsum dolor sit amet pretium consectetur adipiscing
-                                elit. Lorem consectetur adipiscing elit.
-                            </p>
-                            <a href="javascript:void(0)"
-                                class="inline-block py-2 text-base font-medium transition border rounded-full text-body-color hover:border-primary hover:bg-primary border-gray-3 px-7 hover:text-white dark:border-dark-3 dark:text-dark-6">
-                                View Details
-                            </a>
-                        </div>
-                    </div>
-                </div>
+        <a href="{{ route('users.index') }}" class="group flex flex-col focus:outline-none">
+            <div class="relative pt-[50%] sm:pt-[70%] rounded-xl overflow-hidden shadow-xl">
+                <img class="absolute inset-0 object-cover w-full h-full transition-transform duration-500 ease-in-out rounded-xl group-hover:scale-105 group-focus:scale-105"
+                    src="https://cdn.tailgrids.com/2.0/image/application/images/cards/card-01/image-02.jpg" alt="Museos Image">
+                <span class="absolute top-0 end-0 rounded-se-xl rounded-es-xl text-xs font-medium bg-gray-800 text-white py-1.5 px-3 dark:bg-neutral-900">
+                    USUARIOS
+                </span>
             </div>
-        </div>
-    </section>
+            <div class="mt-7 text-center">
+                <h3 class="text-xl font-semibold text-gray-800 group-hover:text-gray-600 dark:text-neutral-300 dark:group-hover:text-white">
+                    GESTIONAR USUARIOS
+                </h3>
+                <p class="mt-3 text-xl text-gray-500 dark:text-neutral-200">
+                    Accede al control de tus usuarios, editalos, asignales roles y acomodalos segun tu necesidad.
+                </p>
+            </div>
+        </a>
+
+
+        <a href="{{ route('noticias.noticias') }}" class="group flex flex-col focus:outline-none">
+            <div class="relative pt-[50%] sm:pt-[70%] rounded-xl overflow-hidden shadow-xl">
+                <img class="absolute inset-0 object-cover w-full h-full transition-transform duration-500 ease-in-out rounded-xl group-hover:scale-105 group-focus:scale-105"
+                    src="{{ asset('img/news.jpg') }}" alt="Noticias Image">
+                <span class="absolute top-0 end-0 rounded-se-xl rounded-es-xl text-xs font-medium bg-gray-800 text-white py-1.5 px-3 dark:bg-neutral-900">
+                    NOTICIAS
+                </span>
+            </div>
+            <div class="mt-7 text-center">
+                <h3 class="text-xl font-semibold text-gray-800 group-hover:text-gray-600 dark:text-neutral-300 dark:group-hover:text-white">
+                    NOTICIAS
+                </h3>
+                <p class="mt-3 text-xl text-gray-500 dark:text-neutral-200">
+                    Accede a todas nuestras noticias y comunicados para estar al día con todo lo que necesitas saber de nuestra comunidad educativa.
+                </p>
+            </div>
+        </a>
+        <!-- Card 2 -->
+        <a href="{{ route('museos.index') }}" class="group flex flex-col focus:outline-none">
+            <div class="relative pt-[50%] sm:pt-[70%] rounded-xl overflow-hidden shadow-xl">
+                <img class="absolute inset-0 object-cover w-full h-full transition-transform duration-500 ease-in-out rounded-xl group-hover:scale-105 group-focus:scale-105"
+                    src="{{ asset('img/museos.jpg') }}" alt="Museos Image">
+                <span class="absolute top-0 end-0 rounded-se-xl rounded-es-xl text-xs font-medium bg-gray-800 text-white py-1.5 px-3 dark:bg-neutral-900">
+                    API
+                </span>
+            </div>
+            <div class="mt-7 text-center">
+                <h3 class="text-xl font-semibold text-gray-800 group-hover:text-gray-600 dark:text-neutral-300 dark:group-hover:text-white">
+                    MUSEOS
+                </h3>
+                <p class="mt-3 text-xl text-gray-500 dark:text-neutral-200">
+                    Consulta nuestra API con el listado completo de museos y entra en el mundo del arte visitando enterándote de cada detalle.
+                </p>
+            </div>
+        </a>
+
+       
+      
+    </div>
    
 </x-dash-layout>
