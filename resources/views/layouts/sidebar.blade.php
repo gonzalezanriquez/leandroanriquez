@@ -109,7 +109,7 @@
             <a href="{{ route('noticias.index') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group 
                 {{ Request::is('noticias') ? 'bg-gray-200 dark:bg-amber-400' : 'hover:bg-gray-200 dark:hover:bg-gray-200' }}">
                 <x-heroicon-o-newspaper class="w-6 h-6" stroke-width="1" /> 
-                <span class="ms-3">Cracion Noticias </span>
+                <span class="ms-3">Creacion Noticias </span>
             </a>
         </li>
 
