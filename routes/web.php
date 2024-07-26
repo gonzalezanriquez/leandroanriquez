@@ -17,8 +17,10 @@ use App\Http\Controllers\CursoController;
 use App\Http\Controllers\NoticiaController;
 use App\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\FamiliarController;
+use App\Http\Controllers\ContactController;
 
-Route::resource('familiars', FamiliarController::class);
+
+
 
 // BIENVENIDA
 Route::get('/', function () { return view('welcome'); });
@@ -29,10 +31,16 @@ Route::get('/register', [AuthenticatedSessionController::class, 'create'])->name
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
 Route::get('google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
+
+
+Route::get('/contact', [ContactController::class, 'create'])->name('contact.create');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+
 // AUTH
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     
+    Route::resource('familiars', FamiliarController::class);
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -68,6 +76,12 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('ciclolectivos', CiclolectivoController::class);
     Route::resource('cursos', CursoController::class);
     Route::resource('docente', DocenteController::class); 
+
+    Route::get('/contact/messages', [ContactController::class, 'index'])->name('contact.index');
+    Route::get('/contact/messages/{id}', [ContactController::class, 'show'])->name('contact.show');
+    Route::patch('/contact/messages/{id}/read', [ContactController::class, 'markAsRead'])->name('contact.read');
+
+
 });
 
 require __DIR__.'/auth.php';

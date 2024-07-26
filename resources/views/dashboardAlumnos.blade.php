@@ -6,7 +6,7 @@
             <div class="flex items-center justify-center sm:justify-start text-center sm:text-left">
                 <x-heroicon-o-rectangle-group class="w-10 h-10 mr-3" stroke-width="1" />
                 <div>
-                    <h1 class="text-2xl font-bold text-gray-900 sm:text-3xl">Te damos la Bienvenida, {{ auth()->user()->name }}! 👋</h1>
+                    <h1 class="text-2xl font-bold text-gray-900 sm:text-3xl">Te damos la Bienvenida, {{ auth()->user()->nombre }}! 👋</h1>
                     <p class="mt-1.5 text-sm text-gray-500">Este es tu espacio personal donde encontrarás las funciones que necesites.</p>
                 </div>
             </div>

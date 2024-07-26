@@ -112,6 +112,14 @@
                 <span class="ms-3">Cracion Noticias </span>
             </a>
         </li>
+
+        <li>
+            <a href="{{ route('contact.index') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group 
+                {{ Request::is('contact') ? 'bg-gray-200 dark:bg-amber-400' : 'hover:bg-gray-200 dark:hover:bg-gray-200' }}">
+                <x-heroicon-o-paper-airplane class="w-6 h-6" stroke-width="1" /> 
+                <span class="ms-3">Mensajes </span>
+            </a>
+        </li>
        
         @endrole
 

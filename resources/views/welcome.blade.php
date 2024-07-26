@@ -45,7 +45,15 @@
                         <path d="m9 18 6-6-6-6" />
                     </svg>
                 </a>
-
+                <a class="inline-flex justify-center items-center gap-x-3 text-center bg-gradient-to-tl from-red-500 to-red-600 hover:from-red-700 hover:to-red-700 border border-transparent text-white text-sm font-medium rounded-md focus:outline-none focus:from-red-700 focus:to-red-700 py-3 px-4"
+                    href="{{ route('contact.create') }}">
+                    Contactate
+                    <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m9 18 6-6-6-6" />
+                    </svg>
+                </a>
             </div>
 
             <div class="mt-5 flex justify-center items-center gap-x-1 sm:gap-x-3">
@@ -178,7 +186,7 @@
                 </div>
 
                 <div class="flex justify-center">
-                    <div class="grid sm:grid-cols-2 lg:grid-cols-2 gap-6">
+                    <div class="grid sm:grid-cols-1 lg:grid-cols-1 gap-6">
                         <div class="group flex flex-col focus:outline-none">
                             <div
                                 class="relative pt-[50%] sm:pt-[70%] rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-500">
@@ -196,22 +204,7 @@
                             </div>
                         </div>
 
-                        <div class="group flex flex-col focus:outline-none">
-                            <div
-                                class="relative pt-[50%] sm:pt-[70%] rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-500">
-                                <img class="absolute inset-0 object-cover w-full h-full transition-transform duration-500 ease-in-out rounded-xl group-hover:scale-105 group-focus:scale-105"
-                                    src="{{ asset('img/kevin.jpg') }}" alt="Blog Image">
-                            </div>
-                            <div class="mt-7 text-center">
-                                <h3
-                                    class="text-xl font-semibold text-gray-800 group-hover:text-gray-600 dark:text-neutral-300 dark:group-hover:text-white">
-                                    KEVIN HERCOG
-                                </h3>
-                                <p class="mt-3 text-gray-800 dark:text-neutral-200">
-                                    Founder &amp; Backend Developer
-                                </p>
-                            </div>
-                        </div>
+                      
                     </div>
                 </div>
             </div>
