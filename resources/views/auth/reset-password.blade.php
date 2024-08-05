@@ -1,4 +1,8 @@
 <x-guest-layout>
+
+<div class="flex justify-center mx-auto">
+                <a href="{{ route('/home') }}"><img class="h-16 sm:h-24 lg:h-32" src="{{ asset('/img/gelogo.png') }}" alt="Geólogo"></a>
+            </div>
     <form method="POST" action="{{ route('password.store') }}">
         @csrf
 
@@ -36,4 +40,7 @@
             </x-primary-button>
         </div>
     </form>
+
+
+    
 </x-guest-layout>

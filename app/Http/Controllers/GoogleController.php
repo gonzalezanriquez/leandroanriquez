@@ -21,16 +21,19 @@ class GoogleController extends Controller
             $user = Socialite::driver('google')->user();
             $findUser = User::where('google_id', $user->id)->first();
 
-            if($findUser){
+            if ($findUser) {
+      
                 Auth::login($findUser);
                 return redirect('/dashboard');
             } else {
+            
                 $newUser = User::create([
-                    'name' => $user->name,
+                    'nombre' => $user->name,
+                    'apellido' => '',
                     'email' => $user->email,
-                    'google_id'=> $user->id,
-                    'avatar'=> $user->avatar,
-                    'password' => encrypt('my-google')
+                    'google_id' => $user->id,
+                    'avatar' => $user->avatar,
+                    'password' => bcrypt('my-google') 
                 ]);
 
                 Auth::login($newUser);
@@ -38,7 +41,7 @@ class GoogleController extends Controller
                 return redirect('/dashboard');
             }
         } catch (Exception $e) {
-            return redirect('auth/google');
+            return redirect('auth/google')->withErrors(['msg' => 'Error al iniciar sesión con Google.']);
         }
     }
 }

@@ -14,6 +14,6 @@ class ContactMessage extends Model
         'name',
         'email',
         'message',
-        'read',
+        'leido',
     ];
 }

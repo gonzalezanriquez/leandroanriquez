@@ -18,6 +18,13 @@ use App\Http\Controllers\NoticiaController;
 use App\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\FamiliarController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ConstanciaController;
+
+
+
+Route::patch('/contact/{id}/read', [ContactController::class, 'markAsRead'])->name('contact.read');
+Route::patch('/contact/{id}/unread', [ContactController::class, 'markAsUnread'])->name('contact.unread');
+Route::delete('/contact/{id}', [ContactController::class, 'destroy'])->name('contact.destroy');
 
 
 
@@ -65,9 +72,9 @@ Route::middleware('auth')->group(function () {
 
 // ADMIN
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
-    Route::post('/generate-report', [ReportController::class, 'generateUserReport'])->name('reports.generate');
-
+    Route::get('/constancia', [ConstanciaController::class, 'showForm'])->name('constancia.form');
+    Route::post('/constancia', [ConstanciaController::class, 'generateConstancia'])->name('constancia.generate');
+    
  
     Route::resource('users', UserController::class);
     Route::resource('estudiantes', EstudianteController::class);

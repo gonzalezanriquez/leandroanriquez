@@ -39,26 +39,96 @@
                                                     <x-heroicon-o-eye class="w-5 h-5" />
                                                     Ver
                                                 </a>
-                                                @if(!$message->read)
+                                                @if(!$message->leido)
                                                 <form id="read-form-{{ $message->id }}" action="{{ route('contact.read', $message) }}" method="POST" style="display: inline;">
                                                     @csrf
                                                     @method('PATCH')
-                                                    <button type="submit" class="px-3 py-1 text-sm text-green-600 bg-green-100 rounded-full hover:text-white hover:bg-green-500 dark:bg-gray-800 dark:text-green-400 flex items-center gap-2">
+                                                    <button type="button" onclick="confirmMarkAsRead({{ $message->id }})" class="px-3 py-1 text-sm text-green-600 bg-green-100 rounded-full hover:text-white hover:bg-green-500 dark:bg-gray-800 dark:text-green-400 flex items-center gap-2">
                                                         <x-heroicon-o-check class="w-5 h-5" />
                                                         Marcar como leído
                                                     </button>
                                                 </form>
+                                                @else
+                                                <form id="unread-form-{{ $message->id }}" action="{{ route('contact.unread', $message) }}" method="POST" style="display: inline;">
+                                                    @csrf
+                                                    @method('PATCH')
+                                                    <button type="button" onclick="confirmMarkAsUnread({{ $message->id }})" class="px-3 py-1 text-sm text-yellow-600 bg-yellow-100 rounded-full hover:text-white hover:bg-yellow-500 dark:bg-gray-800 dark:text-yellow-400 flex items-center gap-2">
+                                                        <x-heroicon-o-x-circle class="w-5 h-5" />
+                                                        Marcar como no leído
+                                                    </button>
+                                                </form>
                                                 @endif
+                                                <form id="delete-form-{{ $message->id }}" action="{{ route('contact.destroy', $message) }}" method="POST" style="display: inline;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="button" onclick="confirmDelete({{ $message->id }})" class="px-3 py-1 text-sm text-red-600 bg-red-100 rounded-full hover:text-white hover:bg-red-500 dark:bg-gray-800 dark:text-red-400 flex items-center gap-2">
+                                                        <x-heroicon-o-trash class="w-5 h-5" />
+                                                        Eliminar
+                                                    </button>
+                                                </form>
                                             </div>
                                         </td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
-
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function confirmMarkAsRead(messageId) {
+            Swal.fire({
+                title: "¿Estás seguro de marcar este mensaje como leído?",
+                text: "Esta acción marcará el mensaje como leído.",
+                icon: "info",
+                showCancelButton: true,
+                confirmButtonColor: "#007bff",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Sí, marcar como leído",
+                cancelButtonText: "Cancelar"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('read-form-' + messageId).submit();
+                }
+            });
+        }
+
+        function confirmMarkAsUnread(messageId) {
+            Swal.fire({
+                title: "¿Estás seguro de marcar este mensaje como no leído?",
+                text: "Esta acción marcará el mensaje como no leído.",
+                icon: "info",
+                showCancelButton: true,
+                confirmButtonColor: "#007bff",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Sí, marcar como no leído",
+                cancelButtonText: "Cancelar"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('unread-form-' + messageId).submit();
+                }
+            });
+        }
+
+        function confirmDelete(messageId) {
+            Swal.fire({
+                title: "¿Seguro deseas eliminar este mensaje?",
+                text: "Esta acción no podrá revertirse",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#fcba03",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Sí, eliminar!",
+                cancelButtonText: "Cancelar"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('delete-form-' + messageId).submit();
+                }
+            });
+        }
+    </script>
 </x-app-layout>

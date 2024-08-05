@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ContactMessage;
+use App\Mail\TestMail;
+use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
     public function index()
     {
-        $messages = ContactMessage::all();
+        $messages = ContactMessage::orderBy('created_at', 'desc')->get();
 
         return view('contact.index', compact('messages'));
     }
@@ -31,6 +33,13 @@ class ContactController extends Controller
 
         ContactMessage::create($request->all());
 
+
+        Mail::to('gonzalezanriquez@gmail.com')->send(new TestMail(
+            $request->name,
+            $request->email,
+            $request->message
+        ));
+
         return redirect('/')->with('success', 'Mensaje enviado correctamente.');
     }
 
@@ -45,8 +54,29 @@ class ContactController extends Controller
     public function markAsRead($id)
     {
         $message = ContactMessage::findOrFail($id);
-        $message->update(['read' => true]);
+        
+        $message->update(['leido' => true]);
 
         return redirect()->route('contact.index')->with('success', 'Mensaje marcado como leído.');
+
+
     }
+    public function markAsUnread($id)
+    {
+        $message = ContactMessage::findOrFail($id);
+        $message->update(['leido' => false]);
+    
+        return redirect()->route('contact.index')->with('success', 'Mensaje marcado como no leído.');
+    }
+    
+    
+
+    public function destroy($id)
+    {
+    $message = ContactMessage::findOrFail($id);
+    $message->delete();
+
+    return redirect()->route('contact.index')->with('success', 'Mensaje eliminado correctamente.');
+    }
+
 }

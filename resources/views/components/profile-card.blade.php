@@ -8,7 +8,7 @@
             <div class="pt-2">
 
                 <div class="text-center text-xs text-gray-400 text-s font-semibold">
-                   <p>{{ auth()->user()->name }} {{ auth()->user()->lastname }}</p>
+                   <p>{{ auth()->user()->nombre }} {{ auth()->user()->apellido }}</p>
                    <p>{{ auth()->user()->email }}</p>
 
                 </div>

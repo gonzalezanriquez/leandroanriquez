@@ -5,7 +5,7 @@
                 <x-heroicon-o-user-plus class="w-6 h-6" stroke-width="1" />
                 <h2 class="text-lg font-medium text-gray-800 dark:text-white tracking-wider">Usuarios</h2>
                 <span class="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">
-                    {{ $users->count() }} usuarios
+                    {{ $totalUsers }} usuarios
                 </span>
             </div>
             <a href="{{ route('users.create') }}">
@@ -71,6 +71,9 @@
                                 @endforeach
                             </tbody>
                         </table>
+                    </div>
+                    <div class="mt-4">
+                        {{ $users->links() }}
                     </div>
                 </div>
             </div>

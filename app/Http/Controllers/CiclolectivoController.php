@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CicloLectivo;
+use App\Models\Ciclolectivo;
 use Illuminate\Http\Request;
 
 class CicloLectivoController extends Controller
 {
     public function index()
     {
-        $ciclolectivos = CicloLectivo::all();
+        $ciclolectivos = Ciclolectivo::all();
         return view('ciclolectivos.index', compact('ciclolectivos'));
     }
 

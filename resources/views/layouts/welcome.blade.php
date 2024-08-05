@@ -7,12 +7,12 @@
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
-    {{--sweet alert--}}
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    {{-- PARA PERSONALIZAR LOS TITULOS EN CADA SECCION --}}
+
     <title>@yield('title')</title>
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
 
 </head>
 

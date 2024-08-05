@@ -46,10 +46,13 @@
                                             </div>
                                         </td>
 
-                                        <td class="px-4 py-4 text-sm text-gray-700 whitespace-nowrap">
-                                            {{ $student->apellido }}
+                                        <td class="px-4 py-4 text-sm whitespace-nowrap">
+                                            @forelse($student->roles as $role)
+                                                <h2 class="font-medium text-black dark:text-white font-bold uppercase">{{ $role->name }}</h2>
+                                            @empty
+                                                <h2 class="font-medium text-gray-500 dark:text-gray-400 font-bold uppercase">Sin rol definido</h2>
+                                            @endforelse
                                         </td>
-                                        
                                         <td class="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                                             <div class="flex items-center gap-x-3">
                                                 <a href="{{ route('users.edit', $student->id) }}" class="px-3 py-1 text-sm text-green-600 bg-green-100 rounded-full hover:text-white hover:bg-green-500 dark:bg-gray-800 dark:text-green-400 flex items-center gap-2">
