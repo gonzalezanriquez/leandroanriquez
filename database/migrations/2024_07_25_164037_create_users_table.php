@@ -19,14 +19,14 @@ class CreateUsersTable extends Migration
             $table->string('avatar')->nullable();
             $table->unsignedBigInteger('rol_id')->nullable();
             $table->unsignedBigInteger('curso_id')->nullable();
-            $table->unsignedBigInteger('ciclo_lectivo_id')->nullable();
+            $table->unsignedBigInteger('ciclolectivos_id')->nullable();
             $table->unsignedBigInteger('familiar_id')->nullable();
             $table->timestamps();
 
             // Foreign key constraints
             $table->foreign('rol_id')->references('id')->on('roles')->onDelete('set null');
             $table->foreign('curso_id')->references('id')->on('cursos')->onDelete('set null');
-            $table->foreign('ciclo_lectivo_id')->references('id')->on('ciclo_lectivos')->onDelete('set null');
+            $table->foreign('ciclolectivos_id')->references('id')->on('ciclolectivos')->onDelete('set null');
             $table->foreign('familiar_id')->references('id')->on('familiars')->onDelete('set null');
         });
     }
